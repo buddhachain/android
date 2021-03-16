@@ -2,6 +2,8 @@ package com.chain.buddha;
 
 import android.app.Application;
 
+import androidx.multidex.MultiDex;
+
 /**
  * @Author: haroro
  * @CreateDate: 3/15/21
@@ -11,12 +13,15 @@ public class BuddhaApplication extends Application {
 
 
     //    实例化一次
-    public synchronized static BuddhaApplication getInstance(){return instance;}
+    public synchronized static BuddhaApplication getInstance() {
+        return instance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        instance=this;
+        instance = this;
+        MultiDex.install(instance);
 
     }
 }

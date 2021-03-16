@@ -13,6 +13,8 @@ import java.math.BigInteger;
 public class XuperUtil {
 
     private volatile static XuperUtil sInstance;
+    private static XuperClient mClient;
+
     public static XuperUtil getInstance() {
         if (sInstance == null) {
             synchronized (RetrofitUtil.class) {
@@ -24,11 +26,18 @@ public class XuperUtil {
         return sInstance;
     }
 
-    private XuperUtil(){
+    private XuperUtil() {
         XuperClient client = new XuperClient("120.79.167.88:37101");
         Account account = Account.create("./keys");
         Account account1 = Account.create(1, 2);
-        client.createContractAccount(account,"1111111111111111");
-        client.transfer(account,"XC1111111111111111@xuper", BigInteger.valueOf(1000000), "1");
+        client.createContractAccount(account, "1111111111111111");
+        client.transfer(account, "XC1111111111111111@xuper", BigInteger.valueOf(1000000), "1");
+    }
+
+    public static XuperClient getXuperClient() {
+        if (mClient == null) {
+            mClient = new XuperClient("120.79.167.88:37101");
+        }
+        return mClient;
     }
 }
