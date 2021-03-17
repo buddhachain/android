@@ -11,10 +11,13 @@ import android.view.ViewGroup;
 import com.chain.buddha.R;
 import com.chain.buddha.ui.BaseFragment;
 
+import butterknife.BindView;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class QifuFragment extends BaseFragment {
+
 
     public QifuFragment() {
         // Required empty public constructor
