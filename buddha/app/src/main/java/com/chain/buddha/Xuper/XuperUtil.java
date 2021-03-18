@@ -6,6 +6,7 @@ import com.chain.buddha.retrofit.RetrofitUtil;
 
 import java.math.BigInteger;
 
+
 /**
  * @Author: haroro
  * @CreateDate: 3/15/21
@@ -40,4 +41,5 @@ public class XuperUtil {
         }
         return mClient;
     }
+
 }
