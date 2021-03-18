@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dimen_16"
+    tools:context=".ui.activity.RenzhengMasterActivity">
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="法号/称谓" />
+
+        <EditText
+            android:layout_marginLeft="@dimen/dimen_8"
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="出生日期" />
+
+        <EditText
+            android:layout_marginLeft="@dimen/dimen_8"
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="所在地区" />
+
+        <EditText
+            android:layout_marginLeft="@dimen/dimen_8"
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="驻锡寺院" />
+
+        <EditText
+            android:layout_marginLeft="@dimen/dimen_8"
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="真人头像" />
+
+        <ImageView
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginLeft="@dimen/dimen_8"
+            android:layout_width="@dimen/dimen_48"
+            android:layout_height="@dimen/dimen_48"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="戒牒照片" />
+
+        <ImageView
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginLeft="@dimen/dimen_8"
+            android:layout_width="@dimen/dimen_48"
+            android:layout_height="@dimen/dimen_48"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="@dimen/dimen_8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="自我介绍" />
+
+        <EditText
+            android:layout_marginLeft="@dimen/dimen_8"
+            style="@style/whiteGrayEditBg"
+            android:layout_height="@dimen/dimen_80"
+            android:layout_width="match_parent" />
+    </LinearLayout>
+    <TextView
+        android:layout_marginTop="@dimen/dimen_80"
+        android:textColor="@color/color_white"
+        android:background="@color/color_gray_8e"
+        android:gravity="center"
+        android:text="申请认证"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"/>
+
+
+</LinearLayout>

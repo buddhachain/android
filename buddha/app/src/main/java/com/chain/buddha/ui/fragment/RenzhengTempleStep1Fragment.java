@@ -1,25 +1,15 @@
 package com.chain.buddha.ui.fragment;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.baidu.xuper.api.Account;
-import com.baidu.xuper.api.XuperClient;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.Test;
-import com.chain.buddha.Xuper.XuperConstants;
-import com.chain.buddha.Xuper.XuperUtil;
 import com.chain.buddha.ui.BaseFragment;
-import com.chain.buddha.utils.FileUtils;
 import com.chain.buddha.utils.PermissionUtils;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.io.File;
-import java.math.BigInteger;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -27,17 +17,17 @@ import butterknife.OnClick;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MineFragment extends BaseFragment {
+public class RenzhengTempleStep1Fragment extends BaseFragment {
 
 
-    public MineFragment() {
+    public RenzhengTempleStep1Fragment() {
         // Required empty public constructor
     }
 
 
     @Override
     protected int setLayout() {
-        return R.layout.fragment_mine;
+        return R.layout.fragment_renzheng_temple_step1;
     }
 
     @Override

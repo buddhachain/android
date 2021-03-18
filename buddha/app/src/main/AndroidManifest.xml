@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -17,6 +17,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
+        <activity android:name=".ui.activity.RenzhengTempleActivity"></activity>
+        <activity android:name=".ui.activity.RenzhengMasterActivity" />
+        <activity android:name=".ui.activity.SendShanjvActivity" />
+        <activity android:name=".ui.activity.PaymentOrderActivity" />
+        <activity android:name=".ui.activity.AddgdzActivity" />
+        <activity android:name=".ui.activity.ShanjvDetailActivity" />
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

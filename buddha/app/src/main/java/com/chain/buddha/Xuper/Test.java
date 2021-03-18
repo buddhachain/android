@@ -10,6 +10,7 @@ import com.baidu.xuper.api.XuperClient;
 import com.baidu.xuper.pb.XchainGrpc;
 import com.baidu.xuper.pb.XchainOuterClass;
 import com.chain.buddha.utils.FileUtils;
+import com.chain.buddha.utils.ThreadUtils;
 
 import java.io.File;
 import java.math.BigInteger;
@@ -47,6 +48,16 @@ public class Test {
 //            balance = client.getBalance(testContractAccount);//成功
 //            client.transfer(account, "1111111111111355", BigInteger.valueOf(10), "1");//成功
 //            balance = client.getBalance(testContractAccount);//成功
+            client.createContractAccount(account, testContractAccount);//成功
+            balance = client.getBalance(testContractAccount);//成功
+            ThreadUtils.runOnSubThread(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            });
+            client.transfer(account, "1111111111111355", BigInteger.valueOf(10), "1");//成功
+            balance = client.getBalance(testContractAccount);//成功
 //            XchainOuterClass.BCStatus status = client.getBlockchainStatus("xuper");
 //            account.setContractAccount(testContractAccount);
 //            Transaction transaction = client.queryContract(account, "wasm", "buddha", "is_master", new HashMap<>());//查询成功
