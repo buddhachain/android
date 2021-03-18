@@ -73,7 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="法号/称谓" />
+                    android:text="单位名称" />
 
                 <EditText
                     android:layout_marginLeft="@dimen/dimen_8"
@@ -90,7 +90,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="法号/称谓" />
+                    android:text="机构代码" />
+
+                <EditText
+                    android:layout_marginLeft="@dimen/dimen_8"
+                    style="@style/whiteGrayEditBg"
+                    android:layout_width="match_parent" />
+            </LinearLayout>
+            <TextView
+                android:textColor="#FFC107"
+                android:text="场所编号或统一社会信用代码"
+                android:layout_gravity="right"
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <LinearLayout
+                android:layout_marginTop="@dimen/dimen_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="省份城市" />
 
                 <EditText
                     android:layout_marginLeft="@dimen/dimen_8"
@@ -107,7 +131,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="法号/称谓" />
+                    android:text="详细地址" />
 
                 <EditText
                     android:layout_marginLeft="@dimen/dimen_8"
@@ -124,7 +148,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="法号/称谓" />
+                    android:text="寺院法人" />
 
                 <EditText
                     android:layout_marginLeft="@dimen/dimen_8"
@@ -141,24 +165,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="法号/称谓" />
-
-                <EditText
-                    android:layout_marginLeft="@dimen/dimen_8"
-                    style="@style/whiteGrayEditBg"
-                    android:layout_width="match_parent" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:text="法号/称谓" />
+                    android:text="手机号码" />
 
                 <EditText
                     android:layout_marginLeft="@dimen/dimen_8"
@@ -175,7 +182,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="法号/称谓" />
+                android:text="电子邮箱" />
 
             <EditText
                 android:layout_marginLeft="@dimen/dimen_8"
@@ -195,7 +202,7 @@
                     android:text="你是寺院法人"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
-                <Switch
+                <androidx.appcompat.widget.SwitchCompat
                     android:layout_alignParentRight="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
@@ -210,7 +217,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="法号/称谓" />
+                    android:text="短信验证码" />
 
                 <EditText
                     android:layout_marginLeft="@dimen/dimen_8"
@@ -227,7 +234,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="法号/称谓" />
+                    android:text="登录密码" />
 
                 <EditText
                     android:layout_marginLeft="@dimen/dimen_8"
@@ -237,6 +244,7 @@
             <LinearLayout
                 android:layout_marginTop="@dimen/dimen_8"
                 android:layout_width="match_parent"
+                android:layout_marginBottom="@dimen/dimen_40"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
@@ -244,7 +252,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="法号/称谓" />
+                    android:text="确认密码" />
 
                 <EditText
                     android:layout_marginLeft="@dimen/dimen_8"

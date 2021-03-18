@@ -1,16 +1,23 @@
 package com.chain.buddha.ui.activity;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 
+import android.Manifest;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.chain.buddha.R;
+import com.chain.buddha.Xuper.Test;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.ui.fragment.FoyouFragment;
 import com.chain.buddha.ui.fragment.MineFragment;
@@ -38,6 +45,14 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mBottomBar.setItemIconTintList(null);
+        if ( ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)!=
+                PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},101);
+        }else {
+            Test.test(context);
+        }
+
+
         mFragment = new Fragment[5];
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();

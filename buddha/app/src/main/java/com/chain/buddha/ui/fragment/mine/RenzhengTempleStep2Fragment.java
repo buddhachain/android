@@ -1,4 +1,4 @@
-package com.chain.buddha.ui.fragment;
+package com.chain.buddha.ui.fragment.mine;
 
 import android.Manifest;
 
@@ -11,17 +11,17 @@ import com.chain.buddha.utils.PermissionUtils;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RenzhengTempleStep3Fragment extends BaseFragment {
+public class RenzhengTempleStep2Fragment extends BaseFragment {
 
 
-    public RenzhengTempleStep3Fragment() {
+    public RenzhengTempleStep2Fragment() {
         // Required empty public constructor
     }
 
 
     @Override
     protected int setLayout() {
-        return R.layout.fragment_renzheng_temple_step3;
+        return R.layout.fragment_renzheng_temple_step2;
     }
 
     @Override

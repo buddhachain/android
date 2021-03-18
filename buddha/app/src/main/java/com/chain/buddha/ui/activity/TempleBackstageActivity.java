@@ -3,22 +3,15 @@ package com.chain.buddha.ui.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import com.chain.buddha.R;
 import com.chain.buddha.ui.BaseActivity;
 
-import butterknife.BindView;
-
-public class RenzhengMasterActivity extends BaseActivity {
-
-    @BindView(R.id.text_back)
-    TextView mTitle;
+public class TempleBackstageActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_renzheng_master);
-        mTitle.setText("法师认证");
+        setContentView(R.layout.activity_temple_backstage);
     }
 }

@@ -17,7 +17,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".ui.activity.RenzhengTempleActivity"></activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.chain.buddha.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <activity android:name=".ui.activity.MyShanjvActivity"></activity>
+        <activity android:name=".ui.activity.TempleBackstageActivity" />
+        <activity android:name=".ui.activity.JjhBackstageActivity" />
+        <activity android:name=".ui.activity.MasterBackstageActivity" />
+        <activity android:name=".ui.activity.RenzhengJjhActivity" />
+        <activity android:name=".ui.activity.RenzhengTempleActivity" />
         <activity android:name=".ui.activity.RenzhengMasterActivity" />
         <activity android:name=".ui.activity.SendShanjvActivity" />
         <activity android:name=".ui.activity.PaymentOrderActivity" />
