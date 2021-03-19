@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.baidu.xuper.api.Account;
 import com.baidu.xuper.api.XuperClient;
 import com.chain.buddha.R;
+import com.chain.buddha.Xuper.Test;
 import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.ui.activity.JjhBackstageActivity;
 import com.chain.buddha.ui.activity.MasterBackstageActivity;
@@ -46,7 +47,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void init() {
-        Test.test(mContext);
+//        Test.test2(mContext);
     }
 
     @Override
