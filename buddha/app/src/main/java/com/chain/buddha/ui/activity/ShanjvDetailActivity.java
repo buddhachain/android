@@ -66,7 +66,7 @@ public class ShanjvDetailActivity extends BaseActivity {
 
 
     @OnClick({R.id.btn_open_choose,R.id.btn_close_choose,R.id.btn_next_step})
-    private void onClick(View view){
+    protected void onClick(View view){
         switch (view.getId()){
             case R.id.btn_open_choose:
                 //开始选择项目

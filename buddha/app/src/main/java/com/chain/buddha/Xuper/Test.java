@@ -5,8 +5,10 @@ import android.util.Log;
 
 import com.baidu.xuper.api.Account;
 import com.baidu.xuper.api.Common;
+import com.baidu.xuper.api.Proposal;
 import com.baidu.xuper.api.Transaction;
 import com.baidu.xuper.api.XuperClient;
+import com.baidu.xuper.config.Config;
 import com.baidu.xuper.pb.XchainGrpc;
 import com.baidu.xuper.pb.XchainOuterClass;
 import com.chain.buddha.utils.FileUtils;
@@ -48,7 +50,7 @@ public class Test {
 //            balance = client.getBalance(testContractAccount);//成功
 //            client.transfer(account, "1111111111111355", BigInteger.valueOf(10), "1");//成功
 //            balance = client.getBalance(testContractAccount);//成功
-            client.createContractAccount(account, testContractAccount);//成功
+//            client.createContractAccount(account, testContractAccount);//成功
             balance = client.getBalance(testContractAccount);//成功
             ThreadUtils.runOnSubThread(new Runnable() {
                 @Override
@@ -56,11 +58,11 @@ public class Test {
 
                 }
             });
-            client.transfer(account, "1111111111111355", BigInteger.valueOf(10), "1");//成功
-            balance = client.getBalance(testContractAccount);//成功
+//            client.transfer(account, "1111111111111355", BigInteger.valueOf(10), "1");//成功
+//            balance = client.getBalance(testContractAccount);//成功
 //            XchainOuterClass.BCStatus status = client.getBlockchainStatus("xuper");
 //            account.setContractAccount(testContractAccount);
-//            Transaction transaction = client.queryContract(account, "wasm", "buddha", "is_master", new HashMap<>());//查询成功
+//            Transaction transaction = client.invokeContract(account, "wasm", "buddha", "is_master", new HashMap<>());//查询成功
 //            String res = transaction.getContractResponse().getBodyStr();
 //////            account.setContractAccount("XC1234567890200001@xuper");
 //            transaction = client.queryContract(account, "wasm", "buddha", "list_kinddeed", new HashMap<>());//查询成功
@@ -69,7 +71,8 @@ public class Test {
 //            args.put("kdid", ("1").getBytes());
 //            transaction = client.queryContract(account, "wasm", "buddha", "list_kinddeeddetail", args);//查询成功
 //            res = transaction.getContractResponse().getBodyStr();
-            List<String> list = getBalanceDetails(account.getAddress());
+            List<String> list = getAccountByAK(account.getAddress());
+            getAccountContracts("XC1111111111111301@xuper");
             Log.d("xuper", "over");
         } catch (Exception e) {
             e.printStackTrace();
@@ -82,7 +85,7 @@ public class Test {
      * @param address account name, can be contract account
      * @return balance
      */
-    public static List<String> getBalanceDetails(String address) {
+    public static List<String> getAccountByAK(String address) {
         XchainOuterClass.AK2AccountRequest request = XchainOuterClass.AK2AccountRequest.newBuilder()
                 .setHeader(Common.newHeader())
                 .setAddress(address)
@@ -105,7 +108,8 @@ public class Test {
      */
     public static List<XchainOuterClass.ContractStatus> getAccountContracts(String account) {
         XchainOuterClass.GetAccountContractsRequest request = XchainOuterClass.GetAccountContractsRequest.newBuilder()
-                .setHeader(Common.newHeader()).setAccount(account)
+                .setHeader(Common.newHeader())
+                .setAccount(account)
                 .setBcname("xuper")
                 .build();
         XchainOuterClass.GetAccountContractsResponse response = XchainGrpc.newBlockingStub(ManagedChannelBuilder.forTarget("120.79.167.88:37101")
@@ -115,5 +119,9 @@ public class Test {
                 .build()).getAccountContracts(request);
 
         return response.getContractsStatusList();
+    }
+
+    //多签
+    public static void mulSignContract() {
     }
 }

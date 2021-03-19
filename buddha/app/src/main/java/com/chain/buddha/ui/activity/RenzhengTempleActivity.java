@@ -45,7 +45,7 @@ public class RenzhengTempleActivity extends BaseActivity {
     }
 
     @OnClick(R.id.btn_next_step)
-    private void onClick(View view){
+    protected void onClick(View view){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         if (mIndex<fragmentList.size()-1){
             ft.replace(R.id.renzheng_frameLayout,fragmentList.get(mIndex+1));

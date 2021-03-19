@@ -42,7 +42,7 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void init() {
-
+        Test.test(mContext);
     }
 
     /**
