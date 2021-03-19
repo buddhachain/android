@@ -1,6 +1,8 @@
 package com.chain.buddha.Xuper;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Environment;
 import android.util.Log;
 
 import com.baidu.xuper.api.Account;
@@ -25,14 +27,34 @@ import io.grpc.ManagedChannelBuilder;
 public class Test {
     private static XuperClient client;
 
+    @SuppressLint("SdCardPath")
+    private static final String SD_PATH = "/sdcard/buddha/";
+    private static final String IN_PATH = "/buddha/";
     public static void test(Context context) {
 
         //账号SDK测试
         client = new XuperClient("120.79.167.88:37101");
         String psw = "123456";
 //        Account account = Account.create("./keys");
-        String savepath = FileUtils.SDCardConstants.getCacheDir(context) + "/testaccount.keys";
+       // String savepath = FileUtils.SDCardConstants.getCacheDir(context) + "/testaccount.keys";
+        String savepath;
         Account account;
+        if (Environment.getExternalStorageState().equals(
+                Environment.MEDIA_MOUNTED)) {
+            savepath = SD_PATH;
+        } else {
+            savepath = context.getApplicationContext().getFilesDir()
+                    .getAbsolutePath()
+                    + IN_PATH;
+        }
+        File file1 = new File(savepath);
+        if (!file1.exists()){
+            file1.mkdirs();
+        }
+        if (!file1.exists()){
+            file1.mkdirs();
+        }
+        savepath=savepath+"/testaccount.keys";
         if (new File(savepath).exists()) {
             account = Account.getAccountFromFile(savepath, psw);//成功
         } else {

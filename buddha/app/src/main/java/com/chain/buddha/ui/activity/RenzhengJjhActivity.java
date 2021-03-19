@@ -10,7 +10,7 @@ import com.chain.buddha.ui.BaseActivity;
 
 import butterknife.BindView;
 
-public class RenzhengMasterActivity extends BaseActivity {
+public class RenzhengJjhActivity extends BaseActivity {
 
     @BindView(R.id.text_back)
     TextView mTitle;
@@ -18,7 +18,7 @@ public class RenzhengMasterActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_renzheng_master);
-        mTitle.setText("法师认证");
+        setContentView(R.layout.activity_renzhengjjh);
+        mTitle.setText("基金会成员认证");
     }
 }

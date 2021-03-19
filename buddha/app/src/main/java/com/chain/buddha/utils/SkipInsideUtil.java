@@ -83,7 +83,6 @@ public class SkipInsideUtil {
     public static void skipInsideActivityForResult(Context activity, Class<? extends Activity> cls, int resultCode, String key, String value){
         Intent intent = new Intent(activity, cls);
         intent.putExtra(key,value);
-
         ((BaseActivity)activity).startActivityForResult(intent,resultCode);
     }
 

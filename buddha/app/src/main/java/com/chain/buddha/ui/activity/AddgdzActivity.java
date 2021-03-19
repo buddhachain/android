@@ -25,15 +25,15 @@ public class AddgdzActivity extends BaseActivity {
     }
 
     @OnClick({R.id.btn_next_step})
-    protected void onClick(View view){
-        switch (view.getId()){
+    void onClick(View view) {
+        switch (view.getId()) {
             case R.id.btn_next_step:
-                SkipInsideUtil.skipInsideActivity(context,PaymentOrderActivity.class);
+                SkipInsideUtil.skipInsideActivity(context, PaymentOrderActivity.class);
                 break;
-            default:break;
+            default:
+                break;
         }
     }
-
 
 
 }

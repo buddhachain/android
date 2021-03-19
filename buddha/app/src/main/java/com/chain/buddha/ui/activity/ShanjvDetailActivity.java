@@ -40,10 +40,10 @@ public class ShanjvDetailActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shanjv_detail);
-        mTitle=new String[]{getString(R.string.shanjv_detail),getString(R.string.shanjv_list)};
-        mFragmentList=new ArrayList<>();
+        mTitle = new String[]{getString(R.string.shanjv_detail), getString(R.string.shanjv_list)};
+        mFragmentList = new ArrayList<>();
         for (int i = 0; i < mTitle.length; i++) {
-            switch (i){
+            switch (i) {
                 case 0:
                     mFragmentList.add(new ShanjvDetailFragment());
                     break;
@@ -56,8 +56,8 @@ public class ShanjvDetailActivity extends BaseActivity {
             mTabLayout.addTab(mTabLayout.newTab());
         }
 
-        mTabLayout.setupWithViewPager(mViewPager,false);
-        mViewPagerAdapter=new FmPagerAdapter(mFragmentList,getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        mTabLayout.setupWithViewPager(mViewPager, false);
+        mViewPagerAdapter = new FmPagerAdapter(mFragmentList, getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mViewPager.setAdapter(mViewPagerAdapter);
         for (int i = 0; i < mFragmentList.size(); i++) {
             mTabLayout.getTabAt(i).setText(mTitle[i]);
@@ -65,9 +65,9 @@ public class ShanjvDetailActivity extends BaseActivity {
     }
 
 
-    @OnClick({R.id.btn_open_choose,R.id.btn_close_choose,R.id.btn_next_step})
-    protected void onClick(View view){
-        switch (view.getId()){
+    @OnClick({R.id.btn_open_choose, R.id.btn_close_choose, R.id.btn_next_step})
+    void onClick(View view) {
+        switch (view.getId()) {
             case R.id.btn_open_choose:
                 //开始选择项目
                 mChooseItemLayout.setVisibility(View.VISIBLE);
@@ -76,9 +76,10 @@ public class ShanjvDetailActivity extends BaseActivity {
                 mChooseItemLayout.setVisibility(View.GONE);
                 break;
             case R.id.btn_next_step:
-                SkipInsideUtil.skipInsideActivity(context,AddgdzActivity.class);
+                SkipInsideUtil.skipInsideActivity(context, AddgdzActivity.class);
                 break;
-            default:break;
+            default:
+                break;
         }
     }
 }

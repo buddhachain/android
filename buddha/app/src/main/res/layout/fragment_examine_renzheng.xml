@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40">
+        <TextView
+            android:layout_margin="@dimen/dimen_1"
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            android:background="#158DEC"
+            android:text="名字/名称"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_margin="@dimen/dimen_1"
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            android:background="#158DEC"
+            android:text="所属人/寺院"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <TextView
+            android:layout_margin="@dimen/dimen_1"
+            android:gravity="center"
+            android:textColor="@color/color_white"
+            android:background="#158DEC"
+            android:text="是否通过"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
