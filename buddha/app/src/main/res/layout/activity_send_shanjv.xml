@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.SendShanjvActivity">
+
+    <include layout="@layout/item_top_back_bar"/>
+    <TextView
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:text="善行名称"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_8"
+        style="@style/whiteGrayEditBg"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:text="善行描述"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_8"
+        style="@style/whiteGrayEditBg"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:text="善行价格"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_8"
+        style="@style/whiteGrayEditBg"
+        android:layout_width="match_parent"/>
+    <TextView
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:text="善行数量"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:layout_marginLeft="@dimen/dimen_16"
+        android:layout_marginRight="@dimen/dimen_16"
+        android:layout_marginTop="@dimen/dimen_8"
+        style="@style/whiteGrayEditBg"
+        android:layout_width="match_parent"/>
+
+    <TextView
+        android:layout_marginTop="@dimen/dimen_80"
+        android:textColor="@color/color_white"
+        android:background="@color/color_gray_8e"
+        android:gravity="center"
+        android:text="上传"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"/>
+
+</LinearLayout>

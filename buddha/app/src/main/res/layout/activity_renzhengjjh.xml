@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.RenzhengJjhActivity">
+
+    <include layout="@layout/item_top_back_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="申请时冻结金额" />
+
+        <EditText
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_8" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="地址" />
+
+        <EditText
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_8" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="出生日期" />
+
+        <EditText
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_8" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="性别" />
+
+        <EditText
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_8" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/btn_next_step"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:background="#893737"
+        android:gravity="center"
+        android:text="@string/next_step"
+        android:textColor="@color/color_white" />
+
+
+</LinearLayout>

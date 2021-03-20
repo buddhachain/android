@@ -1,4 +1,4 @@
-package com.chain.buddha.ui.fragment;
+package com.chain.buddha.ui.fragment.mine;
 
 import android.os.Bundle;
 
@@ -11,24 +11,20 @@ import android.view.ViewGroup;
 import com.chain.buddha.R;
 import com.chain.buddha.ui.BaseFragment;
 
-import butterknife.BindView;
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QifuFragment extends BaseFragment {
+public class ExamineShanjvFragment extends BaseFragment {
 
-
-    public QifuFragment() {
+    public ExamineShanjvFragment() {
         // Required empty public constructor
     }
 
 
 
-
     @Override
     protected int setLayout() {
-        return R.layout.fragment_qifu;
+        return R.layout.fragment_examine_shanjv;
     }
 
     @Override

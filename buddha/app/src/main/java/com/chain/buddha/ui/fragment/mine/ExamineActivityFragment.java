@@ -1,34 +1,24 @@
-package com.chain.buddha.ui.fragment;
-
-import android.os.Bundle;
+package com.chain.buddha.ui.fragment.mine;
 
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.chain.buddha.R;
 import com.chain.buddha.ui.BaseFragment;
 
-import butterknife.BindView;
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class QifuFragment extends BaseFragment {
+public class ExamineActivityFragment extends BaseFragment {
 
-
-    public QifuFragment() {
+    public ExamineActivityFragment() {
         // Required empty public constructor
     }
 
 
 
-
     @Override
     protected int setLayout() {
-        return R.layout.fragment_qifu;
+        return R.layout.fragment_examine_activity;
     }
 
     @Override
