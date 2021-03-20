@@ -1,18 +1,12 @@
 package com.chain.buddha.ui.fragment;
 
 import android.Manifest;
-import android.view.View;
-import android.widget.TextView;
-
-import androidx.fragment.app.Fragment;
 
 import com.chain.buddha.R;
-import com.chain.buddha.Xuper.Test;
 import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.utils.PermissionUtils;
 
-import butterknife.BindView;
-import butterknife.OnClick;
+import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.

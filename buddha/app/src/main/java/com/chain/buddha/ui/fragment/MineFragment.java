@@ -1,16 +1,9 @@
 package com.chain.buddha.ui.fragment;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-
-import com.baidu.xuper.api.Account;
-import com.baidu.xuper.api.XuperClient;
 import com.chain.buddha.R;
-import com.chain.buddha.Xuper.Test;
 import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.ui.activity.JjhBackstageActivity;
 import com.chain.buddha.ui.activity.MasterBackstageActivity;
@@ -24,6 +17,7 @@ import com.chain.buddha.utils.SkipInsideUtil;
 
 import java.util.HashMap;
 
+import androidx.fragment.app.Fragment;
 import butterknife.OnClick;
 
 /**

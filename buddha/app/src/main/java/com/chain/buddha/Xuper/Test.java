@@ -193,7 +193,7 @@ public class Test {
             String contractAccountName = "XC1234567890500013@xuper";
             Account account1 = Account.retrieve("hazard globe drive supply divorce canvas toilet fault tomato crater potato calm", 2);//成功
             Account account2 = Account.retrieve("once better praise warm spoon misery tiny home goose scare mercy can", 2);//成功
-//            transferTo(account1.getAKAddress(), 1000);
+            transferTo(account1.getAKAddress(), 1000);
 //        transferTo(account2.getAKAddress());
 //            account1=new Account()
 //            getAccountByAK(account1.getAKAddress());
@@ -201,20 +201,22 @@ public class Test {
             account1.setContractAccount(newAccountName);
 //            client.createContractAccount(account1, newAccountName);//成功
 //            client.transfer(account1, account2.getAKAddress(), BigInteger.valueOf(100), "1");//成功
-            BigInteger balance = client.getBalance(account1.getAddress());//成功
+            BigInteger balance = client.getBalance(account1.getAKAddress());//成功
             balance = client.getBalance(account2.getAddress());//成功
             balance = client.getBalance(contractAccountName);//成功
 
             Map<String, byte[]> args = new HashMap<>();
-            args.put("account_name", newAccountName.getBytes());
-            args.put("account", newAccountName.getBytes());
+            args.put("unit", "佛山顶观音寺".getBytes());
+            args.put("creditcode", "F110300007".getBytes());
+            args.put("address", "浙江丽水佛顶山".getBytes());
+            args.put("proof", "123".getBytes());
 //            args.put("acl", desc.getBytes());
             Transaction transaction;
             String res;
 
-            transaction = client.queryContract(account1, "wasm", "buddha", "is_master", args);//查询成功
+            transaction = client.invokeContract(account1, "wasm", "buddha", "apply_temple", args);//查询成功
             res = transaction.getContractResponse().getBodyStr();
-            transaction = client.invokeContract(account1, "wasm", "buddha", "is_master", args);//查询成功
+            transaction = client.queryContract(account1, "wasm", "buddha", "is_master", args);//查询成功
             res = transaction.getContractResponse().getBodyStr();
             Log.d("xuper", "over");
             getAccountByAK(account1.getAKAddress());
