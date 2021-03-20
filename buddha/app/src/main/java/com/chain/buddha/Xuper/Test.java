@@ -29,7 +29,7 @@ public class Test {
             account = Account.createAndSave(savepath, psw, 1, 2);//成功
         }
 //        account = Account.create();
-        Account createAccount = Account.retrieve("单 写 横 浙 乌 轴 语 云 缓 三 找 购 峰 侦 法 使 勃 雪", 1);
+        account = Account.retrieve("单 写 横 浙 乌 轴 语 云 缓 三 找 购 峰 侦 法 使 勃 雪", 1);
         try {
             String testContractAccount = "1111111111111301";
             BigInteger balance = client.getBalance(account.getAddress());//成功
