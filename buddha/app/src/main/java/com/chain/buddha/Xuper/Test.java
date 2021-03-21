@@ -120,6 +120,7 @@ public class Test {
      * Get balance unfrozen balance and frozen balance of account
      *
      * @param address account name, can be contract account
+     *                根据本地账号获取合约账号
      * @return balance
      */
     public static List<String> getAccountByAK(String address) {
