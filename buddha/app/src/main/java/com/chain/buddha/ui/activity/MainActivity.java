@@ -1,5 +1,20 @@
 package com.chain.buddha.ui.activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.widget.FrameLayout;
+
+import com.chain.buddha.R;
+import com.chain.buddha.ui.BaseActivity;
+import com.chain.buddha.ui.fragment.FoyouFragment;
+import com.chain.buddha.ui.fragment.MineFragment;
+import com.chain.buddha.ui.fragment.QifuFragment;
+import com.chain.buddha.ui.fragment.ShouyeFragment;
+import com.chain.buddha.ui.fragment.XiuxingFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -7,28 +22,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
-
-import android.Manifest;
-import android.app.ActivityManager;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
-
-import com.chain.buddha.R;
-import com.chain.buddha.Xuper.Test;
-import com.chain.buddha.ui.BaseActivity;
-import com.chain.buddha.ui.fragment.FoyouFragment;
-import com.chain.buddha.ui.fragment.MineFragment;
-import com.chain.buddha.ui.fragment.QifuFragment;
-import com.chain.buddha.ui.fragment.ShouyeFragment;
-import com.chain.buddha.ui.fragment.XiuxingFragment;
-import com.chain.buddha.utils.UIUtils;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
-
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
@@ -49,7 +42,7 @@ public class MainActivity extends BaseActivity {
                 PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},101);
         }else {
-            Test.test2(context);
+//            Test.test2(context);
         }
 
 

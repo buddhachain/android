@@ -5,6 +5,9 @@ package com.chain.buddha.Xuper;
  * @CreateDate: 3/15/21
  */
 public class XuperConstants {
+
+    public static final String MODEL_NAME = "wasm";
+    public static final String CONTRACT_NAME = "buddha";
     public static final String XUPER = "@xuper";
 
     //角色介绍

@@ -11,4 +11,9 @@
     <color name="color_gray_f8">#F8F9FA</color>
     <color name="color_blue">#1D7CDA</color>
 
+    <color name="color_go_top">#d81e06</color>
+
+    <color name="color_qifu_tag_tv">#D4CCBE</color>
+    <color name="color_qifu_tag_bg">#F8F3EF</color>
+
 </resources>
