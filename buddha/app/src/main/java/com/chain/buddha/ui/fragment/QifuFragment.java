@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.chain.buddha.R;
+import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseFragment;
 
 import butterknife.BindView;
@@ -34,6 +35,12 @@ public class QifuFragment extends BaseFragment {
     @Override
     protected void init() {
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        XuperApi.test();
     }
 
     @Override
