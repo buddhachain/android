@@ -29,9 +29,8 @@ public class BaseObserver<T> implements Observer<T> {
     public BaseObserver(boolean hasDialog, ResponseCallBack<T> responseCallBack) {
         this.hasDialog = hasDialog;
         this.responseCallBack = responseCallBack;
-        mType = getSuperclassTypeParameter(this.getClass());
+        mType = getSuperclassTypeParameter(responseCallBack.getClass());
     }
-
 
     @Override
     public void onSubscribe(Disposable d) {
@@ -45,7 +44,11 @@ public class BaseObserver<T> implements Observer<T> {
 
     @Override
     public void onNext(T tXuperResponse) {
-        responseCallBack.onSuccess(tXuperResponse);
+        try {
+            responseCallBack.onSuccess(tXuperResponse);
+        } catch (Exception e) {
+            onError(e);
+        }
     }
 
     @Override
@@ -92,12 +95,16 @@ public class BaseObserver<T> implements Observer<T> {
     }
 
     static Type getSuperclassTypeParameter(Class<?> subclass) {
-        Type superclass = subclass.getGenericSuperclass();
+        Type[] superclassList = subclass.getGenericInterfaces();
+        Type superclass = superclassList[0];
         if (superclass instanceof Class) {
-            throw new RuntimeException("Missing type parameter.");
+            return String.class;
+//            throw new RuntimeException("Missing type parameter.");
         }
         ParameterizedType parameterized = (ParameterizedType) superclass;
         return $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[0]);
     }
 
 }
+
+
