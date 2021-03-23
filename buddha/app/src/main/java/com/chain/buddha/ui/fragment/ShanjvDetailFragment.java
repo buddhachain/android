@@ -1,6 +1,7 @@
 package com.chain.buddha.ui.fragment;
 
 import android.Manifest;
+import android.util.Log;
 
 import com.chain.buddha.R;
 import com.chain.buddha.ui.BaseFragment;
@@ -14,7 +15,10 @@ import androidx.fragment.app.Fragment;
 public class ShanjvDetailFragment extends BaseFragment {
 
 
-    public ShanjvDetailFragment() {
+    String kdid;//善举id
+
+    public ShanjvDetailFragment(String kdid) {
+        this.kdid = kdid;
         // Required empty public constructor
     }
 
@@ -26,24 +30,8 @@ public class ShanjvDetailFragment extends BaseFragment {
 
     @Override
     protected void init() {
-
+        Log.e("kdid", kdid);
     }
-
-    /**
-     * 检查权限
-     */
-    private void checkPermission() {
-        String[] permission = {
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        };
-        boolean checkResult = PermissionUtils.checkPermissionsGroup(mContext, permission);
-        if (!checkResult) {
-            PermissionUtils.requestPermissions(mContext, permission, 1);
-        }
-    }
-
-
 
     @Override
     protected void lazyInit() {

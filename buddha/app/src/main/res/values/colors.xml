@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="base_color">#D81B60</color>
+    <color name="base_color_transparent">#99D81B60</color>
+
     <color name="color_white">#ffffff</color>
 
     <color name="color_black_20">#202122</color>
@@ -13,7 +16,23 @@
 
     <color name="color_go_top">#d81e06</color>
 
+    <color name="base_error_color">#FC3636</color>
+
     <color name="color_qifu_tag_tv">#D4CCBE</color>
     <color name="color_qifu_tag_bg">#F8F3EF</color>
+    <color name="color_title_text">#515151</color>
 
+    <!-- 一级文字颜色 -->
+    <color name="color_text_level1">#222222</color>
+    <!-- 二级文字颜色 -->
+    <color name="color_text_level2">#555555</color>
+    <!-- 一级背景色 -->
+    <color name="base_bg_color_level1">#ffffff</color>
+    <!-- 二级背景色 -->
+    <color name="base_bg_color_level2">#f5f6f9</color>
+
+    <color name="hint_gray">#adadad</color>
+    <color name="color_base_line">#8E9BA6</color>
+
+    <color name="transparent">#00000000</color>
 </resources>

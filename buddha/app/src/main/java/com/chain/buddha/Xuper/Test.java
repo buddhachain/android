@@ -37,8 +37,8 @@ public class Test {
         client = new XuperClient("120.79.167.88:37101");
         String psw = "123456";
 //        Account account = Account.create("./keys");
-        // String savepath = FileUtils.SDCardConstants.getCacheDir(context) + "/testaccount.keys";
         String savepath;
+        savepath = FileUtils.SDCardConstants.getDir(context) + "/accountKey.keys";
         Account account;
         if (Environment.getExternalStorageState().equals(
                 Environment.MEDIA_MOUNTED)) {
@@ -49,9 +49,6 @@ public class Test {
                     + IN_PATH;
         }
         File file1 = new File(savepath);
-        if (!file1.exists()) {
-            file1.mkdirs();
-        }
         if (!file1.exists()) {
             file1.mkdirs();
         }

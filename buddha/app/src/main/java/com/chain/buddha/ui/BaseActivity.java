@@ -18,7 +18,7 @@ import butterknife.ButterKnife;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    public static Context context;
+    public Activity context;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

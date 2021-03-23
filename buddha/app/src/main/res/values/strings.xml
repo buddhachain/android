@@ -17,5 +17,19 @@
     <string name="go_to_top">回顶部</string>
     <string name="account_address">钱包地址:</string>
     <string name="account_balance">般弱钻余额:</string>
+    <string name="pls_input_psw">请输入密码</string>
+
+    <string name="cancel">取消</string>
+    <string name="confirm">确认</string>
+
+    <string name="login">导入钱包</string>
+    <string name="not_login">暂无钱包</string>
+    <string name="logout">删除钱包</string>
+    <string name="open_wallet">打开钱包</string>
+
+    <string name="normal">普通用户</string>
+    <string name="fashi">法师</string>
+    <string name="siyuan">寺院</string>
+    <string name="jijinhui">基金会</string>
 
 </resources>

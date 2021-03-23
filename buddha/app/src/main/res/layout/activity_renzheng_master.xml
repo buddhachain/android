@@ -100,7 +100,7 @@
             android:layout_width="@dimen/dimen_48"
             android:layout_height="@dimen/dimen_48"
             android:layout_marginLeft="@dimen/dimen_8"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_default_img" />
     </LinearLayout>
 
     <LinearLayout
@@ -119,7 +119,7 @@
             android:layout_width="@dimen/dimen_48"
             android:layout_height="@dimen/dimen_48"
             android:layout_marginLeft="@dimen/dimen_8"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_default_img" />
     </LinearLayout>
 
     <LinearLayout

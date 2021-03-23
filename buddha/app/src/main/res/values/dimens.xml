@@ -129,4 +129,6 @@
 
     <dimen name="smart_refresh_header_inset_start">-5dp</dimen>
 
+    <dimen name="simple_dialog_width">250dp</dimen>
+
 </resources>

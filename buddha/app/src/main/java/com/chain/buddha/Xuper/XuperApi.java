@@ -4,8 +4,10 @@ import android.util.Log;
 
 import com.baidu.xuper.api.Account;
 import com.baidu.xuper.api.Common;
+import com.baidu.xuper.api.Proposal;
 import com.baidu.xuper.api.Transaction;
 import com.baidu.xuper.api.XuperClient;
+import com.baidu.xuper.config.Config;
 import com.baidu.xuper.pb.XchainGrpc;
 import com.baidu.xuper.pb.XchainOuterClass;
 import com.chain.buddha.bean.ShanjvBean;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.net.ssl.SSLHandshakeException;
 
@@ -128,6 +131,10 @@ public class XuperApi {
     }
 
     public static void baseRequest(String method, HashMap<String, byte[]> hashMap, boolean isInvoke, BaseObserver baseObserver) {
+        if (!XuperAccount.ifLoginAccount()) {
+            baseObserver.onError(new Exception("还未登陆"));
+            return;
+        }
         Observable.create(new ObservableOnSubscribe<Object>() {
             @Override
             public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
@@ -156,6 +163,53 @@ public class XuperApi {
 
     }
 
+
+    public static void baseRequestWithAmount(String method, HashMap<String, byte[]> hashMap, String amount, BaseObserver baseObserver) {
+        if (!XuperAccount.ifLoginAccount()) {
+            baseObserver.onError(new Exception("还未登陆"));
+            return;
+        }
+        Observable.create(new ObservableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
+                try {
+                    Transaction transaction;
+                    transaction = invokeContractWithAmount(XuperAccount.getAccount(), "wasm", "buddha", method, amount, hashMap);
+
+                    String bodyStr = transaction.getContractResponse().getBodyStr();
+                    if (baseObserver.mType == String.class) {
+                        emitter.onNext(bodyStr);
+                    } else {
+                        Gson gson = new Gson();
+                        Object object = gson.fromJson(bodyStr, baseObserver.mType);
+                        emitter.onNext(object);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    emitter.onError(e);
+                }
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(baseObserver);
+
+    }
+
+    /**
+     * @param from     the initiator of calling method
+     * @param module   module of contract, usually wasm
+     * @param contract contract name
+     * @param method   contract method
+     * @param args     contract method arguments
+     * @return
+     */
+    public static Transaction invokeContractWithAmount(Account from, String module, String contract, String method, String amount, Map<String, byte[]> args) {
+        Proposal p = new Proposal();
+        if (Config.getInstance().getComplianceCheck().getIsNeedComplianceCheck()) {
+            p.addAuthRequire(Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceAddr());
+        }
+        p.setInitiator(from);
+        return p.transfer(contract, new BigInteger(amount)).invokeContract(module, contract, method, args).build(getXuperClient()).sign().send(getXuperClient());
+    }
 
     /**
      * Get balance unfrozen balance and frozen balance of account
@@ -224,6 +278,10 @@ public class XuperApi {
 
 
     public static void transferTo(String address, int value, ResponseCallBack<String> responseCallBack) {
+        if (!XuperAccount.ifLoginAccount()) {
+            responseCallBack.onFail("还未登陆");
+            return;
+        }
         Observable.create(new ObservableOnSubscribe<Object>() {
             @Override
             public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
@@ -249,6 +307,47 @@ public class XuperApi {
      */
     public static void requestMasterList(ResponseCallBack responseCallBack) {
         baseRequest("list_master", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 请求善举详情
+     *
+     * @param responseCallBack
+     */
+    public static void kinddeedDetail(String kdid, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("kdid", kdid.getBytes());
+
+        baseRequest("list_kinddeeddetail", args, false, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 请求善举商品列表
+     *
+     * @param responseCallBack
+     */
+    public static void kinddeedSpec(String kdid, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("kdid", kdid.getBytes());
+
+        baseRequest("list_kinddeedspec", args, false, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 购买善举
+     *
+     * @param responseCallBack
+     */
+    public static void prayKinddeed(String spec, String count, String kdid, String amount, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", (new Random().nextInt(1000) + "").getBytes());
+        args.put("kinddeed", kdid.getBytes());
+        args.put("spec", spec.getBytes());
+        args.put("count", count.getBytes());
+        args.put("timestamp", (System.currentTimeMillis() + "").getBytes());
+
+        baseRequestWithAmount("pray_kinddeed", args, amount, new BaseObserver(false, responseCallBack));
+
     }
 
 }

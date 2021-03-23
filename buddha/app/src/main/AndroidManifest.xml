@@ -41,6 +41,9 @@
         <activity android:name=".ui.activity.AddgdzActivity" />
         <activity android:name=".ui.activity.ShanjvDetailActivity" />
         <activity android:name=".ui.activity.MasterListActivity" />
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.RegisterActivity" />
+        <activity android:name=".ui.activity.MnemonicActivity" />
 
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>

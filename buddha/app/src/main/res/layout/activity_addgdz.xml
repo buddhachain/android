@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="@dimen/dimen_24"
             android:layout_height="@dimen/dimen_24"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/icon_back" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
             <ImageView
                 android:layout_width="@dimen/dimen_16"
                 android:layout_height="@dimen/dimen_16"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_default_img" />
 
             <TextView
                 android:layout_width="0dp"
@@ -54,7 +54,7 @@
             <ImageView
                 android:layout_width="@dimen/dimen_16"
                 android:layout_height="@dimen/dimen_16"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_default_img" />
         </LinearLayout>
 
         <RelativeLayout
@@ -70,7 +70,7 @@
                 android:layout_width="@dimen/dimen_32"
                 android:layout_height="@dimen/dimen_32"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_default_img" />
 
             <TextView
                 android:id="@+id/text1"
@@ -197,7 +197,7 @@
                 android:id="@+id/user_logo"
                 android:layout_width="@dimen/dimen_24"
                 android:layout_height="@dimen/dimen_24"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_default_img" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -242,33 +242,37 @@
                 android:textColor="#0F5A95" />
 
         </LinearLayout>
+
         <View
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
 
         <LinearLayout
-            android:layout_marginBottom="@dimen/dimen_10"
-            android:layout_marginLeft="@dimen/dimen_32"
-            android:layout_marginRight="@dimen/dimen_32"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_50"
+            android:layout_marginLeft="@dimen/dimen_32"
+            android:layout_marginRight="@dimen/dimen_32"
+            android:layout_marginBottom="@dimen/dimen_10"
             android:orientation="horizontal">
+
             <TextView
+                android:id="@+id/tv_total_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="@drawable/bg_white_gray_f8_left_r20"
                 android:gravity="center"
-                android:text="合计:1080BUG"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:text="合计:1080BUG" />
+
             <TextView
                 android:id="@+id/btn_next_step"
-                android:background="@drawable/bg_gray_f8_right_r20"
-                android:gravity="center"
-                android:text="下一步"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@drawable/bg_gray_f8_right_r20"
+                android:gravity="center"
+                android:text="下一步" />
 
         </LinearLayout>
 
