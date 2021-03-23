@@ -12,6 +12,7 @@ import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.ui.activity.JjhBackstageActivity;
 import com.chain.buddha.ui.activity.LoginActivity;
 import com.chain.buddha.ui.activity.MasterBackstageActivity;
+import com.chain.buddha.ui.activity.MasterListActivity;
 import com.chain.buddha.ui.activity.MyShanjvActivity;
 import com.chain.buddha.ui.activity.RenzhengJjhActivity;
 import com.chain.buddha.ui.activity.RenzhengMasterActivity;
@@ -87,7 +88,6 @@ public class MineFragment extends BaseFragment {
     @Override
     protected void lazyInit() {
         requestData();
-//        IpfsUtils.test(mContext);
     }
 
     void requestData() {
@@ -118,7 +118,6 @@ public class MineFragment extends BaseFragment {
         XuperApi.getAccountByAK(XuperAccount.getAddress(), new ResponseCallBack<List<String>>() {
             @Override
             public void onSuccess(List<String> strings) {
-//                mNickNameTv.setText(strings.toString());
             }
 
             @Override
@@ -172,22 +171,24 @@ public class MineFragment extends BaseFragment {
             }
         });
 
-//        XuperApi.requestMasterList(new ResponseCallBack<String>() {
-//            @Override
-//            public void onSuccess(String s) {
-//            }
-//
-//            @Override
-//            public void onFail(String message) {
-//            }
-//        });
-//        mNickNameTv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //测试
-//                SkipInsideUtil.skipInsideActivity(mContext, MasterListActivity.class);
-//            }
-//        });
+        XuperApi.requestMasterList(new ResponseCallBack<String>() {
+            @Override
+            public void onSuccess(String s) {
+                ToastUtils.show(mContext, s);
+            }
+
+            @Override
+            public void onFail(String message) {
+                ToastUtils.show(mContext, message);
+            }
+        });
+        mNickNameTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //测试
+                SkipInsideUtil.skipInsideActivity(mContext, MasterListActivity.class);
+            }
+        });
     }
 
 

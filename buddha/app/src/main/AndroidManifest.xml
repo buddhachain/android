@@ -41,9 +41,12 @@
         <activity android:name=".ui.activity.AddgdzActivity" />
         <activity android:name=".ui.activity.ShanjvDetailActivity" />
         <activity android:name=".ui.activity.MasterListActivity" />
+<<<<<<< HEAD
         <activity android:name=".ui.activity.LoginActivity" />
         <activity android:name=".ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.MnemonicActivity" />
+=======
+>>>>>>> e1435a5790c23ea336d243c0d8735a7d7240a701
 
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>

@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 /buddha/.idea/.gitignore
+=======
+/buddha/.idea/compiler.xml
+/buddha/.idea/gradle.xml
+/buddha/.idea/jarRepositories.xml
+/buddha/.idea/misc.xml
+/buddha/.idea/vcs.xml
+>>>>>>> e1435a5790c23ea336d243c0d8735a7d7240a701

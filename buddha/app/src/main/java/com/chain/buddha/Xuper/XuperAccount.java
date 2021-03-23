@@ -35,9 +35,6 @@ public class XuperAccount {
     }
 
     public static Account getAccount() {
-//        if (mAccount == null) {
-//            mAccount = TestAccount.getFounderAccount();
-//        }
         return mAccount;
     }
 
@@ -57,6 +54,7 @@ public class XuperAccount {
 
     public static String getAddress() {
         if (ifLoginAccount()) {
+
             return getAccount().getAddress();
         }
         return "";
@@ -129,4 +127,5 @@ public class XuperAccount {
             DialogUtil.checkPswDialog(activity, "请输入密码，打开钱包", null, null);
         }
     }
+
 }

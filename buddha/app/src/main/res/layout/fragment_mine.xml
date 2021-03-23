@@ -36,10 +36,10 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/user_name"
             android:layout_toRightOf="@id/user_logo"
-            android:text="法师"
             android:textColor="@color/color_text_level2"
             android:textSize="@dimen/text_dimen_13"
             android:visibility="gone" />
+        android:text="法师" />
 
         <TextView
             android:id="@+id/user_part2"
@@ -48,9 +48,9 @@
             android:layout_below="@id/user_name"
             android:layout_marginLeft="@dimen/dimen_4"
             android:layout_toRightOf="@id/user_part1"
-            android:text="寺院"
             android:textColor="@color/color_text_level2"
             android:textSize="@dimen/text_dimen_13"
+            android:text="寺院"
             android:visibility="gone" />
 
         <TextView

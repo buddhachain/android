@@ -1,26 +1,15 @@
 package com.chain.buddha.ui.fragment;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ListView;
 
-import com.baidu.xuper.api.Transaction;
-import com.baidu.xuper.api.XuperClient;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
-import com.chain.buddha.Xuper.BaseObserver;
 import com.chain.buddha.Xuper.ResponseCallBack;
-import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.Xuper.XuperApi;
-import com.chain.buddha.Xuper.XuperConstants;
 import com.chain.buddha.adapter.QifuListAdapter;
-import com.chain.buddha.bean.ShanjvBean;
-import com.chain.buddha.bean.XuperResponse;
 import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.ui.activity.ShanjvDetailActivity;
 import com.chain.buddha.utils.EventBeans;
@@ -29,9 +18,12 @@ import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -39,11 +31,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -150,7 +137,6 @@ public class ShouyeFragment extends BaseFragment {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                refreshLayout.finishRefresh();
             }
 
             @Override
