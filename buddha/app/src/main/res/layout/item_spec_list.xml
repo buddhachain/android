@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/task_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/dimen_10"
+    android:paddingTop="@dimen/dimen_10"
+    android:paddingRight="@dimen/dimen_10"
+    android:paddingBottom="@dimen/dimen_10">
+
+    <LinearLayout
+        android:id="@+id/view_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_spec"
+            android:layout_width="@dimen/dimen_40"
+            android:layout_height="@dimen/dimen_40"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_default_img" />
+
+        <TextView
+            android:id="@+id/tv_spec_context"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:layout_marginRight="@dimen/dimen_10"
+            android:layout_weight="1"
+            android:maxLines="2"
+            android:minLines="1"
+            android:text="标题"
+            android:textColor="@color/color_black_20"
+            android:textSize="@dimen/text_dimen_16" />
+
+        <TextView
+            android:id="@+id/tv_spec_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15 xuper"
+            android:textColor="@color/color_gray_8e"
+            android:textSize="@dimen/text_dimen_14" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/view_price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_sub"
+            android:layout_width="@dimen/dimen_20"
+            android:layout_height="@dimen/dimen_20"
+            android:layout_marginLeft="@dimen/dimen_40"
+            android:background="@drawable/bg_qifu_tag"
+            android:gravity="center"
+            android:text="-"
+            android:textColor="@color/color_qifu_tag_tv"
+            android:textSize="@dimen/text_dimen_13" />
+
+        <TextView
+            android:id="@+id/tv_num"
+            android:layout_width="@dimen/dimen_50"
+            android:layout_height="@dimen/dimen_20"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:background="@drawable/bg_qifu_tag"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="@color/color_qifu_tag_tv"
+            android:textSize="@dimen/text_dimen_13" />
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="@dimen/dimen_20"
+            android:layout_height="@dimen/dimen_20"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:background="@drawable/bg_qifu_tag"
+            android:gravity="center"
+            android:text="+"
+            android:textColor="@color/color_qifu_tag_tv"
+            android:textSize="@dimen/text_dimen_13" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:background="@color/color_base_line" />
+
+</LinearLayout>

@@ -29,21 +29,6 @@ public class RenzhengTempleStep1Fragment extends BaseFragment {
 
     }
 
-    /**
-     * 检查权限
-     */
-    private void checkPermission() {
-        String[] permission = {
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
-        };
-        boolean checkResult = PermissionUtils.checkPermissionsGroup(mContext, permission);
-        if (!checkResult) {
-            PermissionUtils.requestPermissions(mContext, permission, 1);
-        }
-    }
-
-
     @Override
     protected void lazyInit() {
     }

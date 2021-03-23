@@ -14,9 +14,11 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Design.Light.NoActionBar">
+        android:theme="@style/Theme.Design.Light.NoActionBar"
+        android:usesCleartextTraffic="true">
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.chain.buddha.fileProvider"
@@ -26,6 +28,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <activity android:name=".ui.activity.MyShanjvActivity"></activity>
         <activity android:name=".ui.activity.TempleBackstageActivity" />
         <activity android:name=".ui.activity.JjhBackstageActivity" />
@@ -37,6 +40,11 @@
         <activity android:name=".ui.activity.PaymentOrderActivity" />
         <activity android:name=".ui.activity.AddgdzActivity" />
         <activity android:name=".ui.activity.ShanjvDetailActivity" />
+        <activity android:name=".ui.activity.MasterListActivity" />
+        <activity android:name=".ui.activity.LoginActivity" />
+        <activity android:name=".ui.activity.RegisterActivity" />
+        <activity android:name=".ui.activity.MnemonicActivity" />
+
         <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

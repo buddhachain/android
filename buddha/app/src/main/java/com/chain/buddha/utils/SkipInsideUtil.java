@@ -20,24 +20,29 @@ import java.util.Map;
 
 public class SkipInsideUtil {
 
-    public final static int DATA_ACTIVITY_CODE_OK= 1; //修改用户信息成功
-    public final static int DATA_ACTIVITY_CODE_CANCLE= 2;  //修改用户信息失败
-    public final static int DATA_ACTIVITY_CODE= 3;  //修改用户信息失败
+    public final static int DATA_ACTIVITY_CODE_OK = 1; //修改用户信息成功
+    public final static int DATA_ACTIVITY_CODE_CANCLE = 2;  //修改用户信息失败
+    public final static int DATA_ACTIVITY_CODE = 3;  //修改用户信息失败
+
+    public final static String SKIP_KEY_MNEMONIC = "mnemonic";  //助记词
+    public final static String SKIP_KEY_KDID = "kdid";  //善举id
+    public final static String SKIP_KEY_NUM = "num";  //助记词
+    public final static String SKIP_KEY_SPEC = "spec";  //善举id
 
     /**
      * 没有参数的内部跳转，不需返回值
      */
     public static void skipInsideActivity(Context activity, Class<? extends Activity> cls) {
         Intent intent = new Intent(activity, cls);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         activity.startActivity(intent);
     }
 
-    public static void skipInsideActivity(Context activity, Class<? extends Activity> cls, String key, Serializable value){
-        Intent intent=new Intent(activity,cls);
-        Bundle bundle=new Bundle();
-        bundle.putSerializable(key,value);
+    public static void skipInsideActivity(Context activity, Class<? extends Activity> cls, String key, Serializable value) {
+        Intent intent = new Intent(activity, cls);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(key, value);
         intent.putExtras(bundle);
         activity.startActivity(intent);
     }
@@ -74,16 +79,16 @@ public class SkipInsideUtil {
 
     }
 
-    public static void skipInsideActivityForResult(Context activity, Class<? extends Activity> cls, int resultCode){
+    public static void skipInsideActivityForResult(Context activity, Class<? extends Activity> cls, int resultCode) {
         Intent intent = new Intent(activity, cls);
 
-        ((BaseActivity)activity).startActivityForResult(intent,resultCode);
+        ((BaseActivity) activity).startActivityForResult(intent, resultCode);
     }
 
-    public static void skipInsideActivityForResult(Context activity, Class<? extends Activity> cls, int resultCode, String key, String value){
+    public static void skipInsideActivityForResult(Context activity, Class<? extends Activity> cls, int resultCode, String key, String value) {
         Intent intent = new Intent(activity, cls);
-        intent.putExtra(key,value);
-        ((BaseActivity)activity).startActivityForResult(intent,resultCode);
+        intent.putExtra(key, value);
+        ((BaseActivity) activity).startActivityForResult(intent, resultCode);
     }
 
 }

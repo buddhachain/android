@@ -3,16 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:padding="@dimen/dimen_16"
     tools:context=".ui.activity.RenzhengMasterActivity">
-    <include layout="@layout/item_top_back_bar"/>
+
+    <include layout="@layout/item_top_back_bar" />
 
     <LinearLayout
-        android:layout_marginTop="@dimen/dimen_8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
         android:orientation="horizontal">
 
         <TextView
@@ -22,33 +23,35 @@
             android:text="法号/称谓" />
 
         <EditText
-            android:layout_marginLeft="@dimen/dimen_8"
+            android:id="@+id/et_creditcode"
             style="@style/whiteGrayEditBg"
-            android:layout_width="match_parent" />
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_8" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/dimen_8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="出生日期" />
+            android:text="证明" />
 
         <EditText
-            android:layout_marginLeft="@dimen/dimen_8"
+            android:id="@+id/et_proof"
             style="@style/whiteGrayEditBg"
-            android:layout_width="match_parent" />
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_8" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/dimen_8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
         android:orientation="horizontal">
 
         <TextView
@@ -58,15 +61,15 @@
             android:text="所在地区" />
 
         <EditText
-            android:layout_marginLeft="@dimen/dimen_8"
             style="@style/whiteGrayEditBg"
-            android:layout_width="match_parent" />
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_8" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="@dimen/dimen_8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
         android:orientation="horizontal">
 
         <TextView
@@ -76,14 +79,15 @@
             android:text="驻锡寺院" />
 
         <EditText
-            android:layout_marginLeft="@dimen/dimen_8"
             style="@style/whiteGrayEditBg"
-            android:layout_width="match_parent" />
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_8" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_marginTop="@dimen/dimen_8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
         android:orientation="horizontal">
 
         <TextView
@@ -93,15 +97,16 @@
             android:text="真人头像" />
 
         <ImageView
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginLeft="@dimen/dimen_8"
             android:layout_width="@dimen/dimen_48"
-            android:layout_height="@dimen/dimen_48"/>
+            android:layout_height="@dimen/dimen_48"
+            android:layout_marginLeft="@dimen/dimen_8"
+            android:src="@mipmap/ic_default_img" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_marginTop="@dimen/dimen_8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
         android:orientation="horizontal">
 
         <TextView
@@ -111,15 +116,16 @@
             android:text="戒牒照片" />
 
         <ImageView
-            android:src="@mipmap/ic_launcher"
-            android:layout_marginLeft="@dimen/dimen_8"
             android:layout_width="@dimen/dimen_48"
-            android:layout_height="@dimen/dimen_48"/>
+            android:layout_height="@dimen/dimen_48"
+            android:layout_marginLeft="@dimen/dimen_8"
+            android:src="@mipmap/ic_default_img" />
     </LinearLayout>
+
     <LinearLayout
-        android:layout_marginTop="@dimen/dimen_8"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
         android:orientation="horizontal">
 
         <TextView
@@ -129,19 +135,21 @@
             android:text="自我介绍" />
 
         <EditText
-            android:layout_marginLeft="@dimen/dimen_8"
             style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_80"
-            android:layout_width="match_parent" />
+            android:layout_marginLeft="@dimen/dimen_8" />
     </LinearLayout>
+
     <TextView
+        android:id="@+id/view_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
         android:layout_marginTop="@dimen/dimen_80"
-        android:textColor="@color/color_white"
         android:background="@color/color_gray_8e"
         android:gravity="center"
         android:text="申请认证"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_40"/>
+        android:textColor="@color/color_white" />
 
 
 </LinearLayout>

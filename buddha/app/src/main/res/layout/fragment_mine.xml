@@ -2,10 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/dimen_16"
-    android:layout_marginRight="@dimen/dimen_16"
     android:background="@color/color_gray_f8"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/dimen_15">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,17 +15,20 @@
 
         <ImageView
             android:id="@+id/user_logo"
-            android:layout_width="@dimen/dimen_24"
-            android:layout_height="@dimen/dimen_24"
+            android:layout_width="@dimen/dimen_45"
+            android:layout_height="@dimen/dimen_45"
             android:layout_centerVertical="true"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_marginRight="@dimen/dimen_15"
+            android:src="@mipmap/icon_default_avatar" />
 
         <TextView
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/user_logo"
-            android:text="昵称" />
+            android:text="暂无账号"
+            android:textColor="@color/color_text_level1"
+            android:textSize="@dimen/text_dimen_16" />
 
         <TextView
             android:id="@+id/user_part1"
@@ -34,30 +36,49 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/user_name"
             android:layout_toRightOf="@id/user_logo"
-            android:text="法师" />
+            android:text="法师"
+            android:textColor="@color/color_text_level2"
+            android:textSize="@dimen/text_dimen_13"
+            android:visibility="gone" />
+
         <TextView
-            android:layout_marginLeft="@dimen/dimen_4"
             android:id="@+id/user_part2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_name"
-            android:layout_toRightOf="@id/user_part1"
-            android:text="寺院" />
-        <TextView
             android:layout_marginLeft="@dimen/dimen_4"
+            android:layout_toRightOf="@id/user_part1"
+            android:text="寺院"
+            android:textColor="@color/color_text_level2"
+            android:textSize="@dimen/text_dimen_13"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/user_part3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/user_name"
+            android:layout_marginLeft="@dimen/dimen_4"
             android:layout_toRightOf="@id/user_part2"
-            android:text="基金会" />
+            android:text="基金会"
+            android:textColor="@color/color_text_level2"
+            android:textSize="@dimen/text_dimen_13"
+            android:visibility="gone" />
 
         <TextView
+            android:id="@+id/tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:text="登录" />
+            android:background="@color/color_gray_8e"
+            android:paddingLeft="@dimen/dimen_8"
+            android:paddingTop="@dimen/dimen_5"
+            android:paddingRight="@dimen/dimen_8"
+            android:paddingBottom="@dimen/dimen_5"
+            android:text="导入钱包"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_dimen_13" />
     </RelativeLayout>
 
     <TextView
@@ -67,16 +88,18 @@
         android:text="我的钱包" />
 
     <TextView
+        android:id="@+id/tv_my_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_8"
-        android:text="般弱钻余额：sggsgvsv" />
+        android:text="般弱钻余额：0" />
 
     <TextView
+        android:id="@+id/tv_my_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_8"
-        android:text="钱包地址：fsgfsdfs" />
+        android:text="钱包地址：暂无账号" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -190,9 +213,9 @@
             android:text="法师" />
 
         <TextView
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:text="未认证" />
 
     </RelativeLayout>
@@ -210,9 +233,9 @@
             android:text="寺院" />
 
         <TextView
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:text="未认证" />
 
     </RelativeLayout>
@@ -230,9 +253,9 @@
             android:text="基金会成员" />
 
         <TextView
-            android:layout_alignParentRight="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:text="未认证" />
 
     </RelativeLayout>

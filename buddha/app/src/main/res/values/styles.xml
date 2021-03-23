@@ -15,4 +15,44 @@
         <item name="android:layout_height">@dimen/dimen_40</item>
     </style>
 
+    <!-- EditText  style -->
+    <style name="edittext_line_style">
+        <item name="android:textCursorDrawable">@drawable/edittext_cursor_bg</item>
+        <item name="android:background">@drawable/edit_text_line_bg</item>
+        <item name="android:textColorHint">@color/hint_gray</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:textColor">@color/color_text_level1</item>
+    </style>
+
+    <style name="edittext_circle_style">
+        <item name="android:textCursorDrawable">@drawable/edittext_cursor_bg</item>
+        <item name="android:background">@drawable/edittext_normal_circle_bg</item>
+        <item name="android:textColorHint">@color/hint_gray</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:textColor">@color/color_text_level1</item>
+    </style>
+
+    <style name="ActionToastDialogStyle" parent="@android:style/Theme.Dialog">
+
+        <!-- 背景透明 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 浮于Activity之上 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 边框 -->
+        <item name="android:windowFrame">@null</item>
+        <!-- Dialog以外的区域模糊效果 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
 </resources>
