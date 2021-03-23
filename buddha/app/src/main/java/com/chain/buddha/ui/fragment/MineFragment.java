@@ -171,17 +171,17 @@ public class MineFragment extends BaseFragment {
             }
         });
 
-        XuperApi.requestMasterList(new ResponseCallBack<String>() {
-            @Override
-            public void onSuccess(String s) {
-                ToastUtils.show(mContext, s);
-            }
-
-            @Override
-            public void onFail(String message) {
-                ToastUtils.show(mContext, message);
-            }
-        });
+//        XuperApi.requestMasterList(new ResponseCallBack<String>() {
+//            @Override
+//            public void onSuccess(String s) {
+//                ToastUtils.show(mContext, s);
+//            }
+//
+//            @Override
+//            public void onFail(String message) {
+//                ToastUtils.show(mContext, message);
+//            }
+//        });
         mNickNameTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
