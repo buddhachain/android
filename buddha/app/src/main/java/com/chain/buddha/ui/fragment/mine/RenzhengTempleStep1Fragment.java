@@ -1,10 +1,7 @@
 package com.chain.buddha.ui.fragment.mine;
 
-import android.Manifest;
-
 import com.chain.buddha.R;
 import com.chain.buddha.ui.BaseFragment;
-import com.chain.buddha.utils.PermissionUtils;
 
 import androidx.fragment.app.Fragment;
 
@@ -21,7 +18,7 @@ public class RenzhengTempleStep1Fragment extends BaseFragment {
 
     @Override
     protected int setLayout() {
-        return R.layout.fragment_renzheng_temple_step1;
+        return R.layout.activity_renzheng_temple_step1;
     }
 
     @Override

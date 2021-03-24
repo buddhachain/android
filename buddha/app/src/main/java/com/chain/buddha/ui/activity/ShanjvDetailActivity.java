@@ -1,6 +1,5 @@
 package com.chain.buddha.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +15,6 @@ import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.FmPagerAdapter;
-import com.chain.buddha.adapter.QifuListAdapter;
 import com.chain.buddha.adapter.SpecListAdapter;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.ui.fragment.ShanjvDetailFragment;
@@ -80,10 +78,10 @@ public class ShanjvDetailActivity extends BaseActivity {
             mTabLayout.getTabAt(i).setText(mTitle[i]);
         }
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         mSpecListRv.setLayoutManager(layoutManager);
         mSpecList = new ArrayList<>();
-        mSpecAdapter = new SpecListAdapter(context, mSpecList);
+        mSpecAdapter = new SpecListAdapter(mContext, mSpecList);
         mSpecListRv.setAdapter(mSpecAdapter);
 
         getData();
@@ -139,7 +137,7 @@ public class ShanjvDetailActivity extends BaseActivity {
                 hashMap.put(SkipInsideUtil.SKIP_KEY_NUM, mSpecAdapter.getNum());
                 hashMap.put(SkipInsideUtil.SKIP_KEY_SPEC, mSpecList.get(mSpecAdapter.getSelectPosition()));
                 hashMap.put(SkipInsideUtil.SKIP_KEY_KDID, kdid);
-                SkipInsideUtil.skipInsideActivity(context, AddgdzActivity.class, hashMap);
+                SkipInsideUtil.skipInsideActivity(mContext, AddgdzActivity.class, hashMap);
                 break;
             default:
                 break;

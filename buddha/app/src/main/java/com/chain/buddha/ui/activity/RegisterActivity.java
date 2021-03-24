@@ -38,20 +38,20 @@ public class RegisterActivity extends BaseActivity {
         String psw = mPswEt.getText().toString();
         String psw2 = mPsw2Et.getText().toString();
         if (!StringUtils.equalsHasNull(psw, psw2)) {
-            ToastUtils.show(context, "请输入完整信息");
+            ToastUtils.show(mContext, "请输入完整信息");
             return;
         }
         if (StringUtils.equals(psw, psw2)) {
-            ToastUtils.show(context, "两次密码输入不一致");
+            ToastUtils.show(mContext, "两次密码输入不一致");
             return;
         }
         try {
-            new File(XuperAccount.getAccountCachePath(context)).delete();
+            new File(XuperAccount.getAccountCachePath(mContext)).delete();
 
         } catch (Throwable e) {
 
         }
-        Account account = Account.createAndSave(XuperAccount.getAccountCachePath(context), psw2, 1, 1);
-        SkipInsideUtil.skipInsideActivity(context, MnemonicActivity.class, SkipInsideUtil.SKIP_KEY_MNEMONIC, account.getMnemonic());
+        Account account = Account.createAndSave(XuperAccount.getAccountCachePath(mContext), psw2, 1, 1);
+        SkipInsideUtil.skipInsideActivity(mContext, MnemonicActivity.class, SkipInsideUtil.SKIP_KEY_MNEMONIC, account.getMnemonic());
     }
 }

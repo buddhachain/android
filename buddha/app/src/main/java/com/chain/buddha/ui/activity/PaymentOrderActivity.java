@@ -1,7 +1,5 @@
 package com.chain.buddha.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -53,7 +51,7 @@ public class PaymentOrderActivity extends BaseActivity {
 
             @Override
             public void onFail(String message) {
-                DialogUtil.tipDialog(context, message);
+                DialogUtil.tipDialog(mContext, message);
             }
         });
     }

@@ -32,4 +32,6 @@
     <string name="siyuan">寺院</string>
     <string name="jijinhui">基金会</string>
 
+    <string name="no_approve">未认证</string>
+    <string name="has_approve">已认证</string>
 </resources>

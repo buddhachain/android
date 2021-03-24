@@ -1,7 +1,5 @@
 package com.chain.buddha.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,6 +8,7 @@ import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseActivity;
+import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.ToastUtils;
 
 import butterknife.BindView;
@@ -41,12 +40,12 @@ public class RenzhengMasterActivity extends BaseActivity {
         XuperApi.applyMaster(creditcode, proof, new ResponseCallBack<String>() {
             @Override
             public void onSuccess(String s) {
-                ToastUtils.show(context, s);
+                ToastUtils.show(mContext, s);
             }
 
             @Override
             public void onFail(String message) {
-
+                DialogUtil.tipDialog(mContext, message);
             }
         });
     }

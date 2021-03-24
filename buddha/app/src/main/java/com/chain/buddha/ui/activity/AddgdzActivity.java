@@ -1,15 +1,10 @@
 package com.chain.buddha.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.chain.buddha.R;
-import com.chain.buddha.Xuper.ResponseCallBack;
-import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
@@ -48,7 +43,7 @@ public class AddgdzActivity extends BaseActivity {
                 hashMap.put(SkipInsideUtil.SKIP_KEY_NUM, num);
                 hashMap.put(SkipInsideUtil.SKIP_KEY_SPEC, spec);
                 hashMap.put(SkipInsideUtil.SKIP_KEY_KDID, kdid);
-                SkipInsideUtil.skipInsideActivity(context, PaymentOrderActivity.class, hashMap);
+                SkipInsideUtil.skipInsideActivity(mContext, PaymentOrderActivity.class, hashMap);
                 break;
             default:
                 break;

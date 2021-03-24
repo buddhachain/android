@@ -191,6 +191,10 @@ public class DialogUtil {
         return dialog;
     }
 
+    public static Dialog simpleDialog(final Context context, String title, final ConfirmCallBackInf callBack) {
+        return simpleDialog(context, title, callBack, null);
+    }
+
     /**
      * 普通对话框 确认 取消
      *

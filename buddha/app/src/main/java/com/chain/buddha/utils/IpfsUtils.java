@@ -43,13 +43,15 @@ public class IpfsUtils {
         return ipfs;
     }
 
-    public static void uploadFile(String filePath) {
+    public static String uploadFile(String filePath) {
         NamedStreamable.FileWrapper file = new NamedStreamable.FileWrapper(new File(filePath));
         try {
             MerkleNode addResult = getIpfs().add(file).get(0);
             Log.e("addResult", addResult.toString());
+            return addResult.toString();
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 

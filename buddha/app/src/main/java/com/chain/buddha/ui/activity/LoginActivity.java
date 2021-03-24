@@ -43,32 +43,32 @@ public class LoginActivity extends BaseActivity {
         String psw = mPswEt.getText().toString();
         String psw2 = mPsw2Et.getText().toString();
         if (StringUtils.equalsHasNull(mnemonic, psw, psw2)) {
-            ToastUtils.show(context, "请输入完整信息");
+            ToastUtils.show(mContext, "请输入完整信息");
             return;
         }
         if (!StringUtils.equals(psw, psw2)) {
-            ToastUtils.show(context, "两次密码输入不一致");
+            ToastUtils.show(mContext, "两次密码输入不一致");
             return;
         }
         try {
             int language = StringUtils.isChinese(mnemonic.charAt(0)) ? 1 : 2;
             ECDSAAccount ecdsaAccount = new ECDSAAccount();
             ecdsaAccount.createByMnemonic(mnemonic, language);
-            new File(XuperAccount.getAccountCachePath(context)).delete();
-            ecdsaAccount.saveToFile(XuperAccount.getAccountCachePath(context), psw2);
+            new File(XuperAccount.getAccountCachePath(mContext)).delete();
+            ecdsaAccount.saveToFile(XuperAccount.getAccountCachePath(mContext), psw2);
             Account account = Account.retrieve(mnemonic, language);
             XuperAccount.setAccount(account);
-            ToastUtils.show(context, "导入成功");
+            ToastUtils.show(mContext, "导入成功");
             finish();
         } catch (Throwable e) {
-            DialogUtil.tipDialog(context, "导入失败，请检查助记词");
+            DialogUtil.tipDialog(mContext, "导入失败，请检查助记词");
         }
     }
 
 
     @OnClick(R.id.view_register)
     void register() {
-        SkipInsideUtil.skipInsideActivity(context, RegisterActivity.class);
+        SkipInsideUtil.skipInsideActivity(mContext, RegisterActivity.class);
         finish();
     }
 }

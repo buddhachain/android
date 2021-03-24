@@ -17,6 +17,7 @@ import com.chain.buddha.ui.activity.MyShanjvActivity;
 import com.chain.buddha.ui.activity.RenzhengJjhActivity;
 import com.chain.buddha.ui.activity.RenzhengMasterActivity;
 import com.chain.buddha.ui.activity.RenzhengTempleActivity;
+import com.chain.buddha.ui.activity.RenzhengTempleStep1Activity;
 import com.chain.buddha.ui.activity.SendShanjvActivity;
 import com.chain.buddha.ui.activity.TempleBackstageActivity;
 import com.chain.buddha.utils.DialogUtil;
@@ -32,6 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import butterknife.BindView;
@@ -53,6 +55,15 @@ public class MineFragment extends BaseFragment {
 
     @BindView(R.id.tv_login)
     TextView mLoginTv;
+
+    @BindView(R.id.tv_fashi_state)
+    TextView mFashiStateTv;
+
+    @BindView(R.id.tv_siyuan_state)
+    TextView mSiyuanStateTv;
+
+    @BindView(R.id.tv_jjh_state)
+    TextView mJjhStateTv;
 
     public MineFragment() {
         // Required empty public constructor
@@ -91,7 +102,7 @@ public class MineFragment extends BaseFragment {
         requestData();
     }
 
-    void requestData() {
+    void refreshView() {
         if (XuperAccount.ifLoginAccount()) {
             mNickNameTv.setText(getString(R.string.normal));
             mLoginTv.setText(getString(R.string.logout));
@@ -102,7 +113,47 @@ public class MineFragment extends BaseFragment {
             mNickNameTv.setText(getString(R.string.not_login));
             mLoginTv.setText(getString(R.string.login));
         }
+
+        switch (XuperAccount.getAccountType()) {
+            case XuperAccount.ACCOUNT_TYPE_FASHI:
+                mFashiStateTv.setText(R.string.has_approve);
+                mFashiStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.base_color));
+                mJjhStateTv.setText(R.string.no_approve);
+                mJjhStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                mSiyuanStateTv.setText(R.string.no_approve);
+                mSiyuanStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                break;
+            case XuperAccount.ACCOUNT_TYPE_SIYUAN:
+                mFashiStateTv.setText(R.string.no_approve);
+                mFashiStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                mJjhStateTv.setText(R.string.no_approve);
+                mJjhStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                mSiyuanStateTv.setText(R.string.has_approve);
+                mSiyuanStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.base_color));
+                break;
+            case XuperAccount.ACCOUNT_TYPE_JJH:
+                mFashiStateTv.setText(R.string.no_approve);
+                mFashiStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                mJjhStateTv.setText(R.string.has_approve);
+                mJjhStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.base_color));
+                mSiyuanStateTv.setText(R.string.no_approve);
+                mSiyuanStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                break;
+            default:
+                mFashiStateTv.setText(R.string.no_approve);
+                mFashiStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                mJjhStateTv.setText(R.string.no_approve);
+                mJjhStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                mSiyuanStateTv.setText(R.string.no_approve);
+                mSiyuanStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                break;
+        }
+
         mMyAddressTv.setText(getString(R.string.account_address) + XuperAccount.getAddress());
+
+    }
+
+    void requestData() {
 
         XuperApi.getBalance(XuperAccount.getAddress(), new ResponseCallBack<String>() {
             @Override
@@ -133,6 +184,7 @@ public class MineFragment extends BaseFragment {
                 if (!resp.contains("not")) {
                     XuperAccount.setAccountType(XuperAccount.ACCOUNT_TYPE_JJH);
                     mNickNameTv.setText(getString(R.string.jijinhui));
+                    refreshView();
                 }
             }
 
@@ -148,6 +200,7 @@ public class MineFragment extends BaseFragment {
                 if (!resp.contains("not")) {
                     XuperAccount.setAccountType(XuperAccount.ACCOUNT_TYPE_FASHI);
                     mNickNameTv.setText(getString(R.string.fashi));
+                    refreshView();
                 }
             }
 
@@ -163,6 +216,7 @@ public class MineFragment extends BaseFragment {
                 if (!resp.contains("not")) {
                     XuperAccount.setAccountType(XuperAccount.ACCOUNT_TYPE_SIYUAN);
                     mNickNameTv.setText(getString(R.string.siyuan));
+                    refreshView();
                 }
             }
 
@@ -179,6 +233,7 @@ public class MineFragment extends BaseFragment {
                 SkipInsideUtil.skipInsideActivity(mContext, MasterListActivity.class);
             }
         });
+        refreshView();
     }
 
 
@@ -232,7 +287,7 @@ public class MineFragment extends BaseFragment {
                     SkipInsideUtil.skipInsideActivity(mContext, SendShanjvActivity.class);
                 } else {
 
-                    SkipInsideUtil.skipInsideActivity(mContext, RenzhengTempleActivity.class);
+                    SkipInsideUtil.skipInsideActivity(mContext, RenzhengTempleStep1Activity.class);
                 }
                 break;
             case R.id.btn_jjh:

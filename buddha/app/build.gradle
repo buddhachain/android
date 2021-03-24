@@ -51,8 +51,8 @@ dependencies {
     // 必要依赖，解析json字符所用
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     //非必要依赖， log依赖，如果需要打印OkHttpLog需要添加
-    implementation 'com.github.bumptech.glide:glide:4.4.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
+//    implementation 'com.github.bumptech.glide:glide:4.4.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.4.0'
     //内存泄露
     implementation 'com.uber.autodispose:autodispose-android-archcomponents:1.0.0-RC2'
     implementation 'com.baidu.xuper:xuper-java-sdk:0.2.0'
@@ -78,5 +78,8 @@ dependencies {
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0'
 // fragment快速实现（可选）
     implementation 'com.gyf.immersionbar:immersionbar-components:3.0.0'
+    implementation 'com.zhihu.android:matisse:0.5.3-beta3'//图片选择
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
 }

@@ -112,7 +112,7 @@ public class XuperApi {
         baseRequest("apply_master", args, true, new BaseObserver(false, responseCallBack));
     }
 
-    public static void baseRequest(String method, HashMap<String, byte[]> hashMap, boolean isInvoke, BaseObserver baseObserver) {
+    private static void baseRequest(String method, HashMap<String, byte[]> hashMap, boolean isInvoke, BaseObserver baseObserver) {
         if (!XuperAccount.ifLoginAccount()) {
             baseObserver.onError(new Exception("还未登陆"));
             return;
@@ -146,7 +146,7 @@ public class XuperApi {
     }
 
 
-    public static void baseRequestWithAmount(String method, HashMap<String, byte[]> hashMap, String amount, BaseObserver baseObserver) {
+    private static void baseRequestWithAmount(String method, HashMap<String, byte[]> hashMap, String amount, BaseObserver baseObserver) {
         if (!XuperAccount.ifLoginAccount()) {
             baseObserver.onError(new Exception("还未登陆"));
             return;
@@ -330,6 +330,35 @@ public class XuperApi {
 
         baseRequestWithAmount("pray_kinddeed", args, amount, new BaseObserver(false, responseCallBack));
 
+    }
+
+    /**
+     * 申请基金会
+     *
+     * @param responseCallBack
+     */
+    public static void applyFounder(String desc, String address, String amount, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("desc", desc.getBytes());
+        args.put("address", address.getBytes());
+        args.put("timestamp", (System.currentTimeMillis() + "").getBytes());
+
+        baseRequestWithAmount("apply_founder", args, amount, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 申请成为寺院
+     *
+     * @param responseCallBack
+     */
+    public static void applyTemple(String unit, String creditcode, String address, String proof, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("unit", unit.getBytes());
+        args.put("creditcode", creditcode.getBytes());
+        args.put("address", address.getBytes());
+        args.put("proof", proof.getBytes());
+
+        baseRequest("apply_temple", args, true, new BaseObserver(false, responseCallBack));
     }
 
 }

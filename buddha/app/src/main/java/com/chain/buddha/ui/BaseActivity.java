@@ -1,13 +1,14 @@
 package com.chain.buddha.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.chain.buddha.R;
 import com.chain.buddha.utils.UIUtils;
 import com.gyf.immersionbar.ImmersionBar;
 
@@ -19,13 +20,13 @@ import butterknife.ButterKnife;
  */
 public class BaseActivity extends AppCompatActivity {
 
-    public Activity context;
+    public Activity mContext;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        context = this;
-//        ImmersionBar.with(this).init();
+        mContext = this;
+
     }
 
     @Override
@@ -33,6 +34,24 @@ public class BaseActivity extends AppCompatActivity {
         super.setContentView(layoutResID);
         //butterknife activity里面不需要解绑
         ButterKnife.bind(this);
+        try {
+            ImmersionBar.with(this).statusBarDarkFont(true)  //状态栏字体是深色，不写默认为亮色
+                    .titleBarMarginTop(R.id.title_view)
+                    .init();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            findViewById(R.id.btn_back).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    finish();
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

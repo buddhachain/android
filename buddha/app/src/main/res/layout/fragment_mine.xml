@@ -213,6 +213,7 @@
             android:text="法师" />
 
         <TextView
+            android:id="@+id/tv_fashi_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -233,6 +234,7 @@
             android:text="寺院" />
 
         <TextView
+            android:id="@+id/tv_siyuan_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -253,6 +255,7 @@
             android:text="基金会成员" />
 
         <TextView
+            android:id="@+id/tv_jjh_state"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

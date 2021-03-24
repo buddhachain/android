@@ -22,6 +22,28 @@
             android:text="申请时冻结金额" />
 
         <EditText
+            android:id="@+id/et_amount"
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_8"
+            android:inputType="number"
+            android:text="100000" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="名称" />
+
+        <EditText
+            android:id="@+id/et_name"
             style="@style/whiteGrayEditBg"
             android:layout_width="match_parent"
             android:layout_marginLeft="@dimen/dimen_8" />
@@ -40,6 +62,7 @@
             android:text="地址" />
 
         <EditText
+            android:id="@+id/et_address"
             style="@style/whiteGrayEditBg"
             android:layout_width="match_parent"
             android:layout_marginLeft="@dimen/dimen_8" />
