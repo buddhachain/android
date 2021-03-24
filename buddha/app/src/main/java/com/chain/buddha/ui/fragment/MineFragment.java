@@ -1,12 +1,11 @@
 package com.chain.buddha.ui.fragment;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.baidu.xuper.api.Transaction;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
-import com.chain.buddha.Xuper.TestAccount;
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseFragment;
@@ -22,19 +21,18 @@ import com.chain.buddha.ui.activity.SendShanjvActivity;
 import com.chain.buddha.ui.activity.TempleBackstageActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.EventBeans;
-import com.chain.buddha.utils.IpfsUtils;
 import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.ToastUtils;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import androidx.fragment.app.Fragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.HashMap;
+import java.util.List;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -75,29 +73,29 @@ public class MineFragment extends BaseFragment {
         requestData();
     }
 
+
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 
     @Override
     protected void lazyInit() {
         requestData();
-//        IpfsUtils.test(mContext);
     }
 
     void requestData() {
         if (XuperAccount.ifLoginAccount()) {
             mNickNameTv.setText(getString(R.string.normal));
             mLoginTv.setText(getString(R.string.logout));
-        } else if (XuperAccount.ifHasAccount()) {
+        } else if (XuperAccount.ifHasAccount(mContext)) {
             mNickNameTv.setText(getString(R.string.normal));
             mLoginTv.setText(getString(R.string.open_wallet));
         } else {
@@ -121,7 +119,6 @@ public class MineFragment extends BaseFragment {
         XuperApi.getAccountByAK(XuperAccount.getAddress(), new ResponseCallBack<List<String>>() {
             @Override
             public void onSuccess(List<String> strings) {
-//                mNickNameTv.setText(strings.toString());
             }
 
             @Override
@@ -175,22 +172,13 @@ public class MineFragment extends BaseFragment {
             }
         });
 
-//        XuperApi.requestMasterList(new ResponseCallBack<String>() {
-//            @Override
-//            public void onSuccess(String s) {
-//            }
-//
-//            @Override
-//            public void onFail(String message) {
-//            }
-//        });
-//        mNickNameTv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //测试
-//                SkipInsideUtil.skipInsideActivity(mContext, MasterListActivity.class);
-//            }
-//        });
+        mNickNameTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //测试
+                SkipInsideUtil.skipInsideActivity(mContext, MasterListActivity.class);
+            }
+        });
     }
 
 
@@ -203,10 +191,10 @@ public class MineFragment extends BaseFragment {
                     DialogUtil.simpleDialog(mContext, "确认退出？", new DialogUtil.ConfirmCallBackInf() {
                         @Override
                         public void onConfirmClick(String content) {
-                            XuperAccount.logoutAccount();
+                            XuperAccount.logoutAccount(mContext);
                         }
                     }, null);
-                } else if (XuperAccount.ifHasAccount()) {
+                } else if (XuperAccount.ifHasAccount(mContext)) {
                     XuperAccount.checkAccount(mContext);
                 } else {
                     SkipInsideUtil.skipInsideActivity(mContext, LoginActivity.class);

@@ -1,7 +1,5 @@
 package com.chain.buddha.Xuper;
 
-import android.util.Log;
-
 import com.baidu.xuper.api.Account;
 import com.baidu.xuper.api.Common;
 import com.baidu.xuper.api.Proposal;
@@ -10,36 +8,20 @@ import com.baidu.xuper.api.XuperClient;
 import com.baidu.xuper.config.Config;
 import com.baidu.xuper.pb.XchainGrpc;
 import com.baidu.xuper.pb.XchainOuterClass;
-import com.chain.buddha.bean.ShanjvBean;
-import com.chain.buddha.bean.XuperResponse;
 import com.google.gson.Gson;
-import com.google.gson.internal.$Gson$Types;
 
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.math.BigInteger;
-import java.net.ConnectException;
-import java.net.SocketTimeoutException;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import javax.net.ssl.SSLHandshakeException;
-
 import io.grpc.ManagedChannelBuilder;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Request;
-import retrofit2.HttpException;
 
 
 /**

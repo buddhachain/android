@@ -5,14 +5,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.baidu.xuper.api.Account;
-import com.baidu.xuper.crypto.account.ECDSAAccount;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.ui.BaseActivity;
-import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
 import com.chain.buddha.utils.ToastUtils;
+
+import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -45,7 +45,13 @@ public class RegisterActivity extends BaseActivity {
             ToastUtils.show(context, "两次密码输入不一致");
             return;
         }
-        Account account = Account.createAndSave(XuperAccount.getAccountCachePath(), psw2, 1, 1);
+        try {
+            new File(XuperAccount.getAccountCachePath(context)).delete();
+
+        } catch (Throwable e) {
+
+        }
+        Account account = Account.createAndSave(XuperAccount.getAccountCachePath(context), psw2, 1, 1);
         SkipInsideUtil.skipInsideActivity(context, MnemonicActivity.class, SkipInsideUtil.SKIP_KEY_MNEMONIC, account.getMnemonic());
     }
 }

@@ -1,8 +1,6 @@
 package com.chain.buddha.utils;
 
 import android.content.Context;
-import android.os.Build;
-import android.os.Environment;
 import android.util.Log;
 
 import java.io.File;
@@ -43,17 +41,7 @@ public class FileUtils {
          */
         public static String getDir(Context context) {
             String dir;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                dir = context.getExternalFilesDir("") + File.separator + "Media" + File.separator;
-            } else {
-                dir = Environment.getExternalStorageDirectory() + File.separator + "DCIM"
-                      + File.separator + "Camera" + File.separator;
-            }
-            File file = new File(dir);
-            if (!file.exists()) {
-                //noinspection ResultOfMethodCallIgnored
-                file.mkdirs();
-            }
+            dir = context.getExternalFilesDir("").getPath();
             return dir;
         }
 

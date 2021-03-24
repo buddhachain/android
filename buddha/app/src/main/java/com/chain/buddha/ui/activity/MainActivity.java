@@ -1,7 +1,7 @@
 package com.chain.buddha.ui.activity;
 
 import android.Manifest;
-import android.content.pm.PackageManager;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -15,19 +15,16 @@ import com.chain.buddha.ui.fragment.QifuFragment;
 import com.chain.buddha.ui.fragment.ShouyeFragment;
 import com.chain.buddha.ui.fragment.XiuxingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.tbruyelle.rxpermissions3.RxPermissions;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Lifecycle;
 
-import java.util.function.Consumer;
-
 import butterknife.BindView;
+import io.reactivex.functions.Consumer;
 
 public class MainActivity extends BaseActivity {
 
@@ -43,16 +40,12 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mBottomBar.setItemIconTintList(null);
-//        new RxPermissions(this).request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-//                .subscribe(granted -> {
-//                    if (granted) { // Always true pre-M
-//                        // I can control the camera now
-//                    } else {
-//                        // Oups permission denied
-//                    }
-//                });
-
-//        new RxPermissions(this).
+        new RxPermissions(this).request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .subscribe(aBoolean -> {
+                    if (aBoolean) {
+                        XuperAccount.checkAccount(context);
+                    }
+                });
 
         XuperAccount.checkAccount(context);
         mFragment = new Fragment[5];

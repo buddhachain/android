@@ -14,6 +14,7 @@ import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
 import com.chain.buddha.utils.ToastUtils;
 
+import java.io.File;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -53,12 +54,13 @@ public class LoginActivity extends BaseActivity {
             int language = StringUtils.isChinese(mnemonic.charAt(0)) ? 1 : 2;
             ECDSAAccount ecdsaAccount = new ECDSAAccount();
             ecdsaAccount.createByMnemonic(mnemonic, language);
-            ecdsaAccount.saveToFile(XuperAccount.getAccountCachePath(), psw2);
+            new File(XuperAccount.getAccountCachePath(context)).delete();
+            ecdsaAccount.saveToFile(XuperAccount.getAccountCachePath(context), psw2);
             Account account = Account.retrieve(mnemonic, language);
             XuperAccount.setAccount(account);
             ToastUtils.show(context, "导入成功");
             finish();
-        } catch (Exception e) {
+        } catch (Throwable e) {
             DialogUtil.tipDialog(context, "导入失败，请检查助记词");
         }
     }

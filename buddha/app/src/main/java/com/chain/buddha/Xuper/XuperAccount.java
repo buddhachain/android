@@ -1,9 +1,9 @@
 package com.chain.buddha.Xuper;
 
 import android.app.Activity;
+import android.content.Context;
 
 import com.baidu.xuper.api.Account;
-import com.chain.buddha.BuddhaApplication;
 import com.chain.buddha.ui.activity.LoginActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.EventBeans;
@@ -35,9 +35,6 @@ public class XuperAccount {
     }
 
     public static Account getAccount() {
-//        if (mAccount == null) {
-//            mAccount = TestAccount.getFounderAccount();
-//        }
         return mAccount;
     }
 
@@ -67,10 +64,11 @@ public class XuperAccount {
      *
      * @return
      */
-    public static boolean ifHasAccount() {
+    public static boolean ifHasAccount(Context context) {
         try {
-            String savepath = FileUtils.SDCardConstants.getDir(BuddhaApplication.getInstance()) + XuperConstants.KEY_SAVE_FILE_NAME;
-            return new File(savepath).exists();
+            String savepath = getAccountCachePath(context);
+            boolean ifHas = new File(savepath, XuperConstants.KEY_SAVE_FILE_NAME).exists();
+            return ifHas;
         } catch (Exception e) {
             return false;
         }
@@ -81,8 +79,9 @@ public class XuperAccount {
      *
      * @return
      */
-    public static String getAccountCachePath() {
-        return FileUtils.SDCardConstants.getDir(BuddhaApplication.getInstance()) + XuperConstants.KEY_SAVE_FILE_NAME;
+    public static String getAccountCachePath(Context context) {
+        String cacheFile = FileUtils.SDCardConstants.getDir(context) + XuperConstants.KEY_SAVE_FILE_PATH;
+        return cacheFile;
     }
 
     /**
@@ -90,11 +89,12 @@ public class XuperAccount {
      *
      * @return
      */
-    public static boolean logoutAccount() {
+    public static boolean logoutAccount(Context context) {
         try {
+            String savepath = getAccountCachePath(context);
+            boolean b = new File(savepath, XuperConstants.KEY_SAVE_FILE_NAME).delete();
             setAccount(null);
-            String savepath = FileUtils.SDCardConstants.getDir(BuddhaApplication.getInstance()) + XuperConstants.KEY_SAVE_FILE_NAME;
-            return new File(savepath).delete();
+            return b;
         } catch (Exception e) {
             return true;
         }
@@ -115,7 +115,7 @@ public class XuperAccount {
      * @return
      */
     public static void checkAccount(Activity activity) {
-        if (!ifHasAccount()) {
+        if (!ifHasAccount(activity)) {
             DialogUtil.simpleDialog(activity, "还没有账号，是否去导入", new DialogUtil.ConfirmCallBackInf() {
                 @Override
                 public void onConfirmClick(String content) {

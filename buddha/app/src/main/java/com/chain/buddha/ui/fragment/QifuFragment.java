@@ -1,16 +1,12 @@
 package com.chain.buddha.ui.fragment;
 
-import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
+import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
@@ -34,6 +30,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -89,6 +90,7 @@ public class QifuFragment extends BaseFragment {
                 }
             }
         });
+
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
@@ -103,15 +105,16 @@ public class QifuFragment extends BaseFragment {
         refreshLayout.autoRefresh();
     }
 
+
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         EventBus.getDefault().register(this);
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 

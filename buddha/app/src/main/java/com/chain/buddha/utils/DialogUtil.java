@@ -124,14 +124,14 @@ public class DialogUtil {
             public void onClick(View v) {
                 String psw = mEditText.getText().toString();
                 try {
-                    Account account = Account.getAccountFromFile(XuperAccount.getAccountCachePath(), psw);
+                    Account account = Account.getAccountFromFile(XuperAccount.getAccountCachePath(context), psw);
                     XuperAccount.setAccount(account);
                     if (callBack != null) {
                         callBack.onConfirmClick("");
                     }
                     UIUtils.closeKeybord(mEditText, context);
                     dialog.dismiss();
-                } catch (Exception e) {
+                } catch (Throwable e) {
                     tv_error.setText("密码错误,请重试");
                 }
 
