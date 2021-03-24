@@ -9,6 +9,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.chain.buddha.utils.UIUtils;
+import com.gyf.immersionbar.ImmersionBar;
 
 import butterknife.ButterKnife;
 
@@ -24,6 +25,7 @@ public class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = this;
+//        ImmersionBar.with(this).init();
     }
 
     @Override

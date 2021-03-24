@@ -47,7 +47,6 @@ public class MainActivity extends BaseActivity {
                     }
                 });
 
-        XuperAccount.checkAccount(context);
         mFragment = new Fragment[5];
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
