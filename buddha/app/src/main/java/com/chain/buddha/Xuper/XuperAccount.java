@@ -16,28 +16,39 @@ import java.io.File;
 
 
 /**
+ * 账户工具类
  * @Author: haroro
  * @CreateDate: 3/15/21
  */
 public class XuperAccount {
 
-    public static final int ACCOUNT_TYPE_NULL = -1;
-    public static final int ACCOUNT_TYPE_NORMAL = 0;
-    public static final int ACCOUNT_TYPE_FASHI = 1;
-    public static final int ACCOUNT_TYPE_SIYUAN = 2;
-    public static final int ACCOUNT_TYPE_JJH = 3;
+    public static final int ACCOUNT_TYPE_NULL = -1;//账户类型 无账号
+    public static final int ACCOUNT_TYPE_NORMAL = 0;//账户类型 普通账号
+    public static final int ACCOUNT_TYPE_FASHI = 1;//账户类型 法师
+    public static final int ACCOUNT_TYPE_SIYUAN = 2;//账户类型 寺院
+    public static final int ACCOUNT_TYPE_JJH = 3;//账户类型 基金会
 
-    private static Account mAccount;
-    private static int mAccountType = -1;
+    private static Account mAccount;//当前账户实体类
+    private static int mAccountType = -1;//当前账户类型
 
     private XuperAccount() {
 
     }
 
+    /**
+     * 获取当前账户实体类(单例)
+     *
+     * @return
+     */
     public static Account getAccount() {
         return mAccount;
     }
 
+    /**
+     * 复制当前账户实体类，并发送广播
+     *
+     * @param account
+     */
     public static void setAccount(Account account) {
         setAccountType(account == null ? ACCOUNT_TYPE_NULL : ACCOUNT_TYPE_NORMAL);
         mAccount = account;
@@ -52,6 +63,11 @@ public class XuperAccount {
         XuperAccount.mAccountType = mAccountType;
     }
 
+    /**
+     * 获取账户地址
+     *
+     * @return
+     */
     public static String getAddress() {
         if (ifLoginAccount()) {
             return getAccount().getAddress();

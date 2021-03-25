@@ -23,32 +23,31 @@ import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * 文件上传下载工具类
+ */
 public class IpfsUtils {
     private static IPFS ipfs;
 
     public static IPFS getIpfs() {
         if (ipfs == null) {
             ipfs = new IPFS("/ip4/103.40.243.96/tcp/5001");
-//            ipfs = new IPFS("103.40.243.96", 37101);
-
-//输入整个地址
-//            MultiAddress multiaddr = new MultiAddress("http://103.40.243.96:4001");
-//            ipfs = new IPFS(multiaddr);
-            try {
-//                ipfs.refs.local();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
         return ipfs;
     }
 
+    /**
+     * 上传文件
+     *
+     * @param filePath
+     * @return
+     */
     public static String uploadFile(String filePath) {
         NamedStreamable.FileWrapper file = new NamedStreamable.FileWrapper(new File(filePath));
         try {
             MerkleNode addResult = getIpfs().add(file).get(0);
             Log.e("addResult", addResult.toString());
-            return addResult.toString();
+            return addResult.hash.toString();
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -56,12 +55,19 @@ public class IpfsUtils {
     }
 
 
-    public static void getFile(String key) {
+    /**
+     * 文件下载
+     *
+     * @param key
+     */
+    public static byte[] getFile(String key) {
         Multihash filePointer = Multihash.fromBase58(key);
         try {
             byte[] fileContents = getIpfs().cat(filePointer);
+            return fileContents;
         } catch (IOException e) {
             e.printStackTrace();
+            return null;
         }
     }
 

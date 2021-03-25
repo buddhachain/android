@@ -6,13 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activity.JjhBackstageActivity">
+
+    <include layout="@layout/item_top_back_bar" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/jjh_tabLayout"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_40"/>
+        android:layout_height="@dimen/dimen_40" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/jjh_viewPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

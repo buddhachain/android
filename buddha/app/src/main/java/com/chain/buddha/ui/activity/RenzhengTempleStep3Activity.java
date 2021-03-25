@@ -19,6 +19,7 @@ import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.GifSizeFilter;
+import com.chain.buddha.utils.GlideUtils;
 import com.chain.buddha.utils.IpfsUtils;
 import com.chain.buddha.utils.ToastUtils;
 import com.google.gson.Gson;
@@ -140,6 +141,7 @@ public class RenzhengTempleStep3Activity extends BaseActivity {
                     public void onSuccess(String s) {
                         proof = s;
                         ToastUtils.show(mContext, "上传成功");
+                        GlideUtils.loadImageByIpfskey(mContext, proof, mImg);
                     }
 
                     @Override

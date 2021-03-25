@@ -25,6 +25,8 @@ import io.reactivex.schedulers.Schedulers;
 
 
 /**
+ * 请求接口API
+ *
  * @Author: haroro
  * @CreateDate: 3/15/21
  */
@@ -112,6 +114,14 @@ public class XuperApi {
         baseRequest("apply_master", args, true, new BaseObserver(false, responseCallBack));
     }
 
+    /**
+     * 普通合约请求
+     *
+     * @param method
+     * @param hashMap
+     * @param isInvoke
+     * @param baseObserver
+     */
     private static void baseRequest(String method, HashMap<String, byte[]> hashMap, boolean isInvoke, BaseObserver baseObserver) {
         if (!XuperAccount.ifLoginAccount()) {
             baseObserver.onError(new Exception("还未登陆"));
@@ -146,6 +156,14 @@ public class XuperApi {
     }
 
 
+    /**
+     * 带转账的合约调用
+     *
+     * @param method
+     * @param hashMap
+     * @param amount
+     * @param baseObserver
+     */
     private static void baseRequestWithAmount(String method, HashMap<String, byte[]> hashMap, String amount, BaseObserver baseObserver) {
         if (!XuperAccount.ifLoginAccount()) {
             baseObserver.onError(new Exception("还未登陆"));
@@ -359,6 +377,88 @@ public class XuperApi {
         args.put("proof", proof.getBytes());
 
         baseRequest("apply_temple", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 添加善举
+     *
+     * @param responseCallBack
+     */
+    public static void addKinddeed(String name, String type, String detail, String spec, ResponseCallBack responseCallBack) {
+
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", (new Random().nextInt(1000) + "").getBytes());
+        args.put("name", name.getBytes());
+        args.put("type", type.getBytes());
+        args.put("lasttime", (System.currentTimeMillis() + "").getBytes());
+        args.put("detail", detail.getBytes());
+        args.put("spec", spec.getBytes());
+
+        baseRequest("add_kinddeed", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 添加善举规格
+     *
+     * @param hash 图片hash
+     */
+    public static void addKinddeedspec(String sequence, String hash, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", (new Random().nextInt(1000) + "").getBytes());
+        args.put("sequence", sequence.getBytes());
+        args.put("hash", hash.getBytes());
+
+        baseRequest("add_kinddeedspec", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 添加善举描述
+     *
+     * @param responseCallBack
+     */
+    public static void addKinddeeddetail(String sequence, String desc, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", (new Random().nextInt(1000) + "").getBytes());
+        args.put("sequence", sequence.getBytes());
+        args.put("desc", desc.getBytes());
+
+        baseRequest("add_kinddeeddetail", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 添加善举描述
+     *
+     * @param responseCallBack
+     */
+    public static void findKinddeed(String kdid, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", kdid.getBytes());
+
+        baseRequest("find_kinddeed", args, false, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 善举种类列表
+     *
+     * @param responseCallBack
+     */
+    public static void listKinddeedtype(ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+
+        baseRequest("list_kinddeedtype", args, false, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 添加善举种类
+     *
+     * @param responseCallBack
+     */
+    public static void addKinddeedtype(String desc, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", (new Random().nextInt(1000) + "").getBytes());
+        args.put("desc", desc.getBytes());
+
+        baseRequest("add_kinddeedtype", args, true, new BaseObserver(false, responseCallBack));
     }
 
 }

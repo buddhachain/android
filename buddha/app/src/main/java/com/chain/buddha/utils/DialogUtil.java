@@ -34,7 +34,9 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-
+/**
+ * 弹框工具类
+ */
 public class DialogUtil {
     public static final float DEFAULT_DIALOG_DIMAMOUNT = 0.6f;// 结果
 

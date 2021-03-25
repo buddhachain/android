@@ -226,13 +226,13 @@ public class MineFragment extends BaseFragment {
             }
         });
 
-        mNickNameTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //测试
-                SkipInsideUtil.skipInsideActivity(mContext, MasterListActivity.class);
-            }
-        });
+//        mNickNameTv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //测试
+//                SkipInsideUtil.skipInsideActivity(mContext, MasterListActivity.class);
+//            }
+//        });
         refreshView();
     }
 
@@ -271,9 +271,13 @@ public class MineFragment extends BaseFragment {
                 toMyShanjv(4);
                 break;
             case R.id.user_part1:
+                SkipInsideUtil.skipInsideActivity(mContext, MasterBackstageActivity.class);
+                break;
             case R.id.user_part2:
+                SkipInsideUtil.skipInsideActivity(mContext, TempleBackstageActivity.class);
+                break;
             case R.id.user_part3:
-                toBackStage((TextView) view);
+                SkipInsideUtil.skipInsideActivity(mContext, JjhBackstageActivity.class);
                 break;
             case R.id.btn_master:
                 if (XuperAccount.getAccountType() == XuperAccount.ACCOUNT_TYPE_FASHI) {
@@ -311,21 +315,4 @@ public class MineFragment extends BaseFragment {
 
     }
 
-    private void toBackStage(TextView view) {
-        String s = view.getText().toString();
-        switch (s) {
-            case "法师":
-                SkipInsideUtil.skipInsideActivity(mContext, MasterBackstageActivity.class);
-                break;
-            case "寺院":
-                SkipInsideUtil.skipInsideActivity(mContext, TempleBackstageActivity.class);
-                break;
-            case "基金会":
-                SkipInsideUtil.skipInsideActivity(mContext, JjhBackstageActivity.class);
-                break;
-            default:
-                break;
-        }
-
-    }
 }

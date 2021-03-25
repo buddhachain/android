@@ -28,6 +28,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -84,7 +86,7 @@ public class QifuFragment extends BaseFragment {
                 try {
                     String[] list = mQifuList.get(position).split(",");
                     String kdid = list[0];
-                    SkipInsideUtil.skipInsideActivity(mContext, ShanjvDetailActivity.class, SkipInsideUtil.SKIP_KEY_KDID,kdid );
+                    SkipInsideUtil.skipInsideActivity(mContext, ShanjvDetailActivity.class, SkipInsideUtil.SKIP_KEY_KDID, kdid);
                 } catch (Exception e) {
 
                 }
@@ -138,6 +140,8 @@ public class QifuFragment extends BaseFragment {
                     mQifuList.clear();
                     mQifuList.addAll(Arrays.asList(list));
                     mQifuList.remove(0);
+                    // 反转lists
+                    Collections.reverse(mQifuList);
                     mQifuAdapter.notifyDataSetChanged();
                 } catch (Exception e) {
                     e.printStackTrace();

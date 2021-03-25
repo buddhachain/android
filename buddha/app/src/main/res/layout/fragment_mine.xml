@@ -31,41 +31,6 @@
             android:textSize="@dimen/text_dimen_16" />
 
         <TextView
-            android:id="@+id/user_part1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/user_name"
-            android:layout_toRightOf="@id/user_logo"
-            android:text="法师"
-            android:textColor="@color/color_text_level2"
-            android:textSize="@dimen/text_dimen_13"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/user_part2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/user_name"
-            android:layout_marginLeft="@dimen/dimen_4"
-            android:layout_toRightOf="@id/user_part1"
-            android:text="寺院"
-            android:textColor="@color/color_text_level2"
-            android:textSize="@dimen/text_dimen_13"
-            android:visibility="gone" />
-
-        <TextView
-            android:id="@+id/user_part3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/user_name"
-            android:layout_marginLeft="@dimen/dimen_4"
-            android:layout_toRightOf="@id/user_part2"
-            android:text="基金会"
-            android:textColor="@color/color_text_level2"
-            android:textSize="@dimen/text_dimen_13"
-            android:visibility="gone" />
-
-        <TextView
             android:id="@+id/tv_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -263,5 +228,52 @@
 
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_20"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/user_part1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/color_gray_8e"
+            android:paddingLeft="@dimen/dimen_8"
+            android:paddingTop="@dimen/dimen_5"
+            android:paddingRight="@dimen/dimen_8"
+            android:paddingBottom="@dimen/dimen_5"
+            android:text="法师后台"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_dimen_13" />
+
+        <TextView
+            android:id="@+id/user_part2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_20"
+            android:background="@color/color_gray_8e"
+            android:paddingLeft="@dimen/dimen_8"
+            android:paddingTop="@dimen/dimen_5"
+            android:paddingRight="@dimen/dimen_8"
+            android:paddingBottom="@dimen/dimen_5"
+            android:text="寺院后台"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_dimen_13" />
+
+        <TextView
+            android:id="@+id/user_part3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/color_gray_8e"
+            android:paddingLeft="@dimen/dimen_8"
+            android:paddingTop="@dimen/dimen_5"
+            android:paddingRight="@dimen/dimen_8"
+            android:paddingBottom="@dimen/dimen_5"
+            android:text="基金会后台"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_dimen_13" />
+    </LinearLayout>
 
 </LinearLayout>

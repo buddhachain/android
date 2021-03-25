@@ -119,6 +119,18 @@ public class ShanjvDetailActivity extends BaseActivity {
 
             }
         });
+
+        XuperApi.findKinddeed(kdid, new ResponseCallBack<String>() {
+            @Override
+            public void onSuccess(String resp) {
+                Log.e("resp", resp);
+            }
+
+            @Override
+            public void onFail(String message) {
+
+            }
+        });
     }
 
 

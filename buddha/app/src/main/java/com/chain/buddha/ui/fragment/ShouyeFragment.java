@@ -24,6 +24,7 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -133,6 +134,8 @@ public class ShouyeFragment extends BaseFragment {
                     mQifuList.clear();
                     mQifuList.addAll(Arrays.asList(list));
                     mQifuList.remove(0);
+                    // 反转lists
+                    Collections.reverse(mQifuList);
                     mQifuAdapter.notifyDataSetChanged();
                 } catch (Exception e) {
                     e.printStackTrace();
