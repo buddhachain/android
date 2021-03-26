@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
@@ -17,6 +18,7 @@ import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.FmPagerAdapter;
 import com.chain.buddha.adapter.SpecListAdapter;
 import com.chain.buddha.ui.BaseActivity;
+import com.chain.buddha.ui.fragment.ShanjvBeforeCommentFragment;
 import com.chain.buddha.ui.fragment.ShanjvDetailFragment;
 import com.chain.buddha.ui.fragment.ShanjvListFragment;
 import com.chain.buddha.utils.SkipInsideUtil;
@@ -31,6 +33,9 @@ import butterknife.BindView;
 import butterknife.OnClick;
 
 public class ShanjvDetailActivity extends BaseActivity {
+
+    @BindView(R.id.text_back)
+    TextView mTitleTv;
 
     @BindView(R.id.shanjv_tabLayout)
     TabLayout mTabLayout;
@@ -55,7 +60,8 @@ public class ShanjvDetailActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shanjv_detail);
         kdid = getIntent().getStringExtra(SkipInsideUtil.SKIP_KEY_KDID);
-        mTitle = new String[]{getString(R.string.shanjv_detail), getString(R.string.shanjv_list)};
+        mTitleTv.setText("详情");
+        mTitle = new String[]{getString(R.string.shanjv_detail), getString(R.string.shanjv_list),getString(R.string.shanjv_comment_list)};
         mFragmentList = new ArrayList<>();
         for (int i = 0; i < mTitle.length; i++) {
             switch (i) {
@@ -63,7 +69,10 @@ public class ShanjvDetailActivity extends BaseActivity {
                     mFragmentList.add(new ShanjvDetailFragment(kdid));
                     break;
                 case 1:
-                    mFragmentList.add(new ShanjvListFragment());
+                    mFragmentList.add(new ShanjvListFragment(kdid));
+                    break;
+                case 2:
+                    mFragmentList.add(new ShanjvBeforeCommentFragment(kdid));
                     break;
                 default:
                     break;
@@ -88,17 +97,17 @@ public class ShanjvDetailActivity extends BaseActivity {
     }
 
     void getData() {
-        XuperApi.kinddeedDetail(kdid, new ResponseCallBack<String>() {
-            @Override
-            public void onSuccess(String resp) {
-                Log.e("resp", resp);
-            }
-
-            @Override
-            public void onFail(String message) {
-
-            }
-        });
+//        XuperApi.kinddeedDetail(kdid, new ResponseCallBack<String>() {
+//            @Override
+//            public void onSuccess(String resp) {
+//                Log.e("resp", resp);
+//            }
+//
+//            @Override
+//            public void onFail(String message) {
+//
+//            }
+//        });
         XuperApi.kinddeedSpec(kdid, new ResponseCallBack<String>() {
             @Override
             public void onSuccess(String resp) {

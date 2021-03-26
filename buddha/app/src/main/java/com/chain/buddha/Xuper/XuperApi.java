@@ -308,6 +308,14 @@ public class XuperApi {
     public static void requestMasterList(ResponseCallBack responseCallBack) {
         baseRequest("list_master", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
     }
+    /**
+     * 请求寺院列表
+     *
+     * @param responseCallBack
+     */
+    public static void requestTempleList(ResponseCallBack responseCallBack) {
+        baseRequest("list_temple", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
+    }
 
     /**
      * 请求善举详情
@@ -461,4 +469,46 @@ public class XuperApi {
         baseRequest("add_kinddeedtype", args, true, new BaseObserver(false, responseCallBack));
     }
 
+
+    /**
+     * 请求善举参与列表
+     *
+     * @param responseCallBack
+     */
+    public static void prayKinddeedList(String kdid, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("kdid", kdid.getBytes());
+
+        baseRequest("list_pray_kinddeed", args, false, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 请求善举评论列表
+     *
+     * @param responseCallBack
+     */
+    public static void beforeCommentKinddeedList(String kdid, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("kdid", kdid.getBytes());
+
+        baseRequest("list_beforecomment", args, false, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 添加善举评论
+     * {"kdid":"1", "satisfaction":"0", "labels":"[\"1\"]","comment":"够前评论，不孬","timestamp":"xxxxxx"}
+     *
+     * @param kdid
+     * @param satisfaction 满意度
+     */
+    public static void addBeforecomment(String kdid, String satisfaction, String comment, String labels, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("kdid", kdid.getBytes());
+        args.put("satisfaction", satisfaction.getBytes());
+        args.put("comment", comment.getBytes());
+        args.put("labels", labels.getBytes());
+        args.put("timestamp", (System.currentTimeMillis() + "").getBytes());
+
+        baseRequest("add_beforecomment", args, true, new BaseObserver(false, responseCallBack));
+    }
 }

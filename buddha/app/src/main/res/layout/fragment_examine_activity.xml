@@ -1,43 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_40">
+        android:layout_height="@dimen/dimen_40"
+        android:orientation="horizontal">
+
         <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_margin="@dimen/dimen_1"
-            android:gravity="center"
-            android:textColor="@color/color_white"
+            android:layout_weight="1"
             android:background="#158DEC"
+            android:gravity="center"
             android:text="名称"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"/>
+            android:textColor="@color/color_white" />
+
         <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_margin="@dimen/dimen_1"
-            android:gravity="center"
-            android:textColor="@color/color_white"
+            android:layout_weight="1"
             android:background="#158DEC"
+            android:gravity="center"
             android:text="所属人"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"/>
+            android:textColor="@color/color_white" />
+
         <TextView
-            android:layout_margin="@dimen/dimen_1"
-            android:gravity="center"
-            android:textColor="@color/color_white"
-            android:background="#158DEC"
-            android:text="是否通过"
-            android:layout_weight="1"
             android:layout_width="0dp"
-            android:layout_height="match_parent"/>
-        
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimen_1"
+            android:layout_weight="1"
+            android:background="#158DEC"
+            android:gravity="center"
+            android:text="是否通过"
+            android:textColor="@color/color_white" />
+
     </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -34,10 +34,10 @@ public class JjhBackstageActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jjh_backstage);
-        mTitle=new String[]{"上架审核","活动审核","认证审核"};
-        fragmentList=new ArrayList<>();
+        mTitle = new String[]{"上架审核", "活动审核", "认证审核"};
+        fragmentList = new ArrayList<>();
         for (int i = 0; i < mTitle.length; i++) {
-            switch (i){
+            switch (i) {
                 case 0:
                     fragmentList.add(new ExamineShanjvFragment());
                     break;
@@ -47,12 +47,13 @@ public class JjhBackstageActivity extends BaseActivity {
                 case 2:
                     fragmentList.add(new ExamineRenzhengFragment());
                     break;
-                default:break;
+                default:
+                    break;
             }
             mTabLayout.addTab(mTabLayout.newTab());
         }
-        mTabLayout.setupWithViewPager(mViewPager,false);
-        adapter=new FmPagerAdapter(fragmentList,getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        mTabLayout.setupWithViewPager(mViewPager, false);
+        adapter = new FmPagerAdapter(fragmentList, getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mViewPager.setAdapter(adapter);
         for (int i = 0; i < fragmentList.size(); i++) {
             mTabLayout.getTabAt(i).setText(mTitle[i]);
