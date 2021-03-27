@@ -1,17 +1,18 @@
 package com.chain.buddha.ui;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.chain.buddha.R;
 import com.chain.buddha.utils.UIUtils;
 import com.gyf.immersionbar.ImmersionBar;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
 
 /**
@@ -21,6 +22,7 @@ import butterknife.ButterKnife;
 public class BaseActivity extends AppCompatActivity {
 
     public Activity mContext;
+    protected ProgressDialog mProgressLoadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,5 +72,42 @@ public class BaseActivity extends AppCompatActivity {
             return true;
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+
+    protected void showLoadingDialog(String title, String msg) {
+        try {
+//            if (StringUtils.equalsNull(msg)) {
+//                msg = getString(R.string.loading);
+//            }
+            if (mProgressLoadingDialog == null) {
+                mProgressLoadingDialog = new ProgressDialog(this);
+                final LayoutInflater inflater = LayoutInflater.from(this);
+                final View view = inflater.inflate(R.layout.dialog_loading, null);
+                mProgressLoadingDialog.setView(view);
+            }
+
+            if (!mProgressLoadingDialog.isShowing()) {
+                mProgressLoadingDialog.setTitle(title);
+                mProgressLoadingDialog.setMessage(msg);
+                mProgressLoadingDialog.show();
+            } else {
+                mProgressLoadingDialog.setTitle(title);
+                mProgressLoadingDialog.setMessage(msg);
+            }
+
+        } catch (Exception e) {
+
+        }
+    }
+
+    protected void hideLoadingDialog() {
+
+        if (mProgressLoadingDialog != null) {
+            if (mProgressLoadingDialog.isShowing()) {
+                mProgressLoadingDialog.cancel();
+            }
+        }
+
     }
 }

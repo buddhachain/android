@@ -308,6 +308,7 @@ public class XuperApi {
     public static void requestMasterList(ResponseCallBack responseCallBack) {
         baseRequest("list_master", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
     }
+
     /**
      * 请求寺院列表
      *
@@ -315,6 +316,15 @@ public class XuperApi {
      */
     public static void requestTempleList(ResponseCallBack responseCallBack) {
         baseRequest("list_temple", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 请求善举凭证列表
+     *
+     * @param responseCallBack
+     */
+    public static void requestKinddeedproofList(ResponseCallBack responseCallBack) {
+        baseRequest("list_kinddeedproof", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -328,6 +338,7 @@ public class XuperApi {
 
         baseRequest("list_kinddeeddetail", args, false, new BaseObserver(false, responseCallBack));
     }
+
 
     /**
      * 请求善举商品列表
@@ -510,5 +521,53 @@ public class XuperApi {
         args.put("timestamp", (System.currentTimeMillis() + "").getBytes());
 
         baseRequest("add_beforecomment", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 同意上架善举
+     *
+     * @param id
+     */
+    public static void approveOnlineKinddeed(String id, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", id.getBytes());
+
+        baseRequest("approve_online_kinddeed", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 同意成为法师
+     *
+     * @param id
+     */
+    public static void approveMaster(String id, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", id.getBytes());
+
+        baseRequest("approve_master", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 同意成为寺院
+     *
+     * @param id
+     */
+    public static void approveTemple(String id, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", id.getBytes());
+
+        baseRequest("approve_temple", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 同意善举凭证
+     *
+     * @param id
+     */
+    public static void approveKinddeedproof(String id, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", id.getBytes());
+
+        baseRequest("approve_kinddeedproof", args, true, new BaseObserver(false, responseCallBack));
     }
 }

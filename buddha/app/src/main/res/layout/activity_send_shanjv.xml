@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 
@@ -9,76 +8,120 @@
     tools:context=".ui.activity.SendShanjvActivity">
 
     <include layout="@layout/item_top_back_bar" />
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_16"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:layout_marginRight="@dimen/dimen_16"
-        android:text="善行名称" />
-
-    <EditText
-        android:id="@+id/et_shanjv_name"
-        style="@style/whiteGrayEditBg"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/dimen_16"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:layout_marginRight="@dimen/dimen_16" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_16"
-        android:layout_marginRight="@dimen/dimen_16"
-        android:text="善行描述" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginRight="@dimen/dimen_16"
+            android:text="善行名称" />
 
-    <EditText
-        android:id="@+id/et_shanjv_desc"
-        style="@style/whiteGrayEditBg"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/dimen_16"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:layout_marginRight="@dimen/dimen_16" />
+        <EditText
+            android:id="@+id/et_shanjv_name"
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginRight="@dimen/dimen_16" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_16"
-        android:layout_marginRight="@dimen/dimen_16"
-        android:text="善行价格" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_16"
+            android:layout_marginRight="@dimen/dimen_16"
+            android:text="善行描述" />
 
-    <EditText
-        android:id="@+id/et_shanjv_price"
-        style="@style/whiteGrayEditBg"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/dimen_16"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:layout_marginRight="@dimen/dimen_16" />
+        <EditText
+            android:id="@+id/et_shanjv_desc"
+            style="@style/whiteGrayEditBg"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_16"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:layout_marginRight="@dimen/dimen_16" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/dimen_16"
-        android:layout_marginRight="@dimen/dimen_16"
-        android:text="善行数量" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_16"
+            android:layout_marginRight="@dimen/dimen_16"
+            android:text="善行类型" />
 
-    <EditText
-        android:id="@+id/et_shanjv_num"
-        style="@style/whiteGrayEditBg"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/dimen_16"
-        android:layout_marginTop="@dimen/dimen_8"
-        android:layout_marginRight="@dimen/dimen_16" />
+        <Spinner
+            android:id="@+id/sp_shanjv_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tv_submit"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_40"
-        android:layout_marginTop="@dimen/dimen_80"
-        android:background="@color/color_gray_8e"
-        android:gravity="center"
-        android:text="上传"
-        android:textColor="@color/color_white" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加规格" />
+
+            <TextView
+                android:id="@+id/tv_add_spec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_50"
+                android:background="@color/color_gray_8e"
+                android:padding="@dimen/dimen_5"
+                android:text="添加图片"
+                android:textColor="@color/color_white" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_spec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="添加图片" />
+
+            <TextView
+                android:id="@+id/tv_add_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dimen_50"
+                android:background="@color/color_gray_8e"
+                android:padding="@dimen/dimen_5"
+                android:text="添加图片"
+                android:textColor="@color/color_white" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_40"
+            android:layout_marginTop="@dimen/dimen_80"
+            android:background="@color/color_gray_8e"
+            android:gravity="center"
+            android:text="上传"
+            android:textColor="@color/color_white" />
+
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

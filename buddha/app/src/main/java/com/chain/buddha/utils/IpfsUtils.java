@@ -3,19 +3,17 @@ package com.chain.buddha.utils;
 import android.content.Context;
 import android.util.Log;
 
-import com.baidu.xuper.api.Transaction;
 import com.chain.buddha.Xuper.BaseObserver;
 import com.chain.buddha.Xuper.ResponseCallBack;
-import com.chain.buddha.Xuper.XuperAccount;
-import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import io.ipfs.api.IPFS;
 import io.ipfs.api.MerkleNode;
 import io.ipfs.api.NamedStreamable;
-import io.ipfs.multiaddr.MultiAddress;
 import io.ipfs.multihash.Multihash;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -28,6 +26,7 @@ import io.reactivex.schedulers.Schedulers;
  */
 public class IpfsUtils {
     private static IPFS ipfs;
+    public static String GET_IPFS_FILE_HEAD = "http://103.40.243.96:8080/ipfs/";
 
     public static IPFS getIpfs() {
         if (ipfs == null) {
@@ -54,6 +53,20 @@ public class IpfsUtils {
         }
     }
 
+    /**
+     * 上传文件列表
+     *
+     * @param filePathList
+     * @return
+     */
+    public static List<String> uploadFileList(List<String> filePathList) {
+        List<String> hashList = new ArrayList<>();
+        for (String filePath : filePathList) {
+            hashList.add(uploadFile(filePath));
+        }
+        return hashList;
+
+    }
 
     /**
      * 文件下载

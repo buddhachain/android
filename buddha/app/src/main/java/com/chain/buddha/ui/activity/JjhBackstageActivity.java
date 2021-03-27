@@ -1,22 +1,22 @@
 package com.chain.buddha.ui.activity;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
 
 import com.chain.buddha.R;
 import com.chain.buddha.adapter.FmPagerAdapter;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.ui.fragment.mine.ExamineActivityFragment;
-import com.chain.buddha.ui.fragment.mine.ExamineRenzhengFragment;
+import com.chain.buddha.ui.fragment.mine.ExamineRenzhengFashiFragment;
+import com.chain.buddha.ui.fragment.mine.ExamineRenzhengSiyuanFragment;
 import com.chain.buddha.ui.fragment.mine.ExamineShanjvFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 
 public class JjhBackstageActivity extends BaseActivity {
@@ -34,7 +34,7 @@ public class JjhBackstageActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jjh_backstage);
-        mTitle = new String[]{"上架审核", "活动审核", "认证审核"};
+        mTitle = new String[]{"上架审核", "活动审核", "法师审核", "寺院审核"};
         fragmentList = new ArrayList<>();
         for (int i = 0; i < mTitle.length; i++) {
             switch (i) {
@@ -45,7 +45,10 @@ public class JjhBackstageActivity extends BaseActivity {
                     fragmentList.add(new ExamineActivityFragment());
                     break;
                 case 2:
-                    fragmentList.add(new ExamineRenzhengFragment());
+                    fragmentList.add(new ExamineRenzhengFashiFragment());
+                    break;
+                case 3:
+                    fragmentList.add(new ExamineRenzhengSiyuanFragment());
                     break;
                 default:
                     break;

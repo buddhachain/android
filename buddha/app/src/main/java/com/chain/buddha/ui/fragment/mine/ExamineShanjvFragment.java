@@ -1,27 +1,27 @@
 package com.chain.buddha.ui.fragment.mine;
 
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
-import com.chain.buddha.adapter.ExamineRenzhengListAdapter;
 import com.chain.buddha.adapter.ExamineShanjvListAdapter;
 import com.chain.buddha.ui.BaseFragment;
+import com.chain.buddha.utils.DialogUtil;
+import com.chain.buddha.utils.StringUtils;
+import com.chain.buddha.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
 /**
@@ -59,11 +59,25 @@ public class ExamineShanjvFragment extends BaseFragment {
             public void onClick(View view) {
             }
         });
+        mAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+                try {
+                    String[] list = mList.get(position).split(",");
+
+                    if (!StringUtils.equals(list[6], "0")) {
+                        //未通过审核
+                        approve(list[0]);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override
     protected void lazyInit() {
-
         XuperApi.requestQifuList(new ResponseCallBack<String>() {
             @Override
             public void onSuccess(String resp) {
@@ -83,6 +97,23 @@ public class ExamineShanjvFragment extends BaseFragment {
             @Override
             public void onFail(String message) {
                 Log.e("l", message);
+            }
+        });
+    }
+
+    /**
+     * 同意上架善举
+     */
+    void approve(String id) {
+        XuperApi.approveOnlineKinddeed(id, new ResponseCallBack<String>() {
+            @Override
+            public void onSuccess(String resp) {
+                ToastUtils.show(mContext, resp);
+            }
+
+            @Override
+            public void onFail(String message) {
+                DialogUtil.tipDialog(mContext, message);
             }
         });
     }
