@@ -61,6 +61,7 @@ public class JjhBackstageActivity extends BaseActivity {
         for (int i = 0; i < fragmentList.size(); i++) {
             mTabLayout.getTabAt(i).setText(mTitle[i]);
         }
+        mViewPager.setOffscreenPageLimit(fragmentList.size());
 
     }
 }

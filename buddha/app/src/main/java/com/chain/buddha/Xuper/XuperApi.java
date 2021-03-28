@@ -506,6 +506,33 @@ public class XuperApi {
     }
 
     /**
+     * 请求善举体验标签数据列表
+     *
+     * @param responseCallBack
+     */
+    public static void commentLabelList(ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+
+        baseRequest("list_commentlabel", args, false, new BaseObserver(false, responseCallBack));
+    }
+
+
+    /**
+     * 添加善举评论标签
+     * {"kdid":"1", "satisfaction":"0", "labels":"[\"1\"]","comment":"够前评论，不孬","timestamp":"xxxxxx"}
+     *
+     * @param id
+     * @param desc
+     */
+    public static void addCommentlabel(String id, String desc, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", id.getBytes());
+        args.put("desc", desc.getBytes());
+
+        baseRequest("add_commentlabel", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
      * 添加善举评论
      * {"kdid":"1", "satisfaction":"0", "labels":"[\"1\"]","comment":"够前评论，不孬","timestamp":"xxxxxx"}
      *

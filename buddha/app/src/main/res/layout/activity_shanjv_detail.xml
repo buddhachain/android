@@ -9,13 +9,15 @@
 
     <include layout="@layout/item_top_back_bar" />
 
-    <FrameLayout
+    <LinearLayout
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:orientation="vertical">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:layout_width="match_parent"
@@ -70,78 +72,82 @@
             </LinearLayout>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_50"
-            android:layout_gravity="bottom"
-            android:orientation="horizontal">
-            <!--            唤出菜单按钮，目前不需要-->
-            <ImageView
-                android:layout_width="@dimen/dimen_50"
-                android:layout_height="@dimen/dimen_50"
-                android:src="@mipmap/ic_default_img" />
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/btn_open_choose"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@color/color_gray_8e"
-                android:gravity="center"
-                android:text="他人拜佛一次，替你灭罪一次"
-                android:textColor="@color/color_white" />
-
-        </LinearLayout>
-        <!--        选择项目-->
-        <RelativeLayout
-            android:id="@+id/layout_choose_item"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_300"
-            android:layout_gravity="bottom"
-            android:background="@color/color_white"
-            android:orientation="vertical"
-            android:paddingTop="@dimen/dimen_16"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/dimen_16"
-                android:paddingRight="@dimen/dimen_16"
-                android:text="参与流程：选择类型-填写信息-参与成功" />
-
-            <ImageView
-                android:id="@+id/btn_close_choose"
-                android:layout_width="@dimen/dimen_16"
-                android:layout_height="@dimen/dimen_16"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="@dimen/dimen_16"
-                android:background="@mipmap/ic_default_img" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_spec"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dimen_224"
-                android:layout_below="@id/btn_close_choose"
-                android:layout_marginLeft="@dimen/dimen_16"
-                android:layout_marginTop="@dimen/dimen_8"
-                android:layout_marginRight="@dimen/dimen_16" />
-
-            <TextView
-                android:id="@+id/btn_next_step"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dimen_50"
-                android:layout_alignParentBottom="true"
-                android:background="@color/color_gray_8e"
-                android:gravity="center"
-                android:text="@string/next_step"
-                android:textColor="@color/color_white" />
+                android:layout_gravity="bottom"
+                android:orientation="horizontal">
+                <!--            唤出菜单按钮，目前不需要-->
+                <ImageView
+                    android:layout_width="@dimen/dimen_50"
+                    android:layout_height="@dimen/dimen_50"
+                    android:src="@mipmap/ic_default_img" />
 
+                <TextView
+                    android:id="@+id/btn_open_choose"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/color_gray_8e"
+                    android:gravity="center"
+                    android:text="他人拜佛一次，替你灭罪一次"
+                    android:textColor="@color/color_white" />
 
-        </RelativeLayout>
+            </LinearLayout>
+            <!--        选择项目-->
+            <RelativeLayout
+                android:id="@+id/layout_choose_item"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_300"
+                android:layout_gravity="bottom"
+                android:background="@color/color_white"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/dimen_16"
+                android:visibility="gone">
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="@dimen/dimen_16"
+                    android:paddingRight="@dimen/dimen_16"
+                    android:text="参与流程：选择类型-填写信息-参与成功" />
 
-    </FrameLayout>
+                <ImageView
+                    android:id="@+id/btn_close_choose"
+                    android:layout_width="@dimen/dimen_24"
+                    android:layout_height="@dimen/dimen_24"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/dimen_16"
+                    android:background="@mipmap/icon_close"
+                    android:padding="@dimen/dimen_5" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_spec"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_224"
+                    android:layout_below="@id/btn_close_choose"
+                    android:layout_marginLeft="@dimen/dimen_16"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:layout_marginRight="@dimen/dimen_16" />
+
+                <TextView
+                    android:id="@+id/btn_next_step"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_50"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/color_gray_8e"
+                    android:gravity="center"
+                    android:text="@string/next_step"
+                    android:textColor="@color/color_white" />
+
+            </RelativeLayout>
+        </FrameLayout>
+
+    </LinearLayout>
 
 
 </LinearLayout>

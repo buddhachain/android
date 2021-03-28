@@ -5,15 +5,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.QifuCommentListAdapter;
-import com.chain.buddha.adapter.QifuRecordListAdapter;
 import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.ToastUtils;
@@ -22,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -67,12 +65,35 @@ public class ShanjvBeforeCommentFragment extends BaseFragment {
         mQifuCommentAdapter.getEmptyLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                getCommentList();
             }
         });
     }
 
     @Override
     protected void lazyInit() {
+        getCommentList();
+        XuperApi.commentLabelList(new ResponseCallBack<String>() {
+            @Override
+            public void onSuccess(String resp) {
+                Log.e("resp", resp);
+                try {
+                    resp = resp.replaceAll("\\}", "");
+                    String[] list = resp.split("\\{");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFail(String message) {
+                Log.e("l", message);
+            }
+        });
+    }
+
+    void getCommentList() {
         XuperApi.beforeCommentKinddeedList(kdid, new ResponseCallBack<String>() {
             @Override
             public void onSuccess(String resp) {
@@ -94,6 +115,7 @@ public class ShanjvBeforeCommentFragment extends BaseFragment {
                 Log.e("l", message);
             }
         });
+
     }
 
     @OnClick(R.id.tv_comment)
@@ -107,6 +129,7 @@ public class ShanjvBeforeCommentFragment extends BaseFragment {
                     @Override
                     public void onSuccess(String resp) {
                         ToastUtils.show(mContext, resp);
+                        getCommentList();
                     }
 
                     @Override

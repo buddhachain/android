@@ -41,7 +41,6 @@
             android:text="证明" />
 
         <EditText
-            android:id="@+id/et_proof"
             style="@style/whiteGrayEditBg"
             android:layout_width="match_parent"
             android:layout_marginLeft="@dimen/dimen_8" />
@@ -115,10 +114,11 @@
             android:text="戒牒照片" />
 
         <ImageView
-            android:layout_width="@dimen/dimen_48"
-            android:layout_height="@dimen/dimen_48"
+            android:id="@+id/iv_proof"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dimen_8"
-            android:src="@mipmap/ic_default_img" />
+            android:src="@mipmap/icon_add_img" />
     </LinearLayout>
 
     <LinearLayout

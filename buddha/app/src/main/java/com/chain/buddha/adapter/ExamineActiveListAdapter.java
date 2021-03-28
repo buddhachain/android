@@ -27,10 +27,9 @@ public class ExamineActiveListAdapter extends BaseQuickAdapter<String, BaseViewH
     protected void convert(@NotNull BaseViewHolder baseViewHolder, String strings) {
         try {
             String[] list = strings.split(",");
-            baseViewHolder.setText(R.id.tv_qifu_name, list[1]);
-            baseViewHolder.setText(R.id.tv_num, list[5]);
-            baseViewHolder.setText(R.id.tv_amount, list[6]);
-            if (StringUtils.equals(list[6], "0")) {
+            baseViewHolder.setText(R.id.tv_qifu_name, list[0]);
+            baseViewHolder.setText(R.id.tv_owner, list[1]);
+            if (StringUtils.equals(list[4], "1")) {
                 //已通过审核
                 baseViewHolder.setText(R.id.tv_approve, "已通过");
                 baseViewHolder.setBackgroundResource(R.id.tv_approve, R.color.color_white);

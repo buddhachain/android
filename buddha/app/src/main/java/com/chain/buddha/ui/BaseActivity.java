@@ -39,6 +39,7 @@ public class BaseActivity extends AppCompatActivity {
         try {
             ImmersionBar.with(this).statusBarDarkFont(true)  //状态栏字体是深色，不写默认为亮色
                     .titleBarMarginTop(R.id.title_view)
+                    .keyboardEnable(true)
                     .init();
         } catch (Exception e) {
             e.printStackTrace();

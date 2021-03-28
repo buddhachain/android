@@ -16,10 +16,10 @@ import java.util.List;
  * Created by heshuai on 2018/9/25.
  */
 
-public class ExamineRenzhengListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+public class ExamineRenzhengSiyuanListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
 
-    public ExamineRenzhengListAdapter(Context context, @Nullable List<String> data) {
+    public ExamineRenzhengSiyuanListAdapter(Context context, @Nullable List<String> data) {
         super(R.layout.item_examine_renzheng_list, data);
     }
 
@@ -27,10 +27,9 @@ public class ExamineRenzhengListAdapter extends BaseQuickAdapter<String, BaseVie
     protected void convert(@NotNull BaseViewHolder baseViewHolder, String strings) {
         try {
             String[] list = strings.split(",");
-            baseViewHolder.setText(R.id.tv_qifu_name, list[1]);
-            baseViewHolder.setText(R.id.tv_num, list[5]);
-            baseViewHolder.setText(R.id.tv_amount, list[6]);
-            if (StringUtils.equals(list[6], "0")) {
+            baseViewHolder.setText(R.id.tv_name, list[1]);
+            baseViewHolder.setText(R.id.tv_owner, list[0]);
+            if (StringUtils.equals(list[5], "1")) {
                 //已通过审核
                 baseViewHolder.setText(R.id.tv_approve, "已通过");
                 baseViewHolder.setBackgroundResource(R.id.tv_approve, R.color.color_white);

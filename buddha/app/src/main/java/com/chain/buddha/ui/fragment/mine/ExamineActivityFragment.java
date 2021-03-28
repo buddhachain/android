@@ -4,7 +4,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
@@ -58,13 +58,13 @@ public class ExamineActivityFragment extends BaseFragment {
             public void onClick(View view) {
             }
         });
-        mAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 try {
                     String[] list = mList.get(position).split(",");
 
-                    if (!StringUtils.equals(list[6], "0")) {
+                    if (StringUtils.equals(list[4], "0")) {
                         //未通过审核
                         approve(list[0]);
                     }

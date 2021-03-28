@@ -16,32 +16,26 @@ import java.util.List;
  * Created by heshuai on 2018/9/25.
  */
 
-public class ExamineShanjvListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+public class ExamineRenzhengFashiListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
 
-    public ExamineShanjvListAdapter(Context context, @Nullable List<String> data) {
-        super(R.layout.item_examine_shanjv_list, data);
+    public ExamineRenzhengFashiListAdapter(Context context, @Nullable List<String> data) {
+        super(R.layout.item_examine_renzheng_list, data);
     }
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, String strings) {
         try {
             String[] list = strings.split(",");
-            baseViewHolder.setText(R.id.tv_qifu_name, list[1]);
-            baseViewHolder.setText(R.id.tv_owner, list[2]);
-            if (StringUtils.equals(list[5], "1")) {
-                //正在申请状态
-                baseViewHolder.setText(R.id.tv_approve, "未审核");
-                baseViewHolder.setBackgroundResource(R.id.tv_approve, R.color.color_gray_8e);
-            } else {
+            baseViewHolder.setText(R.id.tv_name, list[1]);
+            baseViewHolder.setText(R.id.tv_owner, list[0]);
+            if (StringUtils.equals(list[3], "1")) {
+                //已通过审核
                 baseViewHolder.setText(R.id.tv_approve, "已通过");
                 baseViewHolder.setBackgroundResource(R.id.tv_approve, R.color.color_white);
-            }
-            if (StringUtils.equals(list[6], "1")) {
-                //已上线
-                baseViewHolder.setText(R.id.tv_state, "已上架");
             } else {
-                baseViewHolder.setText(R.id.tv_state, "未上架");
+                baseViewHolder.setText(R.id.tv_approve, "未审核");
+                baseViewHolder.setBackgroundResource(R.id.tv_approve, R.color.color_gray_8e);
             }
         } catch (Exception e) {
             e.printStackTrace();

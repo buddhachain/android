@@ -1,11 +1,5 @@
 package com.chain.buddha.ui.activity;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +23,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -86,6 +85,7 @@ public class ShanjvDetailActivity extends BaseActivity {
         for (int i = 0; i < mFragmentList.size(); i++) {
             mTabLayout.getTabAt(i).setText(mTitle[i]);
         }
+        mViewPager.setOffscreenPageLimit(mFragmentList.size());
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         mSpecListRv.setLayoutManager(layoutManager);

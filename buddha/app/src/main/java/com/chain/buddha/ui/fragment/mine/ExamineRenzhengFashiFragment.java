@@ -4,11 +4,11 @@ import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
-import com.chain.buddha.adapter.ExamineRenzhengListAdapter;
+import com.chain.buddha.adapter.ExamineRenzhengFashiListAdapter;
 import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.StringUtils;
@@ -32,7 +32,7 @@ public class ExamineRenzhengFashiFragment extends BaseFragment {
     @BindView(R.id.rv_list)
     RecyclerView mRv;
 
-    private ExamineRenzhengListAdapter mAdapter;
+    private ExamineRenzhengFashiListAdapter mAdapter;
     private List<String> mList;
 
     public ExamineRenzhengFashiFragment() {
@@ -50,7 +50,7 @@ public class ExamineRenzhengFashiFragment extends BaseFragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         mRv.setLayoutManager(layoutManager);
         mList = new ArrayList<>();
-        mAdapter = new ExamineRenzhengListAdapter(mContext, mList);
+        mAdapter = new ExamineRenzhengFashiListAdapter(mContext, mList);
         mRv.setAdapter(mAdapter);
         mAdapter.setEmptyView(R.layout.view_empty);
         mAdapter.getEmptyLayout().setOnClickListener(new View.OnClickListener() {
@@ -58,13 +58,13 @@ public class ExamineRenzhengFashiFragment extends BaseFragment {
             public void onClick(View view) {
             }
         });
-        mAdapter.setOnItemChildClickListener(new OnItemChildClickListener() {
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
-            public void onItemChildClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
                 try {
                     String[] list = mList.get(position).split(",");
 
-                    if (!StringUtils.equals(list[6], "0")) {
+                    if (StringUtils.equals(list[3], "0")) {
                         //未通过审核
                         approve(list[0]);
                     }

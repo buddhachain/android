@@ -99,9 +99,9 @@ public class ToastUtils {
      */
     public static void show(Context context, String message, int duration) {
 
-        Toast toast = initToast(context);
-        toast.setDuration(duration);
-        toast.setText(message);
+        initToast(context);
+        mToast.setDuration(duration);
+        mToast.setText(message);
         mToast.show();
     }
 
@@ -114,9 +114,9 @@ public class ToastUtils {
      */
     public static void show(Context context, int stringId, int duration) {
 
-        Toast toast = initToast(context);
-        toast.setDuration(duration);
-        toast.setText(stringId);
+        initToast(context);
+        mToast.setDuration(duration);
+        mToast.setText(stringId);
         mToast.show();
     }
 

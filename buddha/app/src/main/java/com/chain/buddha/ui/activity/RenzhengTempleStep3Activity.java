@@ -2,27 +2,22 @@ package com.chain.buddha.ui.activity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.fragment.app.Fragment;
-
-import com.baidu.xuper.api.Transaction;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.BaseObserver;
 import com.chain.buddha.Xuper.ResponseCallBack;
-import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.GifSizeFilter;
 import com.chain.buddha.utils.GlideUtils;
 import com.chain.buddha.utils.IpfsUtils;
+import com.chain.buddha.utils.StringUtils;
 import com.chain.buddha.utils.ToastUtils;
-import com.google.gson.Gson;
 import com.zhihu.matisse.Matisse;
 import com.zhihu.matisse.MimeType;
 import com.zhihu.matisse.engine.impl.GlideEngine;
@@ -31,6 +26,7 @@ import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.util.List;
 
+import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.Observable;
@@ -72,7 +68,10 @@ public class RenzhengTempleStep3Activity extends BaseActivity {
 
     @OnClick(R.id.btn_next_step)
     void onClick(View view) {
-        proof = "test.png";//之后改为上传图片获取到的hash值
+        if (StringUtils.equalsNull(proof)) {
+            ToastUtils.show(mContext, "请上传凭证");
+            return;
+        }
         DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackInf() {
             @Override
             public void onConfirmClick(String content) {
