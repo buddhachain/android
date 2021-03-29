@@ -48,7 +48,6 @@ public class ShanjvListFragment extends BaseFragment {
 
     @Override
     protected void init() {
-        Log.e("kdid", kdid);
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         mQifuListRv.setLayoutManager(layoutManager);
         mQifuListList = new ArrayList<>();

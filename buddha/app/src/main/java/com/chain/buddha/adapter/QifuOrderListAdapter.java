@@ -5,7 +5,6 @@ import android.content.Context;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.chain.buddha.R;
-import com.chain.buddha.utils.GlideUtils;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -16,10 +15,10 @@ import java.util.List;
  * Created by heshuai on 2018/9/25.
  */
 
-public class QifuRecordListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+public class QifuOrderListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
 
-    public QifuRecordListAdapter(Context context, @Nullable List<String> data) {
+    public QifuOrderListAdapter(Context context, @Nullable List<String> data) {
         super(R.layout.item_qifu_record_list, data);
     }
 

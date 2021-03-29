@@ -1,7 +1,10 @@
 package com.chain.buddha.Xuper;
 
+import android.util.Log;
+
 import com.baidu.xuper.api.Account;
 import com.baidu.xuper.api.Common;
+import com.baidu.xuper.api.ContractResponse;
 import com.baidu.xuper.api.Proposal;
 import com.baidu.xuper.api.Transaction;
 import com.baidu.xuper.api.XuperClient;
@@ -9,8 +12,10 @@ import com.baidu.xuper.config.Config;
 import com.baidu.xuper.pb.XchainGrpc;
 import com.baidu.xuper.pb.XchainOuterClass;
 import com.google.gson.Gson;
+import com.google.protobuf.ByteString;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -123,7 +128,7 @@ public class XuperApi {
      * @param baseObserver
      */
     private static void baseRequest(String method, HashMap<String, byte[]> hashMap, boolean isInvoke, BaseObserver baseObserver) {
-        if (!XuperAccount.ifLoginAccount()) {
+        if (isInvoke && !XuperAccount.ifLoginAccount()) {
             baseObserver.onError(new Exception("还未登陆"));
             return;
         }
@@ -131,13 +136,15 @@ public class XuperApi {
             @Override
             public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
                 try {
-                    Transaction transaction;
+                    String bodyStr;
                     if (isInvoke) {
-                        transaction = getXuperClient().invokeContract(XuperAccount.getAccount(), "wasm", "buddha", method, hashMap);
+                        ContractResponse response = getXuperClient().invokeContract(XuperAccount.getAccount(), "wasm", "buddha", method, hashMap).getContractResponse();
+                        bodyStr = response.getBodyStr();
                     } else {
-                        transaction = getXuperClient().queryContract(XuperAccount.getAccount(), "wasm", "buddha", method, hashMap);
+                        ContractResponse response = getXuperClient().queryContract(XuperAccount.getAccount(), "wasm", "buddha", method, hashMap).getContractResponse();
+                        bodyStr = response.getBodyStr();
                     }
-                    String bodyStr = transaction.getContractResponse().getBodyStr();
+
                     if (baseObserver.mType == String.class) {
                         emitter.onNext(bodyStr);
                     } else {
@@ -155,6 +162,97 @@ public class XuperApi {
 
     }
 
+    /**
+     * 普通合约请求(无需验证用户)
+     *
+     * @param method
+     * @param hashMap
+     * @param baseObserver
+     */
+    private static void baseQueryRequest(String method, HashMap<String, byte[]> hashMap, BaseObserver baseObserver) {
+
+        Observable.create(new ObservableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
+                try {
+                    String bodyStr;
+
+                    Map<String, ByteString> args = new HashMap<>();
+                    for (Map.Entry<String, byte[]> entry : hashMap.entrySet()) {
+                        args.put(entry.getKey(), ByteString.copyFrom(entry.getValue()));
+                    }
+                    ArrayList<XchainOuterClass.InvokeRequest> requests = new ArrayList<>();
+                    requests.add(XchainOuterClass.InvokeRequest.newBuilder()
+                            .setModuleName("wasm")
+                            .setMethodName(method)
+                            .setContractName("buddha")
+                            .putAllArgs(args)
+                            .build());
+                    XchainOuterClass.InvokeRPCRequest request = XchainOuterClass.InvokeRPCRequest.newBuilder()
+                            .setBcname("xuper")
+                            .addAllRequests(requests)
+                            .setInitiator("eyY6Eez8z4Y3HvTWCM8r1VQDGBEbYkS6M")
+                            .build();
+                    XchainOuterClass.InvokeRPCResponse invokeRPCResponse = XchainGrpc.newBlockingStub(ManagedChannelBuilder.forTarget("120.79.167.88:37101").usePlaintext()
+                            .build()).preExec(request);
+                    XchainOuterClass.ContractResponse resp = invokeRPCResponse.getResponse().getResponses(invokeRPCResponse.getResponse().getResponseCount() - 1);
+                    Log.e("resp", resp.getMessage());
+                    bodyStr = new String(resp.getBody().toByteArray());
+
+                    if (baseObserver.mType == String.class) {
+                        emitter.onNext(bodyStr);
+                    } else {
+                        Gson gson = new Gson();
+                        Object object = gson.fromJson(bodyStr, baseObserver.mType);
+                        emitter.onNext(object);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    emitter.onError(e);
+                }
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(baseObserver);
+
+    }
+
+    /**
+     * 请求合约(不需要验证用户)
+     *
+     * @param module   module of contract, usually wasm
+     * @param contract contract name
+     * @param method   contract method
+     * @param args     contract method arguments
+     * @return
+     */
+    public static XchainOuterClass.ContractResponse queryContract(String module, String contract, String method, Map<String, byte[]> args) {
+        try {
+
+            Map<String, ByteString> newArgs = new HashMap<>();
+            for (Map.Entry<String, byte[]> entry : args.entrySet()) {
+                newArgs.put(entry.getKey(), ByteString.copyFrom(entry.getValue()));
+            }
+            ArrayList<XchainOuterClass.InvokeRequest> requests = new ArrayList<>();
+            requests.add(XchainOuterClass.InvokeRequest.newBuilder()
+                    .setModuleName(module)
+                    .setMethodName(method)
+                    .setContractName(contract)
+                    .putAllArgs(newArgs)
+                    .build());
+            XchainOuterClass.InvokeRPCRequest request = XchainOuterClass.InvokeRPCRequest.newBuilder()
+                    .setBcname("xuper")
+                    .addAllRequests(requests)
+                    .setInitiator("eyY6Eez8z4Y3HvTWCM8r1VQDGBEbYkS6M")
+                    .build();
+            XchainOuterClass.InvokeRPCResponse invokeRPCResponse = XchainGrpc.newBlockingStub(ManagedChannelBuilder.forTarget("120.79.167.88:37101").usePlaintext()
+                    .build()).preExec(request);
+            XchainOuterClass.ContractResponse resp = invokeRPCResponse.getResponse().getResponses(invokeRPCResponse.getResponse().getResponseCount() - 1);
+            Log.e("resp", resp.getMessage());
+            return resp;
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
     /**
      * 带转账的合约调用
@@ -445,7 +543,7 @@ public class XuperApi {
     }
 
     /**
-     * 添加善举描述
+     * 善举详情
      *
      * @param responseCallBack
      */
@@ -597,4 +695,17 @@ public class XuperApi {
 
         baseRequest("approve_kinddeedproof", args, true, new BaseObserver(false, responseCallBack));
     }
+
+    /**
+     * 查询善举订单
+     *
+     * @param id
+     */
+    public static void findPrayKinddeed(String id, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", id.getBytes());
+
+        baseRequest("find_pray_kinddeed", args, true, new BaseObserver(false, responseCallBack));
+    }
+
 }

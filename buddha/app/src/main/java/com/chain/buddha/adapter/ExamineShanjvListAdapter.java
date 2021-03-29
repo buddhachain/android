@@ -34,7 +34,7 @@ public class ExamineShanjvListAdapter extends BaseQuickAdapter<String, BaseViewH
                 baseViewHolder.setText(R.id.tv_approve, "未审核");
                 baseViewHolder.setBackgroundResource(R.id.tv_approve, R.color.color_gray_8e);
             } else {
-                baseViewHolder.setText(R.id.tv_approve, "已通过");
+                baseViewHolder.setText(R.id.tv_approve, "未申请");
                 baseViewHolder.setBackgroundResource(R.id.tv_approve, R.color.color_white);
             }
             if (StringUtils.equals(list[6], "1")) {

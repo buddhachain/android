@@ -43,7 +43,14 @@ public class XuperAccount {
     public static Account getAccount() {
         return mAccount;
     }
-
+    /**
+     * 获取当前账户实体类(单例)
+     *
+     * @return
+     */
+    public static Account getTestAccount() {
+        return Account.create();
+    }
     /**
      * 复制当前账户实体类，并发送广播
      *

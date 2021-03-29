@@ -41,7 +41,7 @@ public class ShanjvDetailActivity extends BaseActivity {
     @BindView(R.id.shanjv_viewPager)
     ViewPager mViewPager;
     @BindView(R.id.layout_choose_item)
-    RelativeLayout mChooseItemLayout;
+    View mChooseItemLayout;
 
     @BindView(R.id.rv_spec)
     RecyclerView mSpecListRv;//购买流程列表

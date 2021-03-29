@@ -11,6 +11,7 @@ import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
+import com.chain.buddha.utils.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -47,6 +48,8 @@ public class PaymentOrderActivity extends BaseActivity {
             @Override
             public void onSuccess(String resp) {
                 Log.e("resp", resp);
+                ToastUtils.show(mContext, resp);
+                SkipInsideUtil.skipInsideActivity(mContext, MainActivity.class);
             }
 
             @Override

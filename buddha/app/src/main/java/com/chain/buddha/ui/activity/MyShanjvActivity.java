@@ -43,7 +43,7 @@ public class MyShanjvActivity extends BaseActivity {
         int index = getIntent().getExtras().getInt("myshanjv");
         mTitle.setText("我的善举");
         mTabs = new String[]{"处理中", "上传凭证", "审核", "待评价", "全部订单"};
-        fragmentList=new ArrayList<>();
+        fragmentList = new ArrayList<>();
         for (int i = 0; i < mTabs.length; i++) {
             switch (i) {
                 case 0:
@@ -67,13 +67,13 @@ public class MyShanjvActivity extends BaseActivity {
             mTabLayout.addTab(mTabLayout.newTab());
         }
 
-        mTabLayout.setupWithViewPager(mViewPager,false);
-        adapter=new FmPagerAdapter(fragmentList,getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        mTabLayout.setupWithViewPager(mViewPager, false);
+        adapter = new FmPagerAdapter(fragmentList, getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         mViewPager.setAdapter(adapter);
         for (int i = 0; i < fragmentList.size(); i++) {
             mTabLayout.getTabAt(i).setText(mTabs[i]);
         }
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(fragmentList.size());
         mViewPager.setCurrentItem(index);
     }
 }

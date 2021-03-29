@@ -97,7 +97,6 @@ public class ShanjvBeforeCommentFragment extends BaseFragment {
         XuperApi.beforeCommentKinddeedList(kdid, new ResponseCallBack<String>() {
             @Override
             public void onSuccess(String resp) {
-                Log.e("resp", resp);
                 try {
                     resp = resp.replaceAll("\\}", "");
                     String[] list = resp.split("\\{");
