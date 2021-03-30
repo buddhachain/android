@@ -116,6 +116,7 @@ public class MineFragment extends BaseFragment {
 
         switch (XuperAccount.getAccountType()) {
             case XuperAccount.ACCOUNT_TYPE_FASHI:
+                mNickNameTv.setText(getString(R.string.fashi));
                 mFashiStateTv.setText(R.string.has_approve);
                 mFashiStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.base_color));
                 mJjhStateTv.setText(R.string.no_approve);
@@ -124,6 +125,7 @@ public class MineFragment extends BaseFragment {
                 mSiyuanStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
                 break;
             case XuperAccount.ACCOUNT_TYPE_SIYUAN:
+                mNickNameTv.setText(getString(R.string.siyuan));
                 mFashiStateTv.setText(R.string.no_approve);
                 mFashiStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
                 mJjhStateTv.setText(R.string.no_approve);
@@ -132,6 +134,7 @@ public class MineFragment extends BaseFragment {
                 mSiyuanStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.base_color));
                 break;
             case XuperAccount.ACCOUNT_TYPE_JJH:
+                mNickNameTv.setText(getString(R.string.jijinhui));
                 mFashiStateTv.setText(R.string.no_approve);
                 mFashiStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
                 mJjhStateTv.setText(R.string.has_approve);

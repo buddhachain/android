@@ -32,7 +32,7 @@
     <color name="base_bg_color_level2">#f5f6f9</color>
 
     <color name="hint_gray">#adadad</color>
-    <color name="color_base_line">#8E9BA6</color>
+    <color name="color_base_line">#F8F9FA</color>
 
     <color name="transparent">#00000000</color>
 </resources>

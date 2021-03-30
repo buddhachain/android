@@ -31,14 +31,17 @@ public class AddSpecListAdapter extends BaseQuickAdapter<String, BaseViewHolder>
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, String strings) {
+        String[] list = strings.split(",");
         if (editTextList.size() <= baseViewHolder.getLayoutPosition()) {
             editTextList.add(new EditText[2]);
         }
         EditText mDescEt = baseViewHolder.getView(R.id.et_spec_desc);
         editTextList.get(baseViewHolder.getLayoutPosition())[0] = mDescEt;
+        mDescEt.setText(list[2]);
 
         EditText mPriceEt = baseViewHolder.getView(R.id.et_spec_price);
         editTextList.get(baseViewHolder.getLayoutPosition())[1] = mPriceEt;
+        mPriceEt.setText(list[3]);
 
     }
 

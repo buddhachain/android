@@ -23,6 +23,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -37,6 +38,10 @@ import io.reactivex.schedulers.Schedulers;
 
 public class QifuListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
+    /**
+     * 善举种类
+     */
+    private HashMap<String, String> mShanjvTypeMap;
 
     public QifuListAdapter(Context context, @Nullable List<String> data) {
         super(R.layout.item_qifu_list, data);
@@ -48,12 +53,21 @@ public class QifuListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
             String[] list = strings.split(",");
             baseViewHolder.setText(R.id.tv_qifu_title, list[1]);
 
-            GlideUtils.loadImageByIpfskey(getContext(), list[2], baseViewHolder.getView(R.id.iv_qifu));
+            GlideUtils.loadImageByIpfskey(getContext(), list[2], baseViewHolder.getView(R.id.iv_qifu), R.mipmap.qifu_default_cover);
+            if (mShanjvTypeMap != null && mShanjvTypeMap.containsKey(list[3])) {
+                baseViewHolder.setGone(R.id.tv_tag1, false);
+                baseViewHolder.setText(R.id.tv_tag1, mShanjvTypeMap.get(list[3]));
+            } else {
+                baseViewHolder.setGone(R.id.tv_tag1, true);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
+    public void setShanjvTypeMap(HashMap<String, String> mShanjvTypeMap) {
+        this.mShanjvTypeMap = mShanjvTypeMap;
+        notifyDataSetChanged();
+    }
 }

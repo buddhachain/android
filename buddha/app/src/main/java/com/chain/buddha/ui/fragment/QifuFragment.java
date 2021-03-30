@@ -29,6 +29,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -54,6 +55,10 @@ public class QifuFragment extends BaseFragment {
 
     private QifuListAdapter mQifuAdapter;
     private List<String> mQifuList;
+    /**
+     * 善举种类
+     */
+    private HashMap<String, String> mShanjvTypeMap;
 
     public QifuFragment() {
         // Required empty public constructor
@@ -152,6 +157,31 @@ public class QifuFragment extends BaseFragment {
             @Override
             public void onFail(String message) {
                 refreshLayout.finishRefresh();
+            }
+        });
+        XuperApi.listKinddeedtype(new ResponseCallBack<String>() {
+            @Override
+            public void onSuccess(String resp) {
+                try {
+                    resp = resp.replaceAll("\\}", "");
+                    String[] list = resp.split("\\{");
+                    mShanjvTypeMap = new HashMap<>();
+                    for (String itemType : list) {
+                        if (!itemType.contains(",")) {
+                            continue;
+                        }
+                        String[] temp = itemType.split(",");
+                        mShanjvTypeMap.put(temp[0], temp[1]);
+                    }
+
+                    mQifuAdapter.setShanjvTypeMap(mShanjvTypeMap);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFail(String message) {
             }
         });
     }

@@ -3,11 +3,13 @@ package com.chain.buddha.ui.activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
+import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.FmPagerAdapter;
 import com.chain.buddha.adapter.SpecListAdapter;
@@ -16,6 +18,7 @@ import com.chain.buddha.ui.fragment.ShanjvBeforeCommentFragment;
 import com.chain.buddha.ui.fragment.ShanjvDetailFragment;
 import com.chain.buddha.ui.fragment.ShanjvListFragment;
 import com.chain.buddha.utils.SkipInsideUtil;
+import com.chain.buddha.utils.StringUtils;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -28,6 +31,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -35,6 +39,8 @@ public class ShanjvDetailActivity extends BaseActivity {
 
     @BindView(R.id.text_back)
     TextView mTitleTv;
+    @BindView(R.id.btn_right)
+    ImageView mUpdateIv;
 
     @BindView(R.id.shanjv_tabLayout)
     TabLayout mTabLayout;
@@ -60,7 +66,7 @@ public class ShanjvDetailActivity extends BaseActivity {
         setContentView(R.layout.activity_shanjv_detail);
         kdid = getIntent().getStringExtra(SkipInsideUtil.SKIP_KEY_KDID);
         mTitleTv.setText("详情");
-        mTitle = new String[]{getString(R.string.shanjv_detail), getString(R.string.shanjv_list),getString(R.string.shanjv_comment_list)};
+        mTitle = new String[]{getString(R.string.shanjv_detail), getString(R.string.shanjv_list), getString(R.string.shanjv_comment_list)};
         mFragmentList = new ArrayList<>();
         for (int i = 0; i < mTitle.length; i++) {
             switch (i) {
@@ -133,11 +139,24 @@ public class ShanjvDetailActivity extends BaseActivity {
             @Override
             public void onSuccess(String resp) {
                 Log.e("resp", resp);
+                resp = resp.replaceAll("\\}", "");
+                String[] list = resp.split("\\{");
+                if (!StringUtils.equals(list[2], XuperAccount.getAddress())) {
+                    mUpdateIv.setVisibility(View.VISIBLE);
+                    mUpdateIv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            SkipInsideUtil.skipInsideActivity(mContext, UpdateShanjvActivity.class, SkipInsideUtil.SKIP_KEY_KDID, kdid);
+                        }
+                    });
+                } else {
+                    mUpdateIv.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override
             public void onFail(String message) {
-
+                Log.e("resp", message);
             }
         });
     }

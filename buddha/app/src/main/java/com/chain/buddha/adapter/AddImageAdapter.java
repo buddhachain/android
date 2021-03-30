@@ -25,7 +25,14 @@ public class AddImageAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
     @Override
     protected void convert(@NotNull BaseViewHolder baseViewHolder, String strings) {
-        GlideUtils.loadImageByIpfskey(getContext(), strings, baseViewHolder.getView(R.id.iv_image));
+        String hash;
+        if (strings.contains(",")) {
+            String[] list = strings.split(",");
+            hash = list[2];
+        } else {
+            hash = strings;
+        }
+        GlideUtils.loadImageByIpfskey(getContext(), hash, baseViewHolder.getView(R.id.iv_image));
     }
 
 }

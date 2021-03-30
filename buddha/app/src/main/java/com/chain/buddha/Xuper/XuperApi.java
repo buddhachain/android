@@ -515,6 +515,24 @@ public class XuperApi {
     }
 
     /**
+     * 添加善举
+     *
+     * @param responseCallBack
+     */
+    public static void updateKinddeed(String kdid, String name, String type, String detail, String spec, ResponseCallBack responseCallBack) {
+
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", kdid.getBytes());
+        args.put("name", name.getBytes());
+        args.put("type", type.getBytes());
+        args.put("lasttime", (System.currentTimeMillis() + "").getBytes());
+        args.put("detail", detail.getBytes());
+        args.put("spec", spec.getBytes());
+
+        baseRequest("update_kinddeed", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
      * 添加善举规格
      *
      * @param hash 图片hash

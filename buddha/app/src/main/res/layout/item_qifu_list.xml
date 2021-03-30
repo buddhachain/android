@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/task_ll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="horizontal"
-    android:padding="@dimen/dimen_5">
+    android:padding="@dimen/dimen_10">
 
-    <ImageView
+    <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/iv_qifu"
         android:layout_width="@dimen/dimen_100"
         android:layout_height="@dimen/dimen_130"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@mipmap/ic_default_img" />
+        android:scaleType="centerCrop"
+        android:src="@mipmap/qifu_default_cover"
+        app:riv_corner_radius="@dimen/dimen_15" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_130"
         android:layout_marginLeft="@dimen/dimen_20"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
@@ -37,13 +40,15 @@
             android:layout_marginTop="@dimen/dimen_10"
             android:maxLines="2"
             android:minLines="2"
-            android:text="内容简介"
+            android:text="内容简介:慈悲功德力，消除业障，解脱恩怨，消灾延寿，增福增慧"
             android:textColor="@color/color_gray_8e"
             android:textSize="@dimen/text_dimen_14" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dimen_3"
+            android:layout_marginBottom="@dimen/dimen_3"
             android:layout_weight="1"
             android:gravity="center|left"
             android:orientation="horizontal">
@@ -60,7 +65,8 @@
                 android:paddingBottom="@dimen/dimen_2"
                 android:text="tag1"
                 android:textColor="@color/color_qifu_tag_tv"
-                android:textSize="@dimen/text_dimen_13" />
+                android:textSize="@dimen/text_dimen_13"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_tag2"
@@ -75,7 +81,8 @@
                 android:paddingBottom="@dimen/dimen_2"
                 android:text="tag2"
                 android:textColor="@color/color_qifu_tag_tv"
-                android:textSize="@dimen/text_dimen_13" />
+                android:textSize="@dimen/text_dimen_13"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/tv_tag3"
@@ -90,7 +97,8 @@
                 android:paddingBottom="@dimen/dimen_2"
                 android:text="tag3"
                 android:textColor="@color/color_qifu_tag_tv"
-                android:textSize="@dimen/text_dimen_13" />
+                android:textSize="@dimen/text_dimen_13"
+                android:visibility="gone" />
 
         </LinearLayout>
 

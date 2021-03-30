@@ -2,12 +2,26 @@ package com.chain.buddha.utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
+import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
 import com.chain.buddha.R;
 
+import java.security.MessageDigest;
 import java.util.HashMap;
 
 /**
@@ -42,4 +56,38 @@ public class GlideUtils {
                 .dontAnimate()
                 .into(imageView);
     }
+
+    /**
+     * 通过ipfskey 展示图片
+     *
+     * @param context
+     * @param key
+     * @param imageView
+     */
+    public static void loadImageByIpfskey(Context context, String key, ImageView imageView, int placeholder) {
+
+        Glide.with(context)
+                .load(IpfsUtils.GET_IPFS_FILE_HEAD + key)
+                .dontAnimate()
+                .placeholder(placeholder)
+                .into(imageView);
+    }
+
+    /**
+     * 通过ipfskey 展示图片
+     *
+     * @param context
+     * @param key
+     * @param imageView
+     */
+    public static void loadImageByIpfskey(Context context, String key, ImageView imageView, int placeholder, int radius) {
+
+        Glide.with(context)
+                .load(IpfsUtils.GET_IPFS_FILE_HEAD + key)
+                .dontAnimate()
+                .placeholder(placeholder)
+                .apply(RequestOptions.bitmapTransform(new RoundedCorners(radius)))
+                .into(imageView);
+    }
+
 }

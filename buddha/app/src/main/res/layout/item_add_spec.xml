@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/dimen_15"
+    android:layout_marginTop="@dimen/dimen_5"
     android:layout_marginRight="@dimen/dimen_15"
     android:gravity="center"
     android:orientation="vertical">
@@ -20,6 +21,7 @@
 
         <EditText
             android:id="@+id/et_spec_desc"
+            style="@style/whiteGrayEditBg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -40,6 +42,7 @@
 
         <EditText
             android:id="@+id/et_spec_price"
+            style="@style/whiteGrayEditBg"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -49,5 +52,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/color_gray_8e" />
+        android:layout_marginTop="@dimen/dimen_5"
+        android:background="@color/color_base_line" />
+
 </LinearLayout>
