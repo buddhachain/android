@@ -17,6 +17,7 @@ import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.ui.fragment.ShanjvBeforeCommentFragment;
 import com.chain.buddha.ui.fragment.ShanjvDetailFragment;
 import com.chain.buddha.ui.fragment.ShanjvListFragment;
+import com.chain.buddha.utils.GlideUtils;
 import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
 import com.google.android.material.tabs.TabLayout;
@@ -48,6 +49,10 @@ public class ShanjvDetailActivity extends BaseActivity {
     ViewPager mViewPager;
     @BindView(R.id.layout_choose_item)
     View mChooseItemLayout;
+
+    @BindView(R.id.iv_cover)
+    ImageView mCoverIv;
+
 
     @BindView(R.id.rv_spec)
     RecyclerView mSpecListRv;//购买流程列表
@@ -103,17 +108,25 @@ public class ShanjvDetailActivity extends BaseActivity {
     }
 
     void getData() {
-//        XuperApi.kinddeedDetail(kdid, new ResponseCallBack<String>() {
-//            @Override
-//            public void onSuccess(String resp) {
-//                Log.e("resp", resp);
-//            }
-//
-//            @Override
-//            public void onFail(String message) {
-//
-//            }
-//        });
+        XuperApi.kinddeedDetail(kdid, new ResponseCallBack<String>() {
+            @Override
+            public void onSuccess(String resp) {
+                Log.e("resp", resp);
+                try {
+                    resp = resp.replaceAll("\\}", "");
+                    String[] list = resp.split("\\{");
+                    String[] cover = list[1].split(",");
+                    GlideUtils.loadImageByIpfskey(mContext, cover[2], mCoverIv);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFail(String message) {
+
+            }
+        });
         XuperApi.kinddeedSpec(kdid, new ResponseCallBack<String>() {
             @Override
             public void onSuccess(String resp) {

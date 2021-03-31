@@ -43,11 +43,28 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="@dimen/dimen_8" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_15"
-                android:text="善行类型" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="善行类型" />
+
+                <TextView
+                    android:id="@+id/tv_manage_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_50"
+                    android:background="@color/color_gray_8e"
+                    android:padding="@dimen/dimen_5"
+                    android:text="编辑种类"
+                    android:textColor="@color/color_white" />
+            </LinearLayout>
 
             <Spinner
                 android:id="@+id/sp_shanjv_type"

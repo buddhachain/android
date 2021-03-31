@@ -15,6 +15,7 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.BaseObserver;
 import com.chain.buddha.Xuper.ResponseCallBack;
+import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.AddImageAdapter;
 import com.chain.buddha.adapter.AddSpecListAdapter;
@@ -23,6 +24,7 @@ import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.GifSizeFilter;
 import com.chain.buddha.utils.IpfsUtils;
+import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.ToastUtils;
 import com.google.gson.Gson;
 import com.zhihu.matisse.Matisse;
@@ -40,6 +42,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.Observable;
@@ -68,6 +71,8 @@ public class SendShanjvActivity extends BaseActivity {
     private AddImageAdapter mAddImageAdapter;
     private List<String> mImageList;
 
+    @BindView(R.id.tv_manage_type)
+    TextView mManageTypeTv;
     @BindView(R.id.sp_shanjv_type)
     Spinner mShanjvTypeSp;
     /**
@@ -141,6 +146,18 @@ public class SendShanjvActivity extends BaseActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+        if (XuperAccount.getAccountType() == XuperAccount.ACCOUNT_TYPE_JJH) {
+            mManageTypeTv.setVisibility(View.VISIBLE);
+            mManageTypeTv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    SkipInsideUtil.skipInsideActivity(mContext, ManageShanjvTypeActivity.class);
+                }
+            });
+        } else {
+            mManageTypeTv.setVisibility(View.GONE);
+        }
     }
 
     /**
@@ -159,7 +176,8 @@ public class SendShanjvActivity extends BaseActivity {
                     mShanjvTypeList.addAll(Arrays.asList(list));
                     mShanjvTypeList.remove(0);
                     mShanjvTypeAdapter.notifyDataSetChanged();
-
+                    mSelectShanjvType = mShanjvTypeList.get(0).split(",")[0];
+                    mShanjvTypeSp.setSelection(0);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -171,6 +189,12 @@ public class SendShanjvActivity extends BaseActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
     }
 
     @OnClick(R.id.tv_submit)

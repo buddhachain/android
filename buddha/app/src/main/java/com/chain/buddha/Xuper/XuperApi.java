@@ -588,14 +588,38 @@ public class XuperApi {
      *
      * @param responseCallBack
      */
-    public static void addKinddeedtype(String desc, ResponseCallBack responseCallBack) {
+    public static void addKinddeedtype(String id, String desc, ResponseCallBack responseCallBack) {
         HashMap<String, byte[]> args = new HashMap<>();
-        args.put("id", (new Random().nextInt(1000) + "").getBytes());
+        args.put("id", id.getBytes());
         args.put("desc", desc.getBytes());
 
         baseRequest("add_kinddeedtype", args, true, new BaseObserver(false, responseCallBack));
     }
 
+    /**
+     * 删除善举种类
+     *
+     * @param responseCallBack
+     */
+    public static void deleteKinddeedtype(String id, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", id.getBytes());
+
+        baseRequest("delete_kinddeedtype", args, true, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 修改善举种类
+     *
+     * @param responseCallBack
+     */
+    public static void updateKinddeedtype(String id, String desc, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", id.getBytes());
+        args.put("desc", desc.getBytes());
+
+        baseRequest("update_kinddeedtype", args, true, new BaseObserver(false, responseCallBack));
+    }
 
     /**
      * 请求善举参与列表

@@ -1,10 +1,12 @@
 package com.chain.buddha.adapter;
 
 import android.content.Context;
+import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.chain.buddha.R;
+import com.chain.buddha.utils.IpfsUtils;
 import com.chain.buddha.utils.StringUtils;
 
 import org.jetbrains.annotations.NotNull;
@@ -12,12 +14,13 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+import cc.shinichi.library.ImagePreview;
+
 /**
  * Created by heshuai on 2018/9/25.
  */
 
 public class ExamineRenzhengFashiListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
-
 
     public ExamineRenzhengFashiListAdapter(Context context, @Nullable List<String> data) {
         super(R.layout.item_examine_renzheng_list, data);
@@ -37,6 +40,19 @@ public class ExamineRenzhengFashiListAdapter extends BaseQuickAdapter<String, Ba
                 baseViewHolder.setText(R.id.tv_approve, "未审核");
                 baseViewHolder.setBackgroundResource(R.id.tv_approve, R.color.color_gray_8e);
             }
+            baseViewHolder.getView(R.id.tv_proof).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    String profImage = IpfsUtils.GET_IPFS_FILE_HEAD + list[2];
+                    ImagePreview.getInstance()
+                            .setContext(getContext())
+                            // 设置从第几张开始看（索引从0开始）
+                            .setIndex(0)
+                            .setImage(profImage)
+                            // 开启预览
+                            .start();
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
         }

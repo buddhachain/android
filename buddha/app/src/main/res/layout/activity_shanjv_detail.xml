@@ -24,26 +24,40 @@
                 android:layout_height="wrap_content"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     app:contentScrim="?attr/colorPrimary"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:titleEnabled="false">
 
                     <ImageView
+                        android:id="@+id/iv_cover"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/dimen_200"
+                        android:scaleType="centerCrop"
                         android:src="@mipmap/ic_default_img" />
 
-                </FrameLayout>
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:text="@string/xiuxing"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_18" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/xiuxing"
-                    android:textColor="@color/color_text_level1" />
+                    <TextView
+                        android:id="@+id/tv_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/dimen_10"
+                        android:text="简介"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_15" />
+                </LinearLayout>
+
 
             </com.google.android.material.appbar.AppBarLayout>
 

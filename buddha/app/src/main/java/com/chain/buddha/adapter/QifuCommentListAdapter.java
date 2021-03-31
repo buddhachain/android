@@ -1,10 +1,13 @@
 package com.chain.buddha.adapter;
 
 import android.content.Context;
+import android.text.format.DateUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
+import com.chain.buddha.Constants;
 import com.chain.buddha.R;
+import com.chain.buddha.utils.TimeUtils;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -28,9 +31,10 @@ public class QifuCommentListAdapter extends BaseQuickAdapter<String, BaseViewHol
             String[] list = strings.split(",");
             baseViewHolder.setText(R.id.tv_user_name, list[0]);
             baseViewHolder.setText(R.id.tv_comment, list[4]);
-            baseViewHolder.setText(R.id.tv_satisfaction, list[2]);
+            String satisfaction = Constants.SATISFACTION_TYPE_MAP.get(list[2]);
+            baseViewHolder.setText(R.id.tv_satisfaction, satisfaction == null ? "" : satisfaction);
             baseViewHolder.setText(R.id.tv_labels, list[3]);
-            baseViewHolder.setText(R.id.tv_timestamp, list[5]);
+            baseViewHolder.setText(R.id.tv_timestamp, TimeUtils.timeStamp2Date(list[5]));
         } catch (Exception e) {
             e.printStackTrace();
         }

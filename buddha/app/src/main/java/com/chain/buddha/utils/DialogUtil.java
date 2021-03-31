@@ -352,7 +352,7 @@ public class DialogUtil {
 
     /**
      * 关闭dialog
-     *
+     * <p>
      * http://blog.csdn.net/qq_21376985
      *
      * @param mDialogUtils
@@ -361,6 +361,91 @@ public class DialogUtil {
         if (mDialogUtils != null && mDialogUtils.isShowing()) {
             mDialogUtils.dismiss();
         }
+    }
+
+
+    public static Dialog editDialog(final Context context, String title, String oldString, String hint, final ConfirmCallBackInf callBack) {
+        return editDialog(context, title, oldString, hint, callBack, null);
+    }
+
+    /**
+     * 编辑对话框
+     *
+     * @param context
+     * @param callBack
+     * @return
+     */
+    public static Dialog editDialog(final Context context, String title, String oldString, String hint, final ConfirmCallBackInf callBack, final CancelCallBackInf cancelCallBack) {
+        final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.dialog_edit, null,
+                false);
+        final Dialog dialog = new Dialog(context, R.style.ActionToastDialogStyle);
+        mContext = context;
+        dialog.setContentView(layout);
+
+        if (!StringUtils.equalsNull(title)) {
+            TextView mTitleTv = (TextView) layout.findViewById(R.id.dialog_msg_tv);
+            mTitleTv.setText(title);
+        }
+
+        final EditText mEditText = layout.findViewById(R.id.dialog_edit_et);
+        if (!StringUtils.equalsNull(oldString)) {
+            mEditText.setText(oldString);
+            mEditText.setSelection(oldString.length());
+        }
+        if (!StringUtils.equalsNull(hint)) {
+            mEditText.setHint(hint);
+        }
+
+        final TextView confirmBt = (TextView) layout.findViewById(R.id.btn_commit);
+        confirmBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String content = mEditText.getText().toString();
+                if (callBack != null) {
+                    callBack.onConfirmClick(content);
+                }
+                UIUtils.closeKeybord(mEditText, context);
+                dialog.dismiss();
+
+            }
+        });
+
+        final TextView cancelBt = (TextView) layout.findViewById(R.id.btn_cancel);
+        cancelBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UIUtils.closeKeybord(mEditText, context);
+                dialog.dismiss();
+                if (cancelCallBack != null) {
+                    cancelCallBack.onCancelClick("");
+                }
+            }
+        });
+
+
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+
+        final Window dialogWindow = dialog.getWindow();
+        final WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        dialogWindow.setGravity(Gravity.CENTER);
+        dialogWindow.setBackgroundDrawableResource(R.color.transparent);
+
+//        lp.width = context.getResources().getDimensionPixelSize(R.dimen.edit_dialog_width);
+        lp.width = ViewGroup.LayoutParams.MATCH_PARENT;
+        lp.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        lp.dimAmount = DEFAULT_DIALOG_DIMAMOUNT;
+
+        dialogWindow.setAttributes(lp);
+
+        dialogWindow.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        try {
+            dialog.show();
+        } catch (Throwable t) {
+
+        }
+        return dialog;
     }
 }
 
