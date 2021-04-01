@@ -1,5 +1,6 @@
 package com.chain.buddha.ui.activity;
 
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
@@ -16,9 +17,11 @@ import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.DialogUtil;
+import com.chain.buddha.utils.PermissionUtils;
 import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
 import com.chain.buddha.utils.ToastUtils;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -130,8 +133,11 @@ public class TransferCoinActivity extends BaseActivity {
 
     @OnClick(R.id.view_scan)
     void scan() {
-        Intent intent = new Intent(mContext, CaptureActivity.class);
-        startActivityForResult(intent, REQUEST_CODE);
+        new RxPermissions(this).request(Manifest.permission.CAMERA)
+                .subscribe(aBoolean -> {
+                    Intent intent = new Intent(mContext, CaptureActivity.class);
+                    startActivityForResult(intent, REQUEST_CODE);
+                });
     }
 
     @Override
