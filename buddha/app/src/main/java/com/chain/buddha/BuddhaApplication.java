@@ -4,6 +4,8 @@ import android.app.Application;
 
 import androidx.multidex.MultiDex;
 
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
+
 /**
  * @Author: haroro
  * @CreateDate: 3/15/21
@@ -22,6 +24,6 @@ public class BuddhaApplication extends Application {
         super.onCreate();
         instance = this;
         MultiDex.install(instance);
-
+        ZXingLibrary.initDisplayOpinion(this);
     }
 }

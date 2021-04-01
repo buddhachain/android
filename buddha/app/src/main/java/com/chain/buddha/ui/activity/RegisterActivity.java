@@ -37,7 +37,7 @@ public class RegisterActivity extends BaseActivity {
     void submit() {
         String psw = mPswEt.getText().toString();
         String psw2 = mPsw2Et.getText().toString();
-        if (!StringUtils.equalsHasNull(psw, psw2)) {
+        if (StringUtils.equalsHasNull(psw, psw2)) {
             ToastUtils.show(mContext, "请输入完整信息");
             return;
         }

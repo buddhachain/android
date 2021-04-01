@@ -14,12 +14,14 @@ import com.chain.buddha.ui.activity.LoginActivity;
 import com.chain.buddha.ui.activity.MasterBackstageActivity;
 import com.chain.buddha.ui.activity.MasterListActivity;
 import com.chain.buddha.ui.activity.MyShanjvActivity;
+import com.chain.buddha.ui.activity.ReceiveCoinActivity;
 import com.chain.buddha.ui.activity.RenzhengJjhActivity;
 import com.chain.buddha.ui.activity.RenzhengMasterActivity;
 import com.chain.buddha.ui.activity.RenzhengTempleActivity;
 import com.chain.buddha.ui.activity.RenzhengTempleStep1Activity;
 import com.chain.buddha.ui.activity.SendShanjvActivity;
 import com.chain.buddha.ui.activity.TempleBackstageActivity;
+import com.chain.buddha.ui.activity.TransferCoinActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.EventBeans;
 import com.chain.buddha.utils.SkipInsideUtil;
@@ -99,6 +101,12 @@ public class MineFragment extends BaseFragment {
 
     @Override
     protected void lazyInit() {
+//        requestData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         requestData();
     }
 
@@ -241,7 +249,8 @@ public class MineFragment extends BaseFragment {
 
 
     @OnClick({R.id.btn_master, R.id.btn_temple, R.id.btn_jjh, R.id.user_part1, R.id.user_part2, R.id.user_part3,
-            R.id.btn_my_shanjv_1, R.id.btn_my_shanjv_2, R.id.btn_my_shanjv_3, R.id.btn_my_shanjv_4, R.id.btn_my_shanjv_5, R.id.tv_login})
+            R.id.btn_my_shanjv_1, R.id.btn_my_shanjv_2, R.id.btn_my_shanjv_3, R.id.btn_my_shanjv_4, R.id.btn_my_shanjv_5,
+            R.id.tv_login, R.id.view_receive_coin, R.id.view_transfer_coin})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
@@ -304,6 +313,12 @@ public class MineFragment extends BaseFragment {
 
                     SkipInsideUtil.skipInsideActivity(mContext, RenzhengJjhActivity.class);
                 }
+                break;
+            case R.id.view_receive_coin:
+                SkipInsideUtil.skipInsideActivity(mContext, ReceiveCoinActivity.class);
+                break;
+            case R.id.view_transfer_coin:
+                SkipInsideUtil.skipInsideActivity(mContext, TransferCoinActivity.class);
                 break;
             default:
                 break;

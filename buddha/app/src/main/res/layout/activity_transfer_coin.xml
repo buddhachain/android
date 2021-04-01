@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_top_back_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_15"
+                android:background="@drawable/bg_white_gray_f8_r4"
+                android:elevation="@dimen/dimen_1"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/dimen_16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="BUD(可用余额)"
+                    android:textColor="@color/color_text_level2"
+                    android:textSize="@dimen/dimen_16" />
+
+                <View
+                    android:layout_width="@dimen/dimen_0"
+                    android:layout_height="@dimen/dimen_1"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:id="@+id/tv_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/color_text_level1"
+                    android:textSize="@dimen/dimen_18" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_15"
+                android:background="@drawable/bg_white_gray_f8_r4"
+                android:elevation="@dimen/dimen_1"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_16">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="转账地址"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_15" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/view_scan"
+                        android:layout_width="@dimen/dimen_40"
+                        android:layout_height="@dimen/dimen_40"
+                        android:padding="@dimen/dimen_5"
+                        android:src="@mipmap/icon_scan" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:background="@drawable/bg_gray_f8_r4"
+                    android:hint="请输入地址或账号"
+                    android:text="XC1234567890500013@xuper"
+                    android:padding="@dimen/dimen_12"
+                    android:textColor="@color/color_text_level1"
+                    android:textColorHint="@color/hint_gray"
+                    android:textSize="@dimen/dimen_16"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_40"
+                    android:layout_marginTop="@dimen/dimen_28"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="金额"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_15" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/view_transfer_all"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:padding="@dimen/dimen_3"
+                        android:text="全部转出"
+                        android:textColor="@color/base_color_transparent"
+                        android:textSize="@dimen/dimen_16" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/et_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:background="@drawable/bg_gray_f8_r4"
+                    android:hint="请输入金额"
+                    android:inputType="number"
+                    android:padding="@dimen/dimen_12"
+                    android:textColor="@color/color_text_level1"
+                    android:textColorHint="@color/hint_gray"
+                    android:textSize="@dimen/dimen_16"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/dimen_18"
+                    android:text="矿工费用:0"
+                    android:textColor="@color/color_text_level2"
+                    android:textSize="@dimen/dimen_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_15"
+                android:background="@drawable/bg_white_gray_f8_r4"
+                android:elevation="@dimen/dimen_1"
+                android:orientation="vertical"
+                android:padding="@dimen/dimen_16">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="钱包密码"
+                    android:textColor="@color/color_text_level1"
+                    android:textSize="@dimen/dimen_15" />
+
+                <EditText
+                    android:id="@+id/et_psw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    android:background="@drawable/bg_gray_f8_r4"
+                    android:hint="请输入钱包密码"
+                    android:padding="@dimen/dimen_12"
+                    android:textColor="@color/color_text_level1"
+                    android:textColorHint="@color/hint_gray"
+                    android:textSize="@dimen/dimen_16"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/view_submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_margin="@dimen/dimen_40"
+                android:background="@color/color_gray_8e"
+                android:gravity="center"
+                android:text="确认转出"
+                android:textColor="@color/color_white" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -105,6 +105,26 @@ public class XuperApi {
                 .subscribe(new BaseObserver(false, responseCallBack));
     }
 
+    /**
+     * 获取余额
+     *
+     * @param address
+     */
+    public static void getBalanceDetails(String address, ResponseCallBack<XuperClient.BalDetails[]> responseCallBack) {
+        Observable.create(new ObservableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
+                try {
+                    XuperClient.BalDetails[] balanceList = getXuperClient().getBalanceDetails(address);//成功String bodyStr = transaction.getContractResponse().getBodyStr();
+                    emitter.onNext(balanceList);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    emitter.onError(e);
+                }
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver(false, responseCallBack));
+    }
 
     /**
      * 申请成为法师
@@ -375,7 +395,7 @@ public class XuperApi {
     }
 
 
-    public static void transferTo(String address, int value, ResponseCallBack<String> responseCallBack) {
+    public static void transferTo(String address, String value, ResponseCallBack<String> responseCallBack) {
         if (!XuperAccount.ifLoginAccount()) {
             responseCallBack.onFail("还未登陆");
             return;
@@ -384,9 +404,10 @@ public class XuperApi {
             @Override
             public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
                 try {
-                    Transaction transaction = getXuperClient().transfer(XuperAccount.getAccount(), address, BigInteger.valueOf(value), "1");
-                    String bodyStr = transaction.getContractResponse().getBodyStr();
-                    emitter.onNext(bodyStr);
+                    Transaction transaction = getXuperClient().transfer(XuperAccount.getAccount(), address, new BigInteger(value), "0");
+                    String txId = transaction.getTxid();
+//                    String bodyStr = transaction.getContractResponse().getBodyStr();
+                    emitter.onNext(txId);
                 } catch (Exception e) {
                     e.printStackTrace();
                     emitter.onError(e);

@@ -52,6 +52,8 @@
         <activity android:name=".ui.activity.MnemonicActivity" />
         <activity android:name=".ui.activity.UpdateShanjvActivity" />
         <activity android:name=".ui.activity.ManageShanjvTypeActivity" />
+        <activity android:name=".ui.activity.ReceiveCoinActivity" />
+        <activity android:name=".ui.activity.TransferCoinActivity" />
 
         <activity
             android:name=".ui.activity.MainActivity"

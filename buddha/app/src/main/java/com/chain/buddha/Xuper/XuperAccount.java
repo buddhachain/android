@@ -9,6 +9,7 @@ import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.EventBeans;
 import com.chain.buddha.utils.FileUtils;
 import com.chain.buddha.utils.SkipInsideUtil;
+import com.chain.buddha.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -17,6 +18,7 @@ import java.io.File;
 
 /**
  * 账户工具类
+ *
  * @Author: haroro
  * @CreateDate: 3/15/21
  */
@@ -43,6 +45,7 @@ public class XuperAccount {
     public static Account getAccount() {
         return mAccount;
     }
+
     /**
      * 获取当前账户实体类(单例)
      *
@@ -51,6 +54,7 @@ public class XuperAccount {
     public static Account getTestAccount() {
         return Account.create();
     }
+
     /**
      * 复制当前账户实体类，并发送广播
      *
@@ -81,6 +85,27 @@ public class XuperAccount {
         }
         return "";
     }
+
+    /**
+     * 验证密码
+     *
+     * @param mContext
+     * @param psw
+     * @return
+     */
+    public static boolean checkPsw(Context mContext, String psw) {
+        try {
+            Account account = Account.getAccountFromFile(XuperAccount.getAccountCachePath(mContext), psw);
+            if (account == null) {
+                return false;
+            }
+
+        } catch (Throwable e) {
+            return false;
+        }
+        return true;
+    }
+
 
     /**
      * 是否有账号
