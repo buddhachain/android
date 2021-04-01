@@ -1,6 +1,8 @@
 package com.chain.buddha.utils;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.chain.buddha.R;
+import com.chain.buddha.Xuper.XuperAccount;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -47,6 +50,7 @@ public class UIUtils {
 
         imm.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
     }
+
     /**
      * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
      */
@@ -56,6 +60,7 @@ public class UIUtils {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dpValue, metrics);
     }
+
     /*
      * 压缩图片
      *
@@ -125,5 +130,17 @@ public class UIUtils {
         ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
         Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
         return bitmap;
+    }
+
+
+    public static void copyString(Context context, String s) {
+        //获取剪贴板管理器
+        ClipboardManager cm = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+// 创建普通字符型ClipData
+        ClipData mClipData = ClipData.newPlainText("address", s);
+// 将ClipData内容放到系统剪贴板里。
+        cm.setPrimaryClip(mClipData);
+        ToastUtils.show(context, "复制成功");
+
     }
 }

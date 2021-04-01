@@ -25,7 +25,9 @@ import com.chain.buddha.ui.activity.TransferCoinActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.EventBeans;
 import com.chain.buddha.utils.SkipInsideUtil;
+import com.chain.buddha.utils.StringUtils;
 import com.chain.buddha.utils.ToastUtils;
+import com.chain.buddha.utils.UIUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -159,8 +161,11 @@ public class MineFragment extends BaseFragment {
                 mSiyuanStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
                 break;
         }
-
-        mMyAddressTv.setText(getString(R.string.account_address) + XuperAccount.getAddress());
+        if (!StringUtils.equalsNull(XuperAccount.getAddress())) {
+            mMyAddressTv.setText(XuperAccount.getAddress());
+        } else {
+            mMyAddressTv.setText("暂无地址");
+        }
 
     }
 
@@ -168,8 +173,8 @@ public class MineFragment extends BaseFragment {
 
         XuperApi.getBalance(XuperAccount.getAddress(), new ResponseCallBack<String>() {
             @Override
-            public void onSuccess(String s) {
-                mMyBalanceTv.setText(getString(R.string.account_balance) + s);
+            public void onSuccess(String balance) {
+                mMyBalanceTv.setText(balance);
             }
 
             @Override
@@ -250,7 +255,7 @@ public class MineFragment extends BaseFragment {
 
     @OnClick({R.id.btn_master, R.id.btn_temple, R.id.btn_jjh, R.id.user_part1, R.id.user_part2, R.id.user_part3,
             R.id.btn_my_shanjv_1, R.id.btn_my_shanjv_2, R.id.btn_my_shanjv_3, R.id.btn_my_shanjv_4, R.id.btn_my_shanjv_5,
-            R.id.tv_login, R.id.view_receive_coin, R.id.view_transfer_coin})
+            R.id.tv_login, R.id.view_receive_coin, R.id.view_transfer_coin, R.id.tv_my_address})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
@@ -319,6 +324,9 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.view_transfer_coin:
                 SkipInsideUtil.skipInsideActivity(mContext, TransferCoinActivity.class);
+                break;
+            case R.id.tv_my_address:
+                UIUtils.copyString(mContext, XuperAccount.getAddress());
                 break;
             default:
                 break;
