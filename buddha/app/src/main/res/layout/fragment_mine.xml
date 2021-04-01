@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16"
             android:background="@drawable/bg_white_gray_f8_r4"
-            android:padding="@dimen/dimen_8">
+            android:padding="@dimen/dimen_15">
 
             <ImageView
                 android:id="@+id/user_logo"
@@ -51,232 +51,153 @@
                 android:textSize="@dimen/text_dimen_13" />
         </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:text="我的钱包" />
-
-        <TextView
-            android:id="@+id/tv_my_balance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:text="般弱钻余额：0" />
-
-        <TextView
-            android:id="@+id/tv_my_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:text="钱包地址：暂无账号" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_18"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/dimen_15"
+            android:background="@drawable/bg_white_gray_f8_r4"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_15">
 
-            <LinearLayout
-                android:id="@+id/view_buy_coin"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:text="我的钱包" />
 
-                <ImageView
-                    android:layout_width="@dimen/dimen_50"
-                    android:layout_height="@dimen/dimen_50"
-                    android:src="@mipmap/icon_in" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dimen_3"
-                    android:text="购买BUD"
-                    android:textColor="@color/color_text_level1"
-                    android:textSize="@dimen/dimen_16" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/view_sell_coin"
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tv_my_balance"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="般弱钻余额：0" />
 
-                <ImageView
-                    android:layout_width="@dimen/dimen_50"
-                    android:layout_height="@dimen/dimen_50"
-                    android:src="@mipmap/icon_out" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dimen_3"
-                    android:text="出售BUD"
-                    android:textColor="@color/color_text_level1"
-                    android:textSize="@dimen/dimen_16" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:id="@+id/tv_my_address"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical" />
-
+                android:layout_marginTop="@dimen/dimen_8"
+                android:text="钱包地址：暂无账号" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_18"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/dimen_15"
+            android:background="@drawable/bg_white_gray_f8_r4"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_15">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="资产管理" />
 
             <LinearLayout
-                android:id="@+id/view_receive_coin"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/dimen_8"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="@dimen/dimen_50"
-                    android:layout_height="@dimen/dimen_50"
-                    android:src="@mipmap/icon_in" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/view_buy_coin"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="@dimen/dimen_3"
-                    android:text="收款"
-                    android:textColor="@color/color_text_level1"
-                    android:textSize="@dimen/dimen_16" />
-            </LinearLayout>
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="@dimen/dimen_36"
+                        android:layout_height="@dimen/dimen_36"
+                        android:src="@mipmap/icon_in" />
 
-            <LinearLayout
-                android:id="@+id/view_transfer_coin"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_3"
+                        android:gravity="center"
+                        android:text="购买BUD"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_12" />
+                </LinearLayout>
 
-                <ImageView
-                    android:layout_width="@dimen/dimen_50"
-                    android:layout_height="@dimen/dimen_50"
-                    android:src="@mipmap/icon_out" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/view_sell_coin"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="@dimen/dimen_3"
-                    android:text="转账"
-                    android:textColor="@color/color_text_level1"
-                    android:textSize="@dimen/dimen_16" />
-            </LinearLayout>
+                    android:orientation="vertical">
 
+                    <ImageView
+                        android:layout_width="@dimen/dimen_36"
+                        android:layout_height="@dimen/dimen_36"
+                        android:src="@mipmap/icon_out" />
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_3"
+                        android:gravity="center"
+                        android:text="出售BUD"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_12" />
+                </LinearLayout>
 
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:text="我的善举活动" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/btn_my_shanjv_1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/dimen_50"
-                    android:layout_height="@dimen/dimen_50"
-                    android:src="@mipmap/ic_dealing" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/view_receive_coin"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="@dimen/dimen_3"
-                    android:text="处理中"
-                    android:textColor="@color/color_text_level1"
-                    android:textSize="@dimen/dimen_16" />
-            </LinearLayout>
+                    android:orientation="vertical">
 
-            <LinearLayout
-                android:id="@+id/btn_my_shanjv_2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="@dimen/dimen_36"
+                        android:layout_height="@dimen/dimen_36"
+                        android:src="@mipmap/icon_in" />
 
-                <ImageView
-                    android:layout_width="@dimen/dimen_50"
-                    android:layout_height="@dimen/dimen_50"
-                    android:src="@mipmap/ic_dealing" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_3"
+                        android:gravity="center"
+                        android:text="收款"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_12" />
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:id="@+id/view_transfer_coin"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="@dimen/dimen_3"
-                    android:text="上传凭证"
-                    android:textColor="@color/color_text_level1"
-                    android:textSize="@dimen/dimen_16" />
+                    android:orientation="vertical">
 
-            </LinearLayout>
+                    <ImageView
+                        android:layout_width="@dimen/dimen_36"
+                        android:layout_height="@dimen/dimen_36"
+                        android:src="@mipmap/icon_out" />
 
-            <LinearLayout
-                android:id="@+id/btn_my_shanjv_3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_3"
+                        android:gravity="center"
+                        android:text="转账"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_12" />
+                </LinearLayout>
 
-                <ImageView
-                    android:layout_width="@dimen/dimen_50"
-                    android:layout_height="@dimen/dimen_50"
-                    android:src="@mipmap/ic_dealing" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="@dimen/dimen_3"
-                    android:text="审核"
-                    android:textColor="@color/color_text_level1"
-                    android:textSize="@dimen/dimen_16" />
+                    android:orientation="vertical" />
 
             </LinearLayout>
         </LinearLayout>
@@ -284,63 +205,143 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:orientation="horizontal">
+            android:layout_marginTop="@dimen/dimen_15"
+            android:background="@drawable/bg_white_gray_f8_r4"
+            android:orientation="vertical"
+            android:padding="@dimen/dimen_15">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的善举活动" />
 
             <LinearLayout
-                android:id="@+id/btn_my_shanjv_4"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/dimen_8"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="@dimen/dimen_50"
-                    android:layout_height="@dimen/dimen_50"
-                    android:src="@mipmap/ic_already_deal" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/btn_my_shanjv_1"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:padding="@dimen/dimen_3"
-                    android:text="待评价"
-                    android:textColor="@color/color_text_level1"
-                    android:textSize="@dimen/dimen_16" />
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_40"
+                        android:layout_height="@dimen/dimen_40"
+                        android:src="@mipmap/ic_dealing" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_3"
+                        android:gravity="center"
+                        android:text="处理中"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_12" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_my_shanjv_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_40"
+                        android:layout_height="@dimen/dimen_40"
+                        android:src="@mipmap/ic_dealing" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_3"
+                        android:gravity="center"
+                        android:text="上传凭证"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_12" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_my_shanjv_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_40"
+                        android:layout_height="@dimen/dimen_40"
+                        android:src="@mipmap/ic_dealing" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_3"
+                        android:gravity="center"
+                        android:text="审核"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_12" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/btn_my_shanjv_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_40"
+                        android:layout_height="@dimen/dimen_40"
+                        android:src="@mipmap/ic_already_deal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_3"
+                        android:gravity="center"
+                        android:text="待评价"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_12" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_my_shanjv_5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_40"
+                        android:layout_height="@dimen/dimen_40"
+                        android:src="@mipmap/ic_all_indent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_3"
+                        android:gravity="center"
+                        android:text="全部订单"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_12" />
+
+                </LinearLayout>
 
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/btn_my_shanjv_5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="@dimen/dimen_50"
-                    android:layout_height="@dimen/dimen_50"
-                    android:src="@mipmap/ic_all_indent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="@dimen/dimen_3"
-                    android:text="全部订单"
-                    android:textColor="@color/color_text_level1" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:orientation="vertical" />
-
         </LinearLayout>
 
         <RelativeLayout

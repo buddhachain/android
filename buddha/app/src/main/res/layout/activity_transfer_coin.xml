@@ -91,7 +91,6 @@
                     android:layout_marginTop="@dimen/dimen_8"
                     android:background="@drawable/bg_gray_f8_r4"
                     android:hint="请输入地址或账号"
-                    android:text="XC1234567890500013@xuper"
                     android:padding="@dimen/dimen_12"
                     android:textColor="@color/color_text_level1"
                     android:textColorHint="@color/hint_gray"
