@@ -7,12 +7,14 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import com.chain.buddha.BuddhaApplication;
 import com.chain.buddha.R;
 import com.chain.buddha.utils.UIUtils;
 import com.gyf.immersionbar.ImmersionBar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import butterknife.ButterKnife;
 
 /**
@@ -110,5 +112,11 @@ public class BaseActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        BuddhaApplication.setCurrencyActivity(mContext);
     }
 }

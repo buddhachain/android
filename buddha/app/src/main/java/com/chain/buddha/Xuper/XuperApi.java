@@ -9,8 +9,12 @@ import com.baidu.xuper.api.Proposal;
 import com.baidu.xuper.api.Transaction;
 import com.baidu.xuper.api.XuperClient;
 import com.baidu.xuper.config.Config;
+import com.baidu.xuper.crypto.ECKeyPair;
+import com.baidu.xuper.crypto.Hash;
 import com.baidu.xuper.pb.XchainGrpc;
 import com.baidu.xuper.pb.XchainOuterClass;
+import com.chain.buddha.BuddhaApplication;
+import com.chain.buddha.utils.DialogUtil;
 import com.google.gson.Gson;
 import com.google.protobuf.ByteString;
 
@@ -54,7 +58,7 @@ public class XuperApi {
      * @param responseCallBack
      */
     public static void requestQifuList(ResponseCallBack responseCallBack) {
-        baseRequest(XuperApi.METHOD_LIST_KINDDEED, new HashMap<>(), false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest(XuperApi.METHOD_LIST_KINDDEED, new HashMap<>(), new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -63,7 +67,7 @@ public class XuperApi {
      * @param responseCallBack
      */
     public static void getIsFounder(ResponseCallBack<String> responseCallBack) {
-        baseRequest("is_founder", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("is_founder", new HashMap<>(), new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -72,7 +76,7 @@ public class XuperApi {
      * @param responseCallBack
      */
     public static void getIsMaster(ResponseCallBack<String> responseCallBack) {
-        baseRequest("is_master", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("is_master", new HashMap<>(), new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -81,7 +85,7 @@ public class XuperApi {
      * @param responseCallBack
      */
     public static void getIsTemple(ResponseCallBack<String> responseCallBack) {
-        baseRequest("is_temple", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("is_temple", new HashMap<>(), new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -136,19 +140,106 @@ public class XuperApi {
         args.put("creditcode", creditcode.getBytes());
         args.put("proof", proof.getBytes());
 
-        baseRequest("apply_master", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("apply_master", args, new BaseObserver(false, responseCallBack));
     }
+
 
     /**
      * 普通合约请求
      *
      * @param method
      * @param hashMap
-     * @param isInvoke
      * @param baseObserver
      */
-    private static void baseRequest(String method, HashMap<String, byte[]> hashMap, boolean isInvoke, BaseObserver baseObserver) {
-        if (isInvoke && !XuperAccount.ifLoginAccount()) {
+    private static void baseInvokeRequest(String method, HashMap<String, byte[]> hashMap, BaseObserver baseObserver) {
+        if (!XuperAccount.ifLoginAccount()) {
+            baseObserver.onError(new Exception("还未登陆"));
+            return;
+        }
+        Observable.create(new ObservableOnSubscribe<Transaction>() {
+            @Override
+            public void subscribe(ObservableEmitter<Transaction> emitter) throws Exception {
+                try {
+                    Transaction transaction;
+
+                    Proposal p = new Proposal();
+                    if (Config.getInstance().getComplianceCheck().getIsNeedComplianceCheck()) {
+                        p.addAuthRequire(Config.getInstance().getComplianceCheck().getComplianceCheckEndorseServiceAddr());
+                    }
+                    p.setInitiator(XuperAccount.getAccount());
+                    transaction = p.invokeContract("wasm", "buddha", method, hashMap).build(getXuperClient());
+
+                    emitter.onNext(transaction);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    emitter.onError(e);
+                }
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver<>(false, new ResponseCallBack<Transaction>() {
+                    @Override
+                    public void onSuccess(Transaction transaction) {
+                        DialogUtil.simpleDialog(BuddhaApplication.getCurrencyActivity(), "手续费" + transaction.getGasUsed(), new DialogUtil.ConfirmCallBackInf() {
+                            @Override
+                            public void onConfirmClick(String content) {
+                                sendRequest(transaction, baseObserver);
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onFail(String message) {
+                        baseObserver.onError(new Throwable(message));
+                    }
+                }));
+
+    }
+
+    /**
+     * 发送合约请求
+     *
+     * @param transaction
+     * @param baseObserver
+     */
+    private static void sendRequest(Transaction transaction, BaseObserver baseObserver) {
+
+        Observable.create(new ObservableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
+                try {
+
+                    ContractResponse response = transaction.sign().send(getXuperClient()).getContractResponse();
+
+                    String bodyStr = response.getBodyStr();
+
+                    if (baseObserver.mType == String.class) {
+                        emitter.onNext(bodyStr);
+                    } else {
+                        Gson gson = new Gson();
+                        Object object = gson.fromJson(bodyStr, baseObserver.mType);
+                        emitter.onNext(object);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    emitter.onError(e);
+                }
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(baseObserver);
+
+    }
+
+    /**
+     * 普通查询合约请求
+     *
+     * @param method
+     * @param hashMap
+     * @param baseObserver
+     */
+    private static void baseQueryRequest(String method, HashMap<String, byte[]> hashMap, BaseObserver baseObserver) {
+        if (!XuperAccount.ifLoginAccount()) {
             baseObserver.onError(new Exception("还未登陆"));
             return;
         }
@@ -156,14 +247,8 @@ public class XuperApi {
             @Override
             public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
                 try {
-                    String bodyStr;
-                    if (isInvoke) {
-                        ContractResponse response = getXuperClient().invokeContract(XuperAccount.getAccount(), "wasm", "buddha", method, hashMap).getContractResponse();
-                        bodyStr = response.getBodyStr();
-                    } else {
-                        ContractResponse response = getXuperClient().queryContract(XuperAccount.getAccount(), "wasm", "buddha", method, hashMap).getContractResponse();
-                        bodyStr = response.getBodyStr();
-                    }
+                    ContractResponse response = getXuperClient().queryContract(XuperAccount.getAccount(), "wasm", "buddha", method, hashMap).getContractResponse();
+                    String bodyStr = response.getBodyStr();
 
                     if (baseObserver.mType == String.class) {
                         emitter.onNext(bodyStr);
@@ -189,7 +274,7 @@ public class XuperApi {
      * @param hashMap
      * @param baseObserver
      */
-    private static void baseQueryRequest(String method, HashMap<String, byte[]> hashMap, BaseObserver baseObserver) {
+    private static void baseQueryRequest2(String method, HashMap<String, byte[]> hashMap, BaseObserver baseObserver) {
 
         Observable.create(new ObservableOnSubscribe<Object>() {
             @Override
@@ -197,25 +282,7 @@ public class XuperApi {
                 try {
                     String bodyStr;
 
-                    Map<String, ByteString> args = new HashMap<>();
-                    for (Map.Entry<String, byte[]> entry : hashMap.entrySet()) {
-                        args.put(entry.getKey(), ByteString.copyFrom(entry.getValue()));
-                    }
-                    ArrayList<XchainOuterClass.InvokeRequest> requests = new ArrayList<>();
-                    requests.add(XchainOuterClass.InvokeRequest.newBuilder()
-                            .setModuleName("wasm")
-                            .setMethodName(method)
-                            .setContractName("buddha")
-                            .putAllArgs(args)
-                            .build());
-                    XchainOuterClass.InvokeRPCRequest request = XchainOuterClass.InvokeRPCRequest.newBuilder()
-                            .setBcname("xuper")
-                            .addAllRequests(requests)
-                            .setInitiator("eyY6Eez8z4Y3HvTWCM8r1VQDGBEbYkS6M")
-                            .build();
-                    XchainOuterClass.InvokeRPCResponse invokeRPCResponse = XchainGrpc.newBlockingStub(ManagedChannelBuilder.forTarget("120.79.167.88:37101").usePlaintext()
-                            .build()).preExec(request);
-                    XchainOuterClass.ContractResponse resp = invokeRPCResponse.getResponse().getResponses(invokeRPCResponse.getResponse().getResponseCount() - 1);
+                    XchainOuterClass.ContractResponse resp = queryContract("wasm", "buddha", method, hashMap);
                     Log.e("resp", resp.getMessage());
                     bodyStr = new String(resp.getBody().toByteArray());
 
@@ -245,7 +312,7 @@ public class XuperApi {
      * @param args     contract method arguments
      * @return
      */
-    public static XchainOuterClass.ContractResponse queryContract(String module, String contract, String method, Map<String, byte[]> args) {
+    private static XchainOuterClass.ContractResponse queryContract(String module, String contract, String method, Map<String, byte[]> args) {
         try {
 
             Map<String, ByteString> newArgs = new HashMap<>();
@@ -364,6 +431,48 @@ public class XuperApi {
     /**
      * Get balance unfrozen balance and frozen balance of account
      *
+     * @return balance
+     */
+    public static void getUTXO(ResponseCallBack<XchainOuterClass.Acl> responseCallBack) {
+        Observable.create(new ObservableOnSubscribe<Object>() {
+            @Override
+            public void subscribe(ObservableEmitter<Object> emitter) throws Exception {
+                try {
+                    Account initiator = XuperAccount.getAccount();
+                    byte[] hash = Hash.doubleSha256(("xuper" + initiator.getAKAddress() + "5" + false).getBytes());
+                    byte[] sign = initiator.getKeyPair().sign(hash);
+
+                    XchainOuterClass.SignatureInfo siginfo = XchainOuterClass.SignatureInfo.newBuilder()
+                            .setPublicKey(XuperAccount.getAccount().getKeyPair().getJSONPublicKey())
+                            .setSign(ByteString.copyFrom(sign))
+                            .build();
+                    XchainOuterClass.UtxoInput request = XchainOuterClass.UtxoInput.newBuilder()
+                            .setHeader(Common.newHeader())
+                            .setAddress(XuperAccount.getAddress())
+                            .setTotalNeed("5")
+                            .setPublickey(XuperAccount.getAccount().getKeyPair().getJSONPublicKey())
+                            .setBcname("xuper")
+                            .setUserSign(siginfo.getSign())
+                            .build();
+                    XchainOuterClass.UtxoOutput response = XchainGrpc.newBlockingStub(ManagedChannelBuilder.forTarget("120.79.167.88:37101")
+                            // Channels are secure by default (via SSL/TLS). For the example we disable TLS to avoid
+                            // needing certificates.
+                            .usePlaintext()
+                            .build()).selectUTXO(request);
+
+                    emitter.onNext(response.getUtxoListList());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    emitter.onError(e);
+                }
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * Get balance unfrozen balance and frozen balance of account
+     *
      * @param address account name, can be contract account
      *                根据本地账号获取合约账号
      * @return balance
@@ -425,7 +534,7 @@ public class XuperApi {
      * @param responseCallBack
      */
     public static void requestMasterList(ResponseCallBack responseCallBack) {
-        baseRequest("list_master", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("list_master", new HashMap<>(), new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -434,7 +543,7 @@ public class XuperApi {
      * @param responseCallBack
      */
     public static void requestTempleList(ResponseCallBack responseCallBack) {
-        baseRequest("list_temple", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("list_temple", new HashMap<>(), new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -443,7 +552,7 @@ public class XuperApi {
      * @param responseCallBack
      */
     public static void requestKinddeedproofList(ResponseCallBack responseCallBack) {
-        baseRequest("list_kinddeedproof", new HashMap<>(), false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("list_kinddeedproof", new HashMap<>(), new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -455,7 +564,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("kdid", kdid.getBytes());
 
-        baseRequest("list_kinddeeddetail", args, false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("list_kinddeeddetail", args, new BaseObserver(false, responseCallBack));
     }
 
 
@@ -468,7 +577,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("kdid", kdid.getBytes());
 
-        baseRequest("list_kinddeedspec", args, false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("list_kinddeedspec", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -514,7 +623,7 @@ public class XuperApi {
         args.put("address", address.getBytes());
         args.put("proof", proof.getBytes());
 
-        baseRequest("apply_temple", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("apply_temple", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -532,7 +641,7 @@ public class XuperApi {
         args.put("detail", detail.getBytes());
         args.put("spec", spec.getBytes());
 
-        baseRequest("add_kinddeed", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("add_kinddeed", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -550,7 +659,7 @@ public class XuperApi {
         args.put("detail", detail.getBytes());
         args.put("spec", spec.getBytes());
 
-        baseRequest("update_kinddeed", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("update_kinddeed", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -564,7 +673,7 @@ public class XuperApi {
         args.put("sequence", sequence.getBytes());
         args.put("hash", hash.getBytes());
 
-        baseRequest("add_kinddeedspec", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("add_kinddeedspec", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -578,7 +687,7 @@ public class XuperApi {
         args.put("sequence", sequence.getBytes());
         args.put("desc", desc.getBytes());
 
-        baseRequest("add_kinddeeddetail", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("add_kinddeeddetail", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -590,7 +699,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("id", kdid.getBytes());
 
-        baseRequest("find_kinddeed", args, false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("find_kinddeed", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -601,7 +710,7 @@ public class XuperApi {
     public static void listKinddeedtype(ResponseCallBack responseCallBack) {
         HashMap<String, byte[]> args = new HashMap<>();
 
-        baseRequest("list_kinddeedtype", args, false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("list_kinddeedtype", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -614,7 +723,7 @@ public class XuperApi {
         args.put("id", id.getBytes());
         args.put("desc", desc.getBytes());
 
-        baseRequest("add_kinddeedtype", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("add_kinddeedtype", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -626,7 +735,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("id", id.getBytes());
 
-        baseRequest("delete_kinddeedtype", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("delete_kinddeedtype", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -639,7 +748,7 @@ public class XuperApi {
         args.put("id", id.getBytes());
         args.put("desc", desc.getBytes());
 
-        baseRequest("update_kinddeedtype", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("update_kinddeedtype", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -651,7 +760,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("kdid", kdid.getBytes());
 
-        baseRequest("list_pray_kinddeed", args, false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("list_pray_kinddeed", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -663,7 +772,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("kdid", kdid.getBytes());
 
-        baseRequest("list_beforecomment", args, false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("list_beforecomment", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -674,7 +783,7 @@ public class XuperApi {
     public static void commentLabelList(ResponseCallBack responseCallBack) {
         HashMap<String, byte[]> args = new HashMap<>();
 
-        baseRequest("list_commentlabel", args, false, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("list_commentlabel", args, new BaseObserver(false, responseCallBack));
     }
 
 
@@ -690,7 +799,7 @@ public class XuperApi {
         args.put("id", id.getBytes());
         args.put("desc", desc.getBytes());
 
-        baseRequest("add_commentlabel", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("add_commentlabel", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -708,7 +817,7 @@ public class XuperApi {
         args.put("labels", labels.getBytes());
         args.put("timestamp", (System.currentTimeMillis() + "").getBytes());
 
-        baseRequest("add_beforecomment", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("add_beforecomment", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -720,7 +829,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("id", id.getBytes());
 
-        baseRequest("approve_online_kinddeed", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("approve_online_kinddeed", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -732,7 +841,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("id", id.getBytes());
 
-        baseRequest("approve_master", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("approve_master", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -744,7 +853,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("id", id.getBytes());
 
-        baseRequest("approve_temple", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("approve_temple", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -756,7 +865,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("id", id.getBytes());
 
-        baseRequest("approve_kinddeedproof", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("approve_kinddeedproof", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
@@ -768,7 +877,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("id", id.getBytes());
 
-        baseRequest("find_pray_kinddeed", args, true, new BaseObserver(false, responseCallBack));
+        baseInvokeRequest("find_pray_kinddeed", args, new BaseObserver(false, responseCallBack));
     }
 
 }

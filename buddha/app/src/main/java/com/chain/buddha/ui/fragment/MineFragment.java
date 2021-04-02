@@ -4,11 +4,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.baidu.xuper.pb.XchainOuterClass;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseFragment;
+import com.chain.buddha.ui.activity.ActionRecordActivity;
 import com.chain.buddha.ui.activity.JjhBackstageActivity;
 import com.chain.buddha.ui.activity.LoginActivity;
 import com.chain.buddha.ui.activity.MasterBackstageActivity;
@@ -255,7 +257,7 @@ public class MineFragment extends BaseFragment {
 
     @OnClick({R.id.btn_master, R.id.btn_temple, R.id.btn_jjh, R.id.user_part1, R.id.user_part2, R.id.user_part3,
             R.id.btn_my_shanjv_1, R.id.btn_my_shanjv_2, R.id.btn_my_shanjv_3, R.id.btn_my_shanjv_4, R.id.btn_my_shanjv_5,
-            R.id.tv_login, R.id.view_receive_coin, R.id.view_transfer_coin, R.id.tv_my_address})
+            R.id.tv_login, R.id.view_receive_coin, R.id.view_transfer_coin, R.id.tv_my_address, R.id.view_action_record})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
@@ -327,6 +329,9 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.tv_my_address:
                 UIUtils.copyString(mContext, XuperAccount.getAddress());
+                break;
+            case R.id.view_action_record:
+                SkipInsideUtil.skipInsideActivity(mContext, ActionRecordActivity.class);
                 break;
             default:
                 break;

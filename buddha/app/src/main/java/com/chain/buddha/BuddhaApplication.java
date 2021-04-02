@@ -1,5 +1,6 @@
 package com.chain.buddha;
 
+import android.app.Activity;
 import android.app.Application;
 
 import androidx.multidex.MultiDex;
@@ -13,6 +14,7 @@ import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 public class BuddhaApplication extends Application {
     private static BuddhaApplication instance;
 
+    private static Activity mCurrencyActivity;
 
     //    实例化一次
     public synchronized static BuddhaApplication getInstance() {
@@ -25,5 +27,13 @@ public class BuddhaApplication extends Application {
         instance = this;
         MultiDex.install(instance);
         ZXingLibrary.initDisplayOpinion(this);
+    }
+
+    public static Activity getCurrencyActivity() {
+        return mCurrencyActivity;
+    }
+
+    public static void setCurrencyActivity(Activity mCurrencyActivity) {
+        BuddhaApplication.mCurrencyActivity = mCurrencyActivity;
     }
 }

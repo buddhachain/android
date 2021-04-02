@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="@dimen/dimen_10">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_130"
+        android:layout_marginLeft="@dimen/dimen_20"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_action_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:text="标题"
+            android:textColor="@color/color_black_20"
+            android:textSize="@dimen/text_dimen_16" />
+
+        <TextView
+            android:id="@+id/tv_qifu_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:maxLines="2"
+            android:minLines="2"
+            android:text="内容简介:慈悲功德力，消除业障，解脱恩怨，消灾延寿，增福增慧"
+            android:textColor="@color/color_gray_8e"
+            android:textSize="@dimen/text_dimen_14" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tv_join_person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom"
+                android:text="参加人数13"
+                android:textColor="@color/color_gray_8e"
+                android:textSize="@dimen/text_dimen_13" />
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
