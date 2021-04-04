@@ -11,6 +11,7 @@ public class XuperConstants {
     public static final String XUPER = "@xuper";
 
     public static final String KEY_SAVE_FILE_PATH = "/accountkeys";
-    public static final String KEY_SAVE_FILE_NAME = "/private.key";
+    //    public static final String KEY_SAVE_FILE_NAME = "/private.key";
+    public static final String KEY_SAVE_FILE_NAME = "/mnemonic.key";
 
 }

@@ -9,8 +9,10 @@
     <include layout="@layout/item_top_back_bar" />
 
     <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_15"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:background="@drawable/bg_white_gray_f8_r4"
         android:orientation="vertical"
         android:padding="@dimen/dimen_16">
 
@@ -19,43 +21,76 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/dimen_18"
-            android:text="密码" />
+            android:text="密码"
+            android:textColor="@color/color_text_level1"
+            android:textSize="@dimen/dimen_15" />
 
         <EditText
             android:id="@+id/et_psw"
-            style="@style/whiteGrayEditBg"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_8"
+            android:background="@drawable/bg_gray_f8_r4"
             android:hint="请输入密码"
-            android:inputType="textPassword"
-            android:textColorHint="@color/hint_gray" />
-
+            android:padding="@dimen/dimen_12"
+            android:textColor="@color/color_text_level1"
+            android:textColorHint="@color/hint_gray"
+            android:textSize="@dimen/dimen_16"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/dimen_18"
-            android:text="确认密码" />
+            android:text="确认密码"
+            android:textColor="@color/color_text_level1"
+            android:textSize="@dimen/dimen_15" />
 
         <EditText
             android:id="@+id/et_psw_2"
-            style="@style/whiteGrayEditBg"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_8"
+            android:background="@drawable/bg_gray_f8_r4"
             android:hint="请再次输入密码"
-            android:inputType="textPassword"
-            android:textColorHint="@color/hint_gray" />
-
-        <TextView
-            android:id="@+id/view_submit"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
-            android:layout_marginTop="@dimen/dimen_80"
-            android:background="@color/color_gray_8e"
-            android:gravity="center"
-            android:text="创建"
-            android:textColor="@color/color_white" />
+            android:padding="@dimen/dimen_12"
+            android:textColor="@color/color_text_level1"
+            android:textColorHint="@color/hint_gray"
+            android:textSize="@dimen/dimen_16"
+            android:textStyle="bold" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:gravity="center"
+        android:text="*密码用于保护您的私钥，建议设置足够钱读的密码。"
+        android:textColor="@color/base_color"
+        android:textSize="@dimen/text_dimen_14" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dimen_15"
+        android:layout_marginRight="@dimen/dimen_15"
+        android:text="*钱包密码丢失将无法找回，请务必牢记您的密码。"
+        android:textColor="@color/base_color"
+        android:textSize="@dimen/text_dimen_14" />
+
+    <TextView
+        android:id="@+id/view_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_marginLeft="@dimen/dimen_60"
+        android:layout_marginTop="@dimen/dimen_80"
+        android:layout_marginRight="@dimen/dimen_60"
+        android:background="@color/base_color"
+        android:gravity="center"
+        android:text="确认创建"
+        android:textColor="@color/color_white" />
+
 </LinearLayout>

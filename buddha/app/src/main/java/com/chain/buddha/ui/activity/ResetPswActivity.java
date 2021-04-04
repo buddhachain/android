@@ -5,7 +5,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.baidu.xuper.api.Account;
-import com.baidu.xuper.crypto.account.ECDSAAccount;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.ui.BaseActivity;
@@ -13,8 +12,6 @@ import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
 import com.chain.buddha.utils.ToastUtils;
-
-import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -54,12 +51,13 @@ public class ResetPswActivity extends BaseActivity {
             ToastUtils.show(mContext, "两次密码输入不一致");
             return;
         }
-        if (!XuperAccount.checkPsw(mContext, oldPsw)) {
+        Account account = XuperAccount.getAccountFromFile(mContext, psw);
+        if (account == null) {
             ToastUtils.show(mContext, "旧密码错误");
             return;
         }
         try {
-
+            XuperAccount.saveAccount(mContext, account.getMnemonic(), psw2);
             ToastUtils.show(mContext, "修改成功");
             finish();
         } catch (Throwable e) {

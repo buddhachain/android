@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/item_top_back_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_15"
+                android:layout_marginTop="@dimen/dimen_15"
+                android:background="@drawable/bg_white_gray_f8_r4"
+                android:orientation="vertical"
+                android:paddingBottom="@dimen/dimen_20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:text="请验证您备份的助记词"
+                    android:textColor="@color/color_text_level1"
+                    android:textSize="@dimen/text_dimen_16"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1"
+                    android:layout_marginTop="@dimen/dimen_15"
+                    android:layout_marginBottom="@dimen/dimen_15"
+                    android:background="@color/color_base_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_10"
+                    android:layout_marginTop="@dimen/dimen_5"
+                    android:layout_marginRight="@dimen/dimen_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="●"
+                        android:textColor="@color/base_color"
+                        android:textSize="@dimen/dimen_12" />
+
+                    <View
+                        android:layout_width="@dimen/dimen_10"
+                        android:layout_height="@dimen/dimen_1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="请从下方列表中选择每个位置正确的单词"
+                        android:textColor="@color/color_text_level1"
+                        android:textSize="@dimen/dimen_14" />
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_keywords"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/dimen_200"
+                    android:padding="@dimen/dimen_15" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_15"
+                android:layout_marginTop="@dimen/dimen_15"
+                android:background="@drawable/bg_white_gray_f8_r4"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_select_keywords"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/dimen_200"
+                    android:padding="@dimen/dimen_15" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/view_submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40"
+                android:layout_marginLeft="@dimen/dimen_60"
+                android:layout_marginTop="@dimen/dimen_20"
+                android:layout_marginRight="@dimen/dimen_60"
+                android:background="@color/base_color"
+                android:gravity="center"
+                android:text="下一步"
+                android:textColor="@color/color_white" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_30" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

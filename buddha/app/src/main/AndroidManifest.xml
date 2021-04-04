@@ -59,6 +59,10 @@
         <activity android:name=".ui.activity.TransferCoinActivity" />
         <activity android:name=".ui.activity.ActionRecordActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
+        <activity android:name=".ui.activity.WalletGuideActivity" />
+        <activity android:name=".ui.activity.SaveMnemonicTipActivity" />
+        <activity android:name=".ui.activity.ShowMnemonicTipActivity" />
+        <activity android:name=".ui.activity.CheckMnemonicActivity" />
 
         <activity
             android:name=".ui.activity.MainActivity"

@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.baidu.xuper.pb.XchainOuterClass;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperAccount;
@@ -14,16 +13,16 @@ import com.chain.buddha.ui.activity.ActionRecordActivity;
 import com.chain.buddha.ui.activity.JjhBackstageActivity;
 import com.chain.buddha.ui.activity.LoginActivity;
 import com.chain.buddha.ui.activity.MasterBackstageActivity;
-import com.chain.buddha.ui.activity.MasterListActivity;
 import com.chain.buddha.ui.activity.MyShanjvActivity;
 import com.chain.buddha.ui.activity.ReceiveCoinActivity;
 import com.chain.buddha.ui.activity.RenzhengJjhActivity;
 import com.chain.buddha.ui.activity.RenzhengMasterActivity;
-import com.chain.buddha.ui.activity.RenzhengTempleActivity;
 import com.chain.buddha.ui.activity.RenzhengTempleStep1Activity;
 import com.chain.buddha.ui.activity.SendShanjvActivity;
+import com.chain.buddha.ui.activity.SettingActivity;
 import com.chain.buddha.ui.activity.TempleBackstageActivity;
 import com.chain.buddha.ui.activity.TransferCoinActivity;
+import com.chain.buddha.ui.activity.WalletGuideActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.EventBeans;
 import com.chain.buddha.utils.SkipInsideUtil;
@@ -41,7 +40,6 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -117,13 +115,19 @@ public class MineFragment extends BaseFragment {
     void refreshView() {
         if (XuperAccount.ifLoginAccount()) {
             mNickNameTv.setText(getString(R.string.normal));
+            mNickNameTv.setVisibility(View.VISIBLE);
             mLoginTv.setText(getString(R.string.logout));
+            mLoginTv.setVisibility(View.GONE);
         } else if (XuperAccount.ifHasAccount(mContext)) {
             mNickNameTv.setText(getString(R.string.normal));
+            mNickNameTv.setVisibility(View.GONE);
             mLoginTv.setText(getString(R.string.open_wallet));
+            mLoginTv.setVisibility(View.VISIBLE);
         } else {
             mNickNameTv.setText(getString(R.string.not_login));
+            mNickNameTv.setVisibility(View.GONE);
             mLoginTv.setText(getString(R.string.login));
+            mLoginTv.setVisibility(View.VISIBLE);
         }
 
         switch (XuperAccount.getAccountType()) {
@@ -257,12 +261,13 @@ public class MineFragment extends BaseFragment {
 
     @OnClick({R.id.btn_master, R.id.btn_temple, R.id.btn_jjh, R.id.user_part1, R.id.user_part2, R.id.user_part3,
             R.id.btn_my_shanjv_1, R.id.btn_my_shanjv_2, R.id.btn_my_shanjv_3, R.id.btn_my_shanjv_4, R.id.btn_my_shanjv_5,
-            R.id.tv_login, R.id.view_receive_coin, R.id.view_transfer_coin, R.id.tv_my_address, R.id.view_action_record})
+            R.id.tv_login, R.id.view_receive_coin, R.id.view_transfer_coin, R.id.tv_my_address, R.id.view_action_record
+            , R.id.iv_setting})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
                 if (XuperAccount.ifLoginAccount()) {
-                    DialogUtil.simpleDialog(mContext, "确认退出？", new DialogUtil.ConfirmCallBackInf() {
+                    DialogUtil.simpleDialog(mContext, "确认删除？", new DialogUtil.ConfirmCallBackInf() {
                         @Override
                         public void onConfirmClick(String content) {
                             XuperAccount.logoutAccount(mContext);
@@ -271,7 +276,7 @@ public class MineFragment extends BaseFragment {
                 } else if (XuperAccount.ifHasAccount(mContext)) {
                     XuperAccount.checkAccount(mContext);
                 } else {
-                    SkipInsideUtil.skipInsideActivity(mContext, LoginActivity.class);
+                    SkipInsideUtil.skipInsideActivity(mContext, WalletGuideActivity.class);
                 }
                 break;
             case R.id.btn_my_shanjv_1:
@@ -332,6 +337,9 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.view_action_record:
                 SkipInsideUtil.skipInsideActivity(mContext, ActionRecordActivity.class);
+                break;
+            case R.id.iv_setting:
+                SkipInsideUtil.skipInsideActivity(mContext, SettingActivity.class);
                 break;
             default:
                 break;

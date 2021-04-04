@@ -4,16 +4,24 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.baidu.xuper.api.Account;
-import com.chain.buddha.ui.activity.LoginActivity;
+import com.baidu.xuper.crypto.AES;
+import com.baidu.xuper.crypto.Hash;
+import com.chain.buddha.ui.activity.WalletGuideActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.EventBeans;
 import com.chain.buddha.utils.FileUtils;
 import com.chain.buddha.utils.SkipInsideUtil;
-import com.chain.buddha.utils.ToastUtils;
+import com.chain.buddha.utils.StringUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+
+import Decoder.BASE64Decoder;
+import Decoder.BASE64Encoder;
 
 
 /**
@@ -95,7 +103,7 @@ public class XuperAccount {
      */
     public static boolean checkPsw(Context mContext, String psw) {
         try {
-            Account account = Account.getAccountFromFile(XuperAccount.getAccountCachePath(mContext), psw);
+            Account account = getAccountFromFile(mContext, psw);
             if (account == null) {
                 return false;
             }
@@ -167,11 +175,77 @@ public class XuperAccount {
             DialogUtil.simpleDialog(activity, "还没有账号，是否去导入", new DialogUtil.ConfirmCallBackInf() {
                 @Override
                 public void onConfirmClick(String content) {
-                    SkipInsideUtil.skipInsideActivity(activity, LoginActivity.class);
+                    SkipInsideUtil.skipInsideActivity(activity, WalletGuideActivity.class);
                 }
             }, null);
         } else if (!ifLoginAccount()) {
             DialogUtil.checkPswDialog(activity, "请输入密码，打开钱包", null, null);
         }
+    }
+
+    /**
+     * @param context
+     * @param passwd  密码。
+     */
+    public static void saveAccount(Context context, String mnemonic, String passwd) {
+        String path = getAccountCachePath(context);
+        File file = new File(path);
+        if (!file.exists()) {
+            file.mkdir();
+        }
+
+        if (!path.endsWith("/")) {
+            path += "/";
+        }
+        byte[] newPW = Hash.doubleSha256(passwd.getBytes());
+        byte[] encryptContent = AES.encrypt(mnemonic.getBytes(), newPW);
+        writeFileUsingFileName(path + XuperConstants.KEY_SAVE_FILE_NAME, encryptContent);
+    }
+
+    private static void writeFileUsingFileName(String fileName, byte[] content) {
+        BASE64Encoder encoder = new BASE64Encoder();
+        String encoded = encoder.encode(content);
+        FileWriter writer;
+        try {
+            writer = new FileWriter(fileName);
+            writer.write(encoded);
+            writer.flush();
+            writer.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * @param passwd 密码。
+     * @return Account 账户信息。
+     */
+    public static Account getAccountFromFile(Context context, String passwd) {
+        try {
+            String fileName = getAccountCachePath(context) + XuperConstants.KEY_SAVE_FILE_NAME;
+//            byte[] fileBytes = Files.readAllBytes(Paths.get(fileName));
+            System.out.println("以字节为单位读取文件内容，一次读多个字节：");
+            // 一次读多个字节
+            byte[] tempbytes = new byte[100];
+            int byteread = 0;
+            ByteArrayOutputStream out = new ByteArrayOutputStream();
+            FileInputStream in = new FileInputStream(fileName);
+            // 读入多个字节到字节数组中，byteread为一次读入的字节数
+            while ((byteread = in.read(tempbytes)) != -1) {
+                out.write(tempbytes, 0, byteread);
+            }
+            byte[] fileBytes = out.toByteArray();
+            in.close();
+            BASE64Decoder d = new BASE64Decoder();
+            byte[] content = d.decodeBuffer(new String(fileBytes));
+            byte[] newPasswd = Hash.doubleSha256(passwd.getBytes());
+            byte[] p = AES.decrypt(content, newPasswd);
+            String mnemonic = new String(p);
+            int language = StringUtils.isChinese(mnemonic.charAt(0)) ? 1 : 2;
+            return Account.retrieve(mnemonic, language);
+        } catch (Throwable e) {
+            return null;
+        }
+
     }
 }

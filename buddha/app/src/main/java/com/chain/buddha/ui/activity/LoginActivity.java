@@ -5,7 +5,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.baidu.xuper.api.Account;
-import com.baidu.xuper.crypto.account.ECDSAAccount;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.ui.BaseActivity;
@@ -14,7 +13,6 @@ import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
 import com.chain.buddha.utils.ToastUtils;
 
-import java.io.File;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -52,11 +50,8 @@ public class LoginActivity extends BaseActivity {
         }
         try {
             int language = StringUtils.isChinese(mnemonic.charAt(0)) ? 1 : 2;
-            ECDSAAccount ecdsaAccount = new ECDSAAccount();
-            ecdsaAccount.createByMnemonic(mnemonic, language);
-            new File(XuperAccount.getAccountCachePath(mContext)).delete();
-            ecdsaAccount.saveToFile(XuperAccount.getAccountCachePath(mContext), psw2);
             Account account = Account.retrieve(mnemonic, language);
+            XuperAccount.saveAccount(mContext, mnemonic, psw2);
             XuperAccount.setAccount(account);
             ToastUtils.show(mContext, "导入成功");
             finish();

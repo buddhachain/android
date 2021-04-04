@@ -51,7 +51,10 @@ public class RegisterActivity extends BaseActivity {
         } catch (Throwable e) {
 
         }
-        Account account = Account.createAndSave(XuperAccount.getAccountCachePath(mContext), psw2, 1, 1);
-        SkipInsideUtil.skipInsideActivity(mContext, MnemonicActivity.class, SkipInsideUtil.SKIP_KEY_MNEMONIC, account.getMnemonic());
+        Account account = Account.create(1, 1);
+        XuperAccount.saveAccount(mContext, account.getMnemonic(), psw2);
+        XuperAccount.setAccount(account);
+
+        SkipInsideUtil.skipInsideActivity(mContext, SaveMnemonicTipActivity.class, SkipInsideUtil.SKIP_KEY_MNEMONIC, account.getMnemonic());
     }
 }

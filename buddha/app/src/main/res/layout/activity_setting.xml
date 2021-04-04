@@ -9,82 +9,91 @@
     <include layout="@layout/item_top_back_bar" />
 
     <LinearLayout
+        android:id="@+id/reset_psw"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="@dimen/dimen_16">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:background="@drawable/bg_white_gray_f8_r4"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen_15"
+        android:paddingTop="@dimen/dimen_10"
+        android:paddingRight="@dimen/dimen_10"
+        android:paddingBottom="@dimen/dimen_10">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="助记词" />
+            android:text="修改密码"
+            android:textColor="@color/color_text_level2"
+            android:textSize="@dimen/text_dimen_14" />
 
-        <EditText
-            android:id="@+id/et_mnemonic"
-            style="@style/whiteGrayEditBg"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_80"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:hint="请输入助记词"
-            android:textColor="@color/color_text_level1"
-            android:textColorHint="@color/hint_gray"
-            android:textSize="@dimen/text_dimen_20"
-            android:textStyle="bold" />
-
-        <TextView
+        <View
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/dimen_18"
-            android:text="密码" />
-
-        <EditText
-            android:id="@+id/et_psw"
-            style="@style/whiteGrayEditBg"
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:hint="请输入密码"
-            android:inputType="textPassword"
-            android:textColorHint="@color/hint_gray" />
+            android:layout_height="@dimen/dimen_1"
+            android:layout_weight="1" />
 
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginTop="@dimen/dimen_18"
-            android:text="确认密码" />
-
-        <EditText
-            android:id="@+id/et_psw_2"
-            style="@style/whiteGrayEditBg"
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/dimen_8"
-            android:hint="请再次输入密码"
-            android:inputType="textPassword"
-            android:textColorHint="@color/hint_gray" />
-
-        <TextView
-            android:id="@+id/view_submit"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
-            android:layout_marginTop="@dimen/dimen_80"
-            android:background="@color/color_gray_8e"
-            android:gravity="center"
-            android:text="导入钱包"
-            android:textColor="@color/color_white" />
-
-
-        <TextView
-            android:id="@+id/view_register"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dimen_40"
-            android:layout_marginTop="@dimen/dimen_20"
-            android:background="@color/color_gray_8e"
-            android:gravity="center"
-            android:text="没有助记词，去创建"
-            android:textColor="@color/color_white" />
-
+        <ImageView
+            android:layout_width="@dimen/dimen_24"
+            android:layout_height="@dimen/dimen_24"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:src="@mipmap/icon_right" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/get_mnemonic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_8"
+        android:background="@drawable/bg_white_gray_f8_r4"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/dimen_15"
+        android:paddingTop="@dimen/dimen_10"
+        android:paddingRight="@dimen/dimen_10"
+        android:paddingBottom="@dimen/dimen_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="导出助记词"
+            android:textColor="@color/color_text_level2"
+            android:textSize="@dimen/text_dimen_14" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dimen_1"
+            android:layout_weight="1" />
+
+
+        <ImageView
+            android:layout_width="@dimen/dimen_24"
+            android:layout_height="@dimen/dimen_24"
+            android:layout_marginLeft="@dimen/dimen_10"
+            android:src="@mipmap/icon_right" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/view_delete_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_margin="@dimen/dimen_30"
+        android:background="@color/color_gray_8e"
+        android:gravity="center"
+        android:text="删除钱包"
+        android:textColor="@color/color_white" />
+
+    <TextView
+        android:id="@+id/view_close_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_margin="@dimen/dimen_30"
+        android:background="@color/color_gray_8e"
+        android:gravity="center"
+        android:text="关闭钱包"
+        android:textColor="@color/color_white"
+        android:visibility="gone" />
+
 </LinearLayout>

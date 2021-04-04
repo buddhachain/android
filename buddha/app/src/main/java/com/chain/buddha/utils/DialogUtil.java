@@ -1,13 +1,8 @@
 package com.chain.buddha.utils;
 
 
-import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
-import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
@@ -20,19 +15,11 @@ import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.baidu.xuper.api.Account;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.XuperAccount;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 /**
  * 弹框工具类
@@ -125,16 +112,16 @@ public class DialogUtil {
             @Override
             public void onClick(View v) {
                 String psw = mEditText.getText().toString();
-                try {
-                    Account account = Account.getAccountFromFile(XuperAccount.getAccountCachePath(context), psw);
+                Account account = XuperAccount.getAccountFromFile(context, psw);
+                if (account == null) {
+                    tv_error.setText("密码错误,请重试");
+                } else {
                     XuperAccount.setAccount(account);
                     if (callBack != null) {
                         callBack.onConfirmClick("");
                     }
                     UIUtils.closeKeybord(mEditText, context);
                     dialog.dismiss();
-                } catch (Throwable e) {
-                    tv_error.setText("密码错误,请重试");
                 }
 
             }
