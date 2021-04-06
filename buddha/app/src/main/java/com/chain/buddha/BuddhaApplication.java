@@ -5,6 +5,7 @@ import android.app.Application;
 
 import androidx.multidex.MultiDex;
 
+import com.mob.MobSDK;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 /**
@@ -27,6 +28,7 @@ public class BuddhaApplication extends Application {
         instance = this;
         MultiDex.install(instance);
         ZXingLibrary.initDisplayOpinion(this);
+        MobSDK.submitPolicyGrantResult(true, null);
     }
 
     public static Activity getCurrencyActivity() {
