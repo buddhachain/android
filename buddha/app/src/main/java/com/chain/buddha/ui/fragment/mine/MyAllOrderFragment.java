@@ -3,17 +3,23 @@ package com.chain.buddha.ui.fragment.mine;
 import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.QifuRecordListAdapter;
 import com.chain.buddha.ui.BaseFragment;
+import com.chain.buddha.ui.activity.SendShanjvProveActivity;
+import com.chain.buddha.ui.activity.ShanjvOrderDetailActivity;
 import com.chain.buddha.utils.DialogUtil;
+import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -55,6 +61,14 @@ public class MyAllOrderFragment extends BaseFragment {
         mQifuListAdapter.getEmptyLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+            }
+        });
+
+        mQifuListAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(@NonNull BaseQuickAdapter<?, ?> adapter, @NonNull View view, int position) {
+                String[] list = mQifuListList.get(position).split(",");
+                SkipInsideUtil.skipInsideActivity(mContext, ShanjvOrderDetailActivity.class, SkipInsideUtil.SKIP_KEY_ID, list[0]);
             }
         });
     }

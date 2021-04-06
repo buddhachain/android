@@ -1,6 +1,7 @@
 package com.chain.buddha.ui.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.chain.buddha.ui.activity.JjhBackstageActivity;
 import com.chain.buddha.ui.activity.LoginActivity;
 import com.chain.buddha.ui.activity.MasterBackstageActivity;
 import com.chain.buddha.ui.activity.MyShanjvActivity;
+import com.chain.buddha.ui.activity.RankingActivity;
 import com.chain.buddha.ui.activity.ReceiveCoinActivity;
 import com.chain.buddha.ui.activity.RenzhengJjhActivity;
 import com.chain.buddha.ui.activity.RenzhengMasterActivity;
@@ -40,6 +42,7 @@ import java.util.List;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -68,6 +71,12 @@ public class MineFragment extends BaseFragment {
 
     @BindView(R.id.tv_jjh_state)
     TextView mJjhStateTv;
+
+    @BindView(R.id.tv_my_credit)
+    TextView mMyCreditTv;
+
+    @BindView(R.id.tv_my_merit)
+    TextView mMyMeritTv;
 
     public MineFragment() {
         // Required empty public constructor
@@ -248,6 +257,31 @@ public class MineFragment extends BaseFragment {
             }
         });
 
+
+        XuperApi.findCreditranking(XuperAccount.getAddress(), new ResponseCallBack<String>() {
+            @Override
+            public void onSuccess(String resp) {
+                mMyCreditTv.setText(resp);
+
+            }
+
+            @Override
+            public void onFail(String message) {
+                Log.e("tag", message);
+            }
+        });
+
+        XuperApi.findMeritranking(XuperAccount.getAddress(), new ResponseCallBack<String>() {
+            @Override
+            public void onSuccess(String resp) {
+                mMyMeritTv.setText(resp);
+            }
+
+            @Override
+            public void onFail(String message) {
+                Log.e("tag", message);
+            }
+        });
 //        mNickNameTv.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -262,7 +296,7 @@ public class MineFragment extends BaseFragment {
     @OnClick({R.id.btn_master, R.id.btn_temple, R.id.btn_jjh, R.id.user_part1, R.id.user_part2, R.id.user_part3,
             R.id.btn_my_shanjv_1, R.id.btn_my_shanjv_2, R.id.btn_my_shanjv_3, R.id.btn_my_shanjv_4, R.id.btn_my_shanjv_5,
             R.id.tv_login, R.id.view_receive_coin, R.id.view_transfer_coin, R.id.tv_my_address, R.id.view_action_record
-            , R.id.iv_setting})
+            , R.id.iv_setting, R.id.btn_ranking})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
@@ -340,6 +374,10 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.iv_setting:
                 SkipInsideUtil.skipInsideActivity(mContext, SettingActivity.class);
+                break;
+
+            case R.id.btn_ranking:
+                SkipInsideUtil.skipInsideActivity(mContext, RankingActivity.class);
                 break;
             default:
                 break;

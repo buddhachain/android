@@ -28,6 +28,7 @@ public class SkipInsideUtil {
     public final static String SKIP_KEY_KDID = "kdid";  //善举id
     public final static String SKIP_KEY_NUM = "num";  //助记词
     public final static String SKIP_KEY_SPEC = "spec";  //善举id
+    public final static String SKIP_KEY_ID = "id";  //善举id
 
     /**
      * 没有参数的内部跳转，不需返回值

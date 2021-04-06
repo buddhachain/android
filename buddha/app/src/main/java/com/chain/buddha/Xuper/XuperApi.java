@@ -555,6 +555,22 @@ public class XuperApi {
         baseQueryRequest("list_kinddeedproof", new HashMap<>(), new BaseObserver(false, responseCallBack));
     }
 
+
+    /**
+     * 上传善举凭证
+     *
+     * @param responseCallBack
+     */
+    public static void uploadKinddeedproof(String orderid, String proof, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("orderid", orderid.getBytes());
+        args.put("proof", proof.getBytes());
+        args.put("timestamp", (System.currentTimeMillis() + "").getBytes());
+
+        baseInvokeRequest("upload_kinddeedproof", args, new BaseObserver(false, responseCallBack));
+
+    }
+
     /**
      * 请求善举详情
      *
@@ -880,4 +896,62 @@ public class XuperApi {
         baseInvokeRequest("find_pray_kinddeed", args, new BaseObserver(false, responseCallBack));
     }
 
+    /**
+     * 添加祈求善举后点评
+     *
+     * @param orderid
+     */
+    public static void addAftercomment(String orderid, String comment, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("orderid", orderid.getBytes());
+        args.put("comment", comment.getBytes());
+        args.put("timestamp", (System.currentTimeMillis() + "").getBytes());
+
+        baseInvokeRequest("add_aftercomment", args, new BaseObserver(false, responseCallBack));
+    }
+
+
+    /**
+     * 请求信用值排行榜列表
+     *
+     * @param responseCallBack
+     */
+    public static void creditrankingList(ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+
+        baseQueryRequest("list_creditranking", args, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 请求功德值排行榜列表
+     *
+     * @param responseCallBack
+     */
+    public static void meritrankingList(ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+
+        baseQueryRequest("list_meritranking", args, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 请求用户信用值
+     *
+     * @param responseCallBack
+     */
+    public static void findCreditranking(String id, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", id.getBytes());
+        baseQueryRequest("find_credit", args, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 请求用户功德值
+     *
+     * @param responseCallBack
+     */
+    public static void findMeritranking(String id, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", id.getBytes());
+        baseQueryRequest("find_merit", args, new BaseObserver(false, responseCallBack));
+    }
 }

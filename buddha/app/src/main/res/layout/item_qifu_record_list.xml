@@ -32,4 +32,15 @@
         android:layout_weight="1"
         android:gravity="center" />
 
+    <TextView
+        android:id="@+id/tv_comment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/color_gray_8e"
+        android:gravity="center"
+        android:padding="@dimen/dimen_3"
+        android:text="评论"
+        android:textColor="@color/color_white" />
+
 </LinearLayout>

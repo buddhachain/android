@@ -12,12 +12,12 @@
         android:padding="@dimen/dimen_15">
 
         <LinearLayout
-            android:gravity="center"
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/dimen_16"
             android:background="@drawable/bg_white_gray_f8_r4"
+            android:gravity="center"
+            android:orientation="horizontal"
             android:padding="@dimen/dimen_15">
 
             <ImageView
@@ -109,6 +109,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_5"
                 android:text="暂无账号"
+                android:textColor="@color/color_text_level1"
+                android:textSize="@dimen/dimen_16" />
+
+            <TextView
+                android:id="@+id/tv_my_credit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_15"
+                android:text="信用值:0"
+                android:textColor="@color/color_text_level1"
+                android:textSize="@dimen/dimen_16" />
+
+            <TextView
+                android:id="@+id/tv_my_merit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5"
+                android:text="功德值:0"
                 android:textColor="@color/color_text_level1"
                 android:textSize="@dimen/dimen_16" />
         </LinearLayout>
@@ -417,6 +435,38 @@
                 </LinearLayout>
 
             </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_ranking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:background="@drawable/bg_white_gray_f8_r4"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen_15"
+            android:paddingTop="@dimen/dimen_10"
+            android:paddingRight="@dimen/dimen_10"
+            android:paddingBottom="@dimen/dimen_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="排行榜"
+                android:textColor="@color/color_text_level2"
+                android:textSize="@dimen/dimen_14" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="@dimen/dimen_24"
+                android:layout_height="@dimen/dimen_24"
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:src="@mipmap/icon_right" />
         </LinearLayout>
 
         <LinearLayout
