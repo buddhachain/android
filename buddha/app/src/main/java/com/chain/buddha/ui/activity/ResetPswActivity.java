@@ -65,10 +65,4 @@ public class ResetPswActivity extends BaseActivity {
         }
     }
 
-
-    @OnClick(R.id.view_register)
-    void register() {
-        SkipInsideUtil.skipInsideActivity(mContext, RegisterActivity.class);
-        finish();
-    }
 }

@@ -63,6 +63,7 @@
         <activity android:name=".ui.activity.SaveMnemonicTipActivity" />
         <activity android:name=".ui.activity.ShowMnemonicTipActivity" />
         <activity android:name=".ui.activity.CheckMnemonicActivity" />
+        <activity android:name=".ui.activity.ResetPswActivity" />
 
         <activity
             android:name=".ui.activity.MainActivity"
