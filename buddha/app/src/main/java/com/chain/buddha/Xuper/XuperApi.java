@@ -893,7 +893,7 @@ public class XuperApi {
         HashMap<String, byte[]> args = new HashMap<>();
         args.put("id", id.getBytes());
 
-        baseInvokeRequest("find_pray_kinddeed", args, new BaseObserver(false, responseCallBack));
+        baseQueryRequest("find_pray_kinddeed", args, new BaseObserver(false, responseCallBack));
     }
 
     /**
