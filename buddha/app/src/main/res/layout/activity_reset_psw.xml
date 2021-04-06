@@ -67,7 +67,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_40"
             android:layout_marginTop="@dimen/dimen_80"
-            android:background="@color/color_gray_8e"
+            android:background="@color/base_color"
             android:gravity="center"
             android:text="确认修改"
             android:textColor="@color/color_white" />
