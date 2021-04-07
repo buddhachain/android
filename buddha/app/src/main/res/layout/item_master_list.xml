@@ -8,126 +8,28 @@
     android:padding="@dimen/dimen_5">
 
     <ImageView
-        android:id="@+id/iv_qifu"
-        android:layout_width="@dimen/dimen_100"
-        android:layout_height="@dimen/dimen_130"
+        android:id="@+id/iv_avatr"
+        android:layout_width="@dimen/dimen_40"
+        android:layout_height="@dimen/dimen_40"
+        android:layout_margin="@dimen/dimen_15"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        android:src="@mipmap/ic_default_img" />
+        android:src="@mipmap/icon_default_avatar" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dimen_130"
-        android:layout_marginLeft="@dimen/dimen_20"
-        android:orientation="vertical">
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="@dimen/dimen_0"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:lines="1"
+        android:text="标题"
+        android:textColor="@color/color_black_20"
+        android:textSize="@dimen/text_dimen_16" />
 
-        <TextView
-            android:id="@+id/tv_qifu_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="1"
-            android:text="标题"
-            android:textColor="@color/color_black_20"
-            android:textSize="@dimen/text_dimen_16" />
-
-        <TextView
-            android:id="@+id/tv_qifu_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/dimen_10"
-            android:maxLines="2"
-            android:minLines="2"
-            android:text="内容简介"
-            android:textColor="@color/color_gray_8e"
-            android:textSize="@dimen/text_dimen_14" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center|left"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tv_tag1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bg_qifu_tag"
-                android:gravity="bottom"
-                android:paddingLeft="@dimen/dimen_5"
-                android:paddingTop="@dimen/dimen_2"
-                android:paddingRight="@dimen/dimen_5"
-                android:paddingBottom="@dimen/dimen_2"
-                android:text="tag1"
-                android:textColor="@color/color_qifu_tag_tv"
-                android:textSize="@dimen/text_dimen_13" />
-
-            <TextView
-                android:id="@+id/tv_tag2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_10"
-                android:background="@drawable/bg_qifu_tag"
-                android:gravity="bottom"
-                android:paddingLeft="@dimen/dimen_5"
-                android:paddingTop="@dimen/dimen_2"
-                android:paddingRight="@dimen/dimen_5"
-                android:paddingBottom="@dimen/dimen_2"
-                android:text="tag2"
-                android:textColor="@color/color_qifu_tag_tv"
-                android:textSize="@dimen/text_dimen_13" />
-
-            <TextView
-                android:id="@+id/tv_tag3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_10"
-                android:background="@drawable/bg_qifu_tag"
-                android:gravity="bottom"
-                android:paddingLeft="@dimen/dimen_5"
-                android:paddingTop="@dimen/dimen_2"
-                android:paddingRight="@dimen/dimen_5"
-                android:paddingBottom="@dimen/dimen_2"
-                android:text="tag3"
-                android:textColor="@color/color_qifu_tag_tv"
-                android:textSize="@dimen/text_dimen_13" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/iv_address"
-                android:layout_width="@dimen/dimen_20"
-                android:layout_height="@dimen/dimen_20"
-                android:src="@mipmap/icon_go_top" />
-
-            <TextView
-                android:id="@+id/tv_address"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:text="罗汉寺"
-                android:textColor="@color/color_gray_8e"
-                android:textSize="@dimen/text_dimen_13" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/tv_join_person"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="bottom"
-                android:text="参加人数13"
-                android:textColor="@color/color_gray_8e"
-                android:textSize="@dimen/text_dimen_13" />
-
-        </LinearLayout>
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dimen_10"
+        android:padding="@dimen/dimen_5" />
 </LinearLayout>

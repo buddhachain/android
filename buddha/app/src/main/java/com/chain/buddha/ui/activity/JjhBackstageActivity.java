@@ -6,8 +6,8 @@ import com.chain.buddha.R;
 import com.chain.buddha.adapter.FmPagerAdapter;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.ui.fragment.mine.ExamineActivityFragment;
-import com.chain.buddha.ui.fragment.mine.ExamineRenzhengFashiFragment;
-import com.chain.buddha.ui.fragment.mine.ExamineRenzhengSiyuanFragment;
+import com.chain.buddha.ui.fragment.mine.ExamineRenzhengMasterFragment;
+import com.chain.buddha.ui.fragment.mine.ExamineRenzhengTempleFragment;
 import com.chain.buddha.ui.fragment.mine.ExamineShanjvFragment;
 import com.google.android.material.tabs.TabLayout;
 
@@ -45,10 +45,10 @@ public class JjhBackstageActivity extends BaseActivity {
                     fragmentList.add(new ExamineActivityFragment());
                     break;
                 case 2:
-                    fragmentList.add(new ExamineRenzhengFashiFragment());
+                    fragmentList.add(new ExamineRenzhengMasterFragment());
                     break;
                 case 3:
-                    fragmentList.add(new ExamineRenzhengSiyuanFragment());
+                    fragmentList.add(new ExamineRenzhengTempleFragment());
                     break;
                 default:
                     break;

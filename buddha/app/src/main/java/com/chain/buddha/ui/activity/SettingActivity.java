@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.core.content.FileProvider;
@@ -28,11 +29,36 @@ public class SettingActivity extends BaseActivity {
     @BindView(R.id.text_back)
     TextView mTitle;
 
+    @BindView(R.id.reset_psw)
+    View mResetPsw;
+
+    @BindView(R.id.get_mnemonic)
+    View mGetMnemonic;
+
+    @BindView(R.id.view_delete_wallet)
+    TextView mDeleteWallet;
+
+    private boolean isHasAccount = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         mTitle.setText("设置");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshView();
+    }
+
+    void refreshView() {
+
+        isHasAccount = XuperAccount.ifHasAccount(mContext);
+        mResetPsw.setVisibility(isHasAccount ? View.VISIBLE : View.GONE);
+        mGetMnemonic.setVisibility(isHasAccount ? View.VISIBLE : View.GONE);
+        mDeleteWallet.setText(isHasAccount ? "删除钱包" : "创建钱包");
     }
 
     @OnClick(R.id.reset_psw)
@@ -53,12 +79,17 @@ public class SettingActivity extends BaseActivity {
 
     @OnClick(R.id.view_delete_wallet)
     void deleteWallet() {
-        DialogUtil.simpleDialog(mContext, "确认删除？", new DialogUtil.ConfirmCallBackInf() {
-            @Override
-            public void onConfirmClick(String content) {
-                XuperAccount.logoutAccount(mContext);
-            }
-        });
+        if (isHasAccount) {
+            DialogUtil.simpleDialog(mContext, "确认删除？", new DialogUtil.ConfirmCallBackInf() {
+                @Override
+                public void onConfirmClick(String content) {
+                    XuperAccount.logoutAccount(mContext);
+                    refreshView();
+                }
+            });
+        } else {
+            SkipInsideUtil.skipInsideActivity(mContext, WalletGuideActivity.class);
+        }
     }
 
     @OnClick(R.id.share_app)

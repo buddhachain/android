@@ -108,6 +108,7 @@ public class ExamineActivityFragment extends BaseFragment {
             @Override
             public void onSuccess(String resp) {
                 ToastUtils.show(mContext, resp);
+                lazyInit();
             }
 
             @Override

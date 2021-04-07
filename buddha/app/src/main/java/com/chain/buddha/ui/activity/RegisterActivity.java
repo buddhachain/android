@@ -41,7 +41,7 @@ public class RegisterActivity extends BaseActivity {
             ToastUtils.show(mContext, "请输入完整信息");
             return;
         }
-        if (StringUtils.equals(psw, psw2)) {
+        if (!StringUtils.equals(psw, psw2)) {
             ToastUtils.show(mContext, "两次密码输入不一致");
             return;
         }

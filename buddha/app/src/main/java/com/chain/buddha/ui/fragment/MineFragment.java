@@ -23,6 +23,7 @@ import com.chain.buddha.ui.activity.RenzhengTempleStep1Activity;
 import com.chain.buddha.ui.activity.SendShanjvActivity;
 import com.chain.buddha.ui.activity.SettingActivity;
 import com.chain.buddha.ui.activity.TempleBackstageActivity;
+import com.chain.buddha.ui.activity.TempleListActivity;
 import com.chain.buddha.ui.activity.TransferCoinActivity;
 import com.chain.buddha.ui.activity.WalletGuideActivity;
 import com.chain.buddha.utils.DialogUtil;
@@ -295,8 +296,8 @@ public class MineFragment extends BaseFragment {
 
     @OnClick({R.id.btn_master, R.id.btn_temple, R.id.btn_jjh, R.id.user_part1, R.id.user_part2, R.id.user_part3,
             R.id.btn_my_shanjv_1, R.id.btn_my_shanjv_2, R.id.btn_my_shanjv_3, R.id.btn_my_shanjv_4, R.id.btn_my_shanjv_5,
-            R.id.tv_login, R.id.view_receive_coin, R.id.view_transfer_coin, R.id.tv_my_address, R.id.view_action_record
-            , R.id.iv_setting, R.id.btn_ranking})
+            R.id.tv_login, R.id.view_receive_coin, R.id.view_transfer_coin, R.id.tv_my_address, R.id.view_action_record,
+            R.id.iv_setting, R.id.btn_ranking, R.id.btn_temple_list})
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
@@ -378,6 +379,9 @@ public class MineFragment extends BaseFragment {
 
             case R.id.btn_ranking:
                 SkipInsideUtil.skipInsideActivity(mContext, RankingActivity.class);
+                break;
+            case R.id.btn_temple_list:
+                SkipInsideUtil.skipInsideActivity(mContext, TempleListActivity.class);
                 break;
             default:
                 break;

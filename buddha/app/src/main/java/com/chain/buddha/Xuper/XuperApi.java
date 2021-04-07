@@ -954,4 +954,97 @@ public class XuperApi {
         args.put("id", id.getBytes());
         baseQueryRequest("find_merit", args, new BaseObserver(false, responseCallBack));
     }
+
+    /**
+     * 寺院中法师列表
+     *
+     * @param responseCallBack
+     */
+    public static void templeMasterList(String templeid, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        if (templeid != null) {
+            args.put("templeid", templeid.getBytes());
+        }
+        baseQueryRequest("list_temple_master", args, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 查询是否在寺院中
+     *
+     * @param responseCallBack
+     */
+    public static void is_in_temple(String templeid, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("templeid", templeid.getBytes());
+        baseQueryRequest("is_in_temple", args, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 申请入寺院
+     * "id":"1", "templeid":"XC1234567890300001@xuper"
+     *
+     * @param templeid
+     */
+    public static void applyJoinTemple(String templeid, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("id", (new Random().nextInt(1000) + "").getBytes());
+        args.put("templeid", templeid.getBytes());
+
+        baseInvokeRequest("apply_join_temple", args, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 同意入寺院
+     *
+     * @param masterid
+     */
+    public static void approveJoinTemple(String templeid, String masterid, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("masterid", masterid.getBytes());
+        args.put("templeid", templeid.getBytes());
+
+        baseInvokeRequest("approve_join_temple", args, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 发起提案
+     * {"key":"ratio_for_burn", "newvalue":"20", "timestamp": "xxxxxx", "expire":"yyyyyy"}
+     *
+     * @param key
+     */
+    public static void makeProposal(String key, String newvalue, String expire, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("key", key.getBytes());
+        args.put("newvalue", newvalue.getBytes());
+        args.put("timestamp", (System.currentTimeMillis() + "").getBytes());
+        args.put("expire", expire.getBytes());
+
+        baseInvokeRequest("make_proposal", args, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 提案列表
+     *
+     * @param responseCallBack
+     */
+    public static void proposalList(String templeid, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        baseQueryRequest("list_proposal", args, new BaseObserver(false, responseCallBack));
+    }
+
+    /**
+     * 同意提案
+     * {"key":"ratio_for_burn", "newvalue":"20", "timestamp": "xxxxxx", "operate":"0"}
+     *
+     * @param key
+     */
+    public static void approveProposal(String key, String newvalue, String operate, ResponseCallBack responseCallBack) {
+        HashMap<String, byte[]> args = new HashMap<>();
+        args.put("key", key.getBytes());
+        args.put("newvalue", newvalue.getBytes());
+        args.put("timestamp", (System.currentTimeMillis() + "").getBytes());
+        args.put("operate", operate.getBytes());
+
+        baseInvokeRequest("approve_proposal", args, new BaseObserver(false, responseCallBack));
+    }
 }

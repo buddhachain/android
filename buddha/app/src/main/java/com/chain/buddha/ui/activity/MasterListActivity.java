@@ -2,19 +2,18 @@ package com.chain.buddha.ui.activity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.MasterListAdapter;
 import com.chain.buddha.ui.BaseActivity;
-import com.chain.buddha.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class MasterListActivity extends BaseActivity {
 
@@ -22,8 +21,8 @@ public class MasterListActivity extends BaseActivity {
     TextView mTitle;
 
 
-    @BindView(R.id.lv_master)
-    ListView mMasterLv;
+    @BindView(R.id.rv_master)
+    RecyclerView mMasterRv;
 
     MasterListAdapter mAdapter;
 

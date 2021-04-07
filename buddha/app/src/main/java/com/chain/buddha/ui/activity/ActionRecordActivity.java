@@ -3,7 +3,6 @@ package com.chain.buddha.ui.activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,8 +15,6 @@ import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.ActionRecordAdapter;
-import com.chain.buddha.adapter.MasterListAdapter;
-import com.chain.buddha.adapter.QifuListAdapter;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.SkipInsideUtil;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;

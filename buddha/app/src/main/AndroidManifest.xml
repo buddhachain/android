@@ -67,6 +67,8 @@
         <activity android:name=".ui.activity.SendShanjvProveActivity" />
         <activity android:name=".ui.activity.ShanjvOrderDetailActivity" />
         <activity android:name=".ui.activity.RankingActivity" />
+        <activity android:name=".ui.activity.TempleListActivity" />
+        <activity android:name=".ui.activity.TempleInfoActivity" />
 
         <activity
             android:name=".ui.activity.MainActivity"

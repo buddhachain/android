@@ -470,6 +470,38 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_temple_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dimen_8"
+            android:background="@drawable/bg_white_gray_f8_r4"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/dimen_15"
+            android:paddingTop="@dimen/dimen_10"
+            android:paddingRight="@dimen/dimen_10"
+            android:paddingBottom="@dimen/dimen_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="寺院入驻详情"
+                android:textColor="@color/color_text_level2"
+                android:textSize="@dimen/dimen_14" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:layout_width="@dimen/dimen_24"
+                android:layout_height="@dimen/dimen_24"
+                android:layout_marginLeft="@dimen/dimen_10"
+                android:src="@mipmap/icon_right" />
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/btn_master"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
