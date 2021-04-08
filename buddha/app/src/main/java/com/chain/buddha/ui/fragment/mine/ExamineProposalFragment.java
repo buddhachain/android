@@ -13,37 +13,39 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
-import com.chain.buddha.adapter.ExamineActiveListAdapter;
+import com.chain.buddha.adapter.ExamineProposalListAdapter;
 import com.chain.buddha.ui.BaseFragment;
-import com.chain.buddha.utils.DialogUtil;
+import com.chain.buddha.ui.activity.MakeProposalActivity;
+import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
-import com.chain.buddha.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
+ * 提案审核列表
  * A simple {@link Fragment} subclass.
  */
-public class ExamineActivityFragment extends BaseFragment {
+public class ExamineProposalFragment extends BaseFragment {
 
     @BindView(R.id.rv_list)
     RecyclerView mRv;
 
-    private ExamineActiveListAdapter mAdapter;
+    private ExamineProposalListAdapter mAdapter;
     private List<String> mList;
 
-    public ExamineActivityFragment() {
+    public ExamineProposalFragment() {
         // Required empty public constructor
     }
 
 
     @Override
     protected int setLayout() {
-        return R.layout.fragment_examine_activity;
+        return R.layout.fragment_proposal_list;
     }
 
     @Override
@@ -51,7 +53,7 @@ public class ExamineActivityFragment extends BaseFragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
         mRv.setLayoutManager(layoutManager);
         mList = new ArrayList<>();
-        mAdapter = new ExamineActiveListAdapter(mContext, mList);
+        mAdapter = new ExamineProposalListAdapter(mContext, mList);
         mRv.setAdapter(mAdapter);
         mAdapter.setEmptyView(R.layout.view_empty);
         mAdapter.getEmptyLayout().setOnClickListener(new View.OnClickListener() {
@@ -65,7 +67,7 @@ public class ExamineActivityFragment extends BaseFragment {
                 try {
                     String[] list = mList.get(position).split(",");
 
-                    if (StringUtils.equals(list[4], "0")) {
+                    if (StringUtils.equals(list[2], "0")) {
                         //未通过审核
                         approve(list[0]);
                     }
@@ -73,12 +75,13 @@ public class ExamineActivityFragment extends BaseFragment {
                     e.printStackTrace();
                 }
             }
+
         });
     }
 
     @Override
     protected void lazyInit() {
-        XuperApi.requestKinddeedproofList(new ResponseCallBack<String>() {
+        XuperApi.proposalList(new ResponseCallBack<String>() {
             @Override
             public void onSuccess(String resp) {
                 Log.e("resp", resp);
@@ -102,20 +105,26 @@ public class ExamineActivityFragment extends BaseFragment {
     }
 
     /**
-     * 通过善举凭证
+     * 同意提案
      */
     void approve(String id) {
-        XuperApi.approveKinddeedproof(id, new ResponseCallBack<String>() {
-            @Override
-            public void onSuccess(String resp) {
-                ToastUtils.show(mContext, resp);
-                lazyInit();
-            }
-
-            @Override
-            public void onFail(String message) {
-                DialogUtil.tipDialog(mContext, message);
-            }
-        });
+//        XuperApi.approveProposal(id, new ResponseCallBack<String>() {
+//            @Override
+//            public void onSuccess(String resp) {
+//                ToastUtils.show(mContext, resp);
+//                lazyInit();
+//            }
+//
+//            @Override
+//            public void onFail(String message) {
+//                DialogUtil.tipDialog(mContext, message);
+//            }
+//        });
     }
+
+    @OnClick(R.id.tv_make_proposal)
+    void makeProposal() {
+        SkipInsideUtil.skipInsideActivity(mContext, MakeProposalActivity.class);
+    }
+
 }

@@ -1,7 +1,5 @@
 package com.chain.buddha.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.chain.buddha.R;

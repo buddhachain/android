@@ -1,56 +1,31 @@
 package com.chain.buddha.ui.activity;
 
-import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemChildClickListener;
-import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
-import com.chain.buddha.Xuper.BaseObserver;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
-import com.chain.buddha.adapter.AddImageAdapter;
-import com.chain.buddha.adapter.AddSpecListAdapter;
 import com.chain.buddha.adapter.ManageShanjvTypeAdapter;
-import com.chain.buddha.adapter.ShanjvTypeAdapter;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.DialogUtil;
-import com.chain.buddha.utils.GifSizeFilter;
-import com.chain.buddha.utils.IpfsUtils;
 import com.chain.buddha.utils.ToastUtils;
-import com.google.gson.Gson;
-import com.zhihu.matisse.Matisse;
-import com.zhihu.matisse.MimeType;
-import com.zhihu.matisse.engine.impl.GlideEngine;
-import com.zhihu.matisse.filter.Filter;
-import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 public class ManageShanjvTypeActivity extends BaseActivity {
 

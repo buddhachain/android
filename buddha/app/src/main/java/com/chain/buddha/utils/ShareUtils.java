@@ -3,10 +3,6 @@ package com.chain.buddha.utils;
 import android.content.Context;
 import android.content.Intent;
 
-import androidx.core.content.ContextCompat;
-
-import com.chain.buddha.R;
-
 public class ShareUtils {
 
     public static void shareText(Context context, String text) {

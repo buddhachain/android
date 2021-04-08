@@ -69,6 +69,7 @@
         <activity android:name=".ui.activity.RankingActivity" />
         <activity android:name=".ui.activity.TempleListActivity" />
         <activity android:name=".ui.activity.TempleInfoActivity" />
+        <activity android:name=".ui.activity.MakeProposalActivity" />
 
         <activity
             android:name=".ui.activity.MainActivity"

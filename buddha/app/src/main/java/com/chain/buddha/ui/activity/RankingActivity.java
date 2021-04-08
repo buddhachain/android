@@ -12,11 +12,6 @@ import com.chain.buddha.adapter.FmPagerAdapter;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.ui.fragment.mine.CreditRankingFragment;
 import com.chain.buddha.ui.fragment.mine.MeritRankingFragment;
-import com.chain.buddha.ui.fragment.mine.MyAllOrderFragment;
-import com.chain.buddha.ui.fragment.mine.MyEvaluateFragment;
-import com.chain.buddha.ui.fragment.mine.MyExamineFragment;
-import com.chain.buddha.ui.fragment.mine.MyProcessingFragment;
-import com.chain.buddha.ui.fragment.mine.MySendProveFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;

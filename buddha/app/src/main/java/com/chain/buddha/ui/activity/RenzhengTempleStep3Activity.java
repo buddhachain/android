@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.BaseObserver;
 import com.chain.buddha.Xuper.ResponseCallBack;
@@ -26,7 +28,6 @@ import com.zhihu.matisse.internal.entity.CaptureStrategy;
 
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.reactivex.Observable;

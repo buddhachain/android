@@ -8,32 +8,21 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.baidu.xuper.api.Account;
 import com.baidu.xuper.api.XuperClient;
 import com.chain.buddha.R;
-import com.chain.buddha.Xuper.BaseObserver;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.DialogUtil;
-import com.chain.buddha.utils.PermissionUtils;
-import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
 import com.chain.buddha.utils.ToastUtils;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
-import java.io.File;
-
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
 
 public class TransferCoinActivity extends BaseActivity {
 

@@ -1,9 +1,9 @@
 package com.chain.buddha.ui.fragment.mine;
 
+import androidx.fragment.app.Fragment;
+
 import com.chain.buddha.R;
 import com.chain.buddha.ui.BaseFragment;
-
-import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.

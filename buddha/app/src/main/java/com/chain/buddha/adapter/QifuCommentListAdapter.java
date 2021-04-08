@@ -1,7 +1,6 @@
 package com.chain.buddha.adapter;
 
 import android.content.Context;
-import android.text.format.DateUtils;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;

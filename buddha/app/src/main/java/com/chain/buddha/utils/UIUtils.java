@@ -13,7 +13,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import com.chain.buddha.R;
-import com.chain.buddha.Xuper.XuperAccount;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

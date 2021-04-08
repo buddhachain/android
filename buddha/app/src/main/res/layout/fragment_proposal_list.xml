@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_40"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimen_1"
+            android:layout_weight="1"
+            android:background="#158DEC"
+            android:gravity="center"
+            android:text="提案名称"
+            android:textColor="@color/color_white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimen_1"
+            android:layout_weight="1"
+            android:background="#158DEC"
+            android:gravity="center"
+            android:text="newvalue"
+            android:textColor="@color/color_white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dimen_1"
+            android:layout_weight="1"
+            android:background="#158DEC"
+            android:gravity="center"
+            android:text="是否通过"
+            android:textColor="@color/color_white" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_40" />
+
+    <TextView
+        android:id="@+id/tv_make_proposal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/dimen_20"
+        android:background="@color/base_color"
+        android:padding="@dimen/dimen_5"
+        android:text="发起提案"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/text_dimen_16" />
+
+</FrameLayout>

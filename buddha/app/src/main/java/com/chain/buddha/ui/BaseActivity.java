@@ -7,13 +7,13 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.chain.buddha.BuddhaApplication;
 import com.chain.buddha.R;
 import com.chain.buddha.utils.UIUtils;
 import com.gyf.immersionbar.ImmersionBar;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
 

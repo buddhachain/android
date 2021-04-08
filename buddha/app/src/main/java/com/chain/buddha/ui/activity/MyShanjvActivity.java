@@ -1,12 +1,11 @@
 package com.chain.buddha.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.TextView;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import android.os.Bundle;
-import android.widget.TextView;
 
 import com.chain.buddha.R;
 import com.chain.buddha.adapter.FmPagerAdapter;

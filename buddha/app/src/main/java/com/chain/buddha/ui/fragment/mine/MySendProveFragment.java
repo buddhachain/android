@@ -13,7 +13,6 @@ import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
-import com.chain.buddha.adapter.QifuRecordListAdapter;
 import com.chain.buddha.adapter.ShanjvProveListAdapter;
 import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.ui.activity.SendShanjvProveActivity;

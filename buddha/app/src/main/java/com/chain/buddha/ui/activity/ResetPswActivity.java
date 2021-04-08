@@ -9,7 +9,6 @@ import com.chain.buddha.R;
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.DialogUtil;
-import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
 import com.chain.buddha.utils.ToastUtils;
 

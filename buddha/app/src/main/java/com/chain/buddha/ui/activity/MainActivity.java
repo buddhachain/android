@@ -7,6 +7,12 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Lifecycle;
+
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.ui.BaseActivity;
@@ -17,12 +23,6 @@ import com.chain.buddha.ui.fragment.ShouyeFragment;
 import com.chain.buddha.ui.fragment.XiuxingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Lifecycle;
 
 import butterknife.BindView;
 

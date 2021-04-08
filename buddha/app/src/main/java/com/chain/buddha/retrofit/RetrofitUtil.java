@@ -2,7 +2,6 @@ package com.chain.buddha.retrofit;
 
 import android.util.Log;
 
-import com.chain.buddha.BuildConfig;
 import com.chain.buddha.MyBuildConfig;
 
 import java.io.IOException;

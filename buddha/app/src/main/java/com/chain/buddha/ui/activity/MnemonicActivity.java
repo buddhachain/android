@@ -3,6 +3,9 @@ package com.chain.buddha.ui.activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import com.chain.buddha.R;
 import com.chain.buddha.adapter.KeywordAdapter;
 import com.chain.buddha.ui.BaseActivity;
@@ -15,8 +18,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import butterknife.BindView;
 import butterknife.OnClick;
 

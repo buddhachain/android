@@ -4,11 +4,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
-import com.chain.buddha.Xuper.Test;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.QifuListAdapter;
 import com.chain.buddha.ui.BaseFragment;
@@ -28,13 +33,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import androidx.annotation.Nullable;
 
 import butterknife.BindView;
 import butterknife.OnClick;

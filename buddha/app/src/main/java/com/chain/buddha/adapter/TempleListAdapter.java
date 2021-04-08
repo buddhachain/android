@@ -1,20 +1,15 @@
 package com.chain.buddha.adapter;
 
 import android.content.Context;
-import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.chain.buddha.R;
-import com.chain.buddha.utils.IpfsUtils;
-import com.chain.buddha.utils.StringUtils;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-
-import cc.shinichi.library.ImagePreview;
 
 /**
  * Created by heshuai on 2018/9/25.

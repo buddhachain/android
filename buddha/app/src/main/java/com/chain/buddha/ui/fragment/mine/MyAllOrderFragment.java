@@ -12,15 +12,11 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
-import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.QifuRecordListAdapter;
 import com.chain.buddha.ui.BaseFragment;
-import com.chain.buddha.ui.activity.SendShanjvProveActivity;
 import com.chain.buddha.ui.activity.ShanjvOrderDetailActivity;
-import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.SkipInsideUtil;
-import com.chain.buddha.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

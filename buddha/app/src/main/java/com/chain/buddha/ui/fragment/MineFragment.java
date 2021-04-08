@@ -5,6 +5,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperAccount;
@@ -12,7 +16,6 @@ import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.ui.activity.ActionRecordActivity;
 import com.chain.buddha.ui.activity.JjhBackstageActivity;
-import com.chain.buddha.ui.activity.LoginActivity;
 import com.chain.buddha.ui.activity.MasterBackstageActivity;
 import com.chain.buddha.ui.activity.MyShanjvActivity;
 import com.chain.buddha.ui.activity.RankingActivity;
@@ -39,10 +42,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 import java.util.List;
-
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.fragment.app.Fragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;

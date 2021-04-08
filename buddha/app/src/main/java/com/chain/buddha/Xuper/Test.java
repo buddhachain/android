@@ -7,20 +7,15 @@ import android.util.Log;
 
 import com.baidu.xuper.api.Account;
 import com.baidu.xuper.api.Common;
-import com.baidu.xuper.api.ContractResponse;
-import com.baidu.xuper.api.Proposal;
 import com.baidu.xuper.api.Transaction;
 import com.baidu.xuper.api.XuperClient;
-import com.baidu.xuper.config.Config;
 import com.baidu.xuper.pb.XchainGrpc;
 import com.baidu.xuper.pb.XchainOuterClass;
 import com.chain.buddha.utils.FileUtils;
 import com.chain.buddha.utils.ThreadUtils;
-import com.google.protobuf.ByteString;
 
 import java.io.File;
 import java.math.BigInteger;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

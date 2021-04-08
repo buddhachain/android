@@ -9,8 +9,9 @@
     </style>
 
     <style name="whiteGrayEditBg" parent="Widget.AppCompat.EditText">
-        <item name="android:textSize">@dimen/text_dimen_12</item>
+        <item name="android:textSize">@dimen/text_dimen_14</item>
         <item name="android:paddingLeft">@dimen/dimen_12</item>
+        <item name="android:paddingRight">@dimen/dimen_12</item>
         <item name="android:background">@drawable/bg_white_gray_f8_r4</item>
         <item name="android:layout_height">@dimen/dimen_40</item>
     </style>

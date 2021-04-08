@@ -1,19 +1,17 @@
 package com.chain.buddha.ui.fragment;
 
-import android.Manifest;
 import android.util.Log;
 import android.view.View;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.QifuRecordListAdapter;
 import com.chain.buddha.ui.BaseFragment;
-import com.chain.buddha.utils.PermissionUtils;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

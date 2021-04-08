@@ -1,14 +1,8 @@
 package com.chain.buddha.ui.activity;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
-import androidx.core.content.FileProvider;
 
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.XuperAccount;
@@ -16,13 +10,9 @@ import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.ShareUtils;
 import com.chain.buddha.utils.SkipInsideUtil;
-import com.mob.MobSDK;
-
-import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import cn.sharesdk.onekeyshare.OnekeyShare;
 
 public class SettingActivity extends BaseActivity {
 

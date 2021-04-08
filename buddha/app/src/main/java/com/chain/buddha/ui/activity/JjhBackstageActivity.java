@@ -2,10 +2,15 @@ package com.chain.buddha.ui.activity;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.chain.buddha.R;
 import com.chain.buddha.adapter.FmPagerAdapter;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.ui.fragment.mine.ExamineActivityFragment;
+import com.chain.buddha.ui.fragment.mine.ExamineProposalFragment;
 import com.chain.buddha.ui.fragment.mine.ExamineRenzhengMasterFragment;
 import com.chain.buddha.ui.fragment.mine.ExamineRenzhengTempleFragment;
 import com.chain.buddha.ui.fragment.mine.ExamineShanjvFragment;
@@ -14,9 +19,6 @@ import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 
 public class JjhBackstageActivity extends BaseActivity {
@@ -34,7 +36,7 @@ public class JjhBackstageActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jjh_backstage);
-        mTitle = new String[]{"上架审核", "活动审核", "法师审核", "寺院审核"};
+        mTitle = new String[]{"上架审核", "活动审核", "法师审核", "寺院审核", "提案审核"};
         fragmentList = new ArrayList<>();
         for (int i = 0; i < mTitle.length; i++) {
             switch (i) {
@@ -49,6 +51,9 @@ public class JjhBackstageActivity extends BaseActivity {
                     break;
                 case 3:
                     fragmentList.add(new ExamineRenzhengTempleFragment());
+                    break;
+                case 4:
+                    fragmentList.add(new ExamineProposalFragment());
                     break;
                 default:
                     break;

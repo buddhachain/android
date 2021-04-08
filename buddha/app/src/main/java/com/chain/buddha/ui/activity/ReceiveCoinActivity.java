@@ -10,17 +10,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.baidu.xuper.api.Account;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.ui.BaseActivity;
-import com.chain.buddha.utils.SkipInsideUtil;
-import com.chain.buddha.utils.StringUtils;
 import com.chain.buddha.utils.ToastUtils;
 import com.chain.buddha.utils.UIUtils;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
-
-import java.io.File;
 
 import butterknife.BindView;
 import butterknife.OnClick;

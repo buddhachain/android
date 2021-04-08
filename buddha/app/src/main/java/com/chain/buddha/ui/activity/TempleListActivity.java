@@ -10,25 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.listener.OnItemChildClickListener;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
-import com.chain.buddha.adapter.ManageShanjvTypeAdapter;
 import com.chain.buddha.adapter.TempleListAdapter;
 import com.chain.buddha.ui.BaseActivity;
-import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.SkipInsideUtil;
-import com.chain.buddha.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class TempleListActivity extends BaseActivity {
 

@@ -1,7 +1,5 @@
 package com.chain.buddha.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,7 +10,6 @@ import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.ui.BaseActivity;
 import com.chain.buddha.utils.DialogUtil;
-import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.ToastUtils;
 
 import butterknife.BindView;

@@ -2,7 +2,6 @@ package com.chain.buddha.ui.activity;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;

@@ -9,7 +9,6 @@ import com.baidu.xuper.api.Proposal;
 import com.baidu.xuper.api.Transaction;
 import com.baidu.xuper.api.XuperClient;
 import com.baidu.xuper.config.Config;
-import com.baidu.xuper.crypto.ECKeyPair;
 import com.baidu.xuper.crypto.Hash;
 import com.baidu.xuper.pb.XchainGrpc;
 import com.baidu.xuper.pb.XchainOuterClass;
@@ -1027,7 +1026,7 @@ public class XuperApi {
      *
      * @param responseCallBack
      */
-    public static void proposalList(String templeid, ResponseCallBack responseCallBack) {
+    public static void proposalList(ResponseCallBack responseCallBack) {
         HashMap<String, byte[]> args = new HashMap<>();
         baseQueryRequest("list_proposal", args, new BaseObserver(false, responseCallBack));
     }
