@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="io.agora.openlive">
+
+    <application>
+        <activity
+            android:name=".activities.LiveMainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+        </activity>
+        <activity
+            android:name=".activities.LiveRoomActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.RoleActivity"
+            android:screenOrientation="portrait"
+            android:noHistory="true"/>
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:screenOrientation="portrait"/>
+    </application>
+
+</manifest>

@@ -100,10 +100,4 @@ public class ActionRecordActivity extends BaseActivity {
         });
 
     }
-
-    @OnClick(R.id.view_go_top)
-    void goTop() {
-        mRecordRv.smoothScrollToPosition(0);
-    }
-
 }

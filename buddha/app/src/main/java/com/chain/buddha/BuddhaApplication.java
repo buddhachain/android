@@ -8,6 +8,8 @@ import androidx.multidex.MultiDex;
 import com.mob.MobSDK;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
+import io.agora.openlive.AgoraManager;
+
 /**
  * @Author: haroro
  * @CreateDate: 3/15/21
@@ -29,6 +31,7 @@ public class BuddhaApplication extends Application {
         MultiDex.install(instance);
         ZXingLibrary.initDisplayOpinion(this);
         MobSDK.submitPolicyGrantResult(true, null);
+        AgoraManager.init(instance);
     }
 
     public static Activity getCurrencyActivity() {

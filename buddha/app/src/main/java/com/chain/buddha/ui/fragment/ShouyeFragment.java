@@ -1,15 +1,20 @@
 package com.chain.buddha.ui.fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
 import com.chain.buddha.R;
@@ -17,12 +22,17 @@ import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.QifuListAdapter;
 import com.chain.buddha.ui.BaseFragment;
+import com.chain.buddha.ui.activity.LiveActivity;
 import com.chain.buddha.ui.activity.ShanjvDetailActivity;
 import com.chain.buddha.utils.EventBeans;
 import com.chain.buddha.utils.SkipInsideUtil;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
 import com.scwang.smart.refresh.layout.api.RefreshLayout;
 import com.scwang.smart.refresh.layout.listener.OnRefreshListener;
+import com.youth.banner.Banner;
+import com.youth.banner.adapter.BannerImageAdapter;
+import com.youth.banner.holder.BannerImageHolder;
+import com.youth.banner.indicator.CircleIndicator;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,11 +46,16 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.agora.openlive.activities.LiveMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class ShouyeFragment extends BaseFragment {
+
+
+    @BindView(R.id.sv)
+    NestedScrollView mSv;
 
     @BindView(R.id.et_search)
     EditText mSearchEt;
@@ -54,8 +69,12 @@ public class ShouyeFragment extends BaseFragment {
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
 
+    @BindView(R.id.banner)
+    Banner mBanner;
+
     private QifuListAdapter mQifuAdapter;
     private List<String> mQifuList;
+    private List<Integer> mBannerImgList;
 
     /**
      * 善举种类
@@ -100,12 +119,41 @@ public class ShouyeFragment extends BaseFragment {
             }
         });
 
+        mSv.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                Log.e("scrollY", scrollY + "");
+                if (scrollY > 1000) {
+                    mGoTopView.setVisibility(View.VISIBLE);
+                } else {
+                    mGoTopView.setVisibility(View.GONE);
+                }
+
+            }
+        });
+
         refreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {
                 getData();
             }
         });
+
+        mBannerImgList = new ArrayList<>();
+        mBannerImgList.add(R.mipmap.img_banner);
+        mBannerImgList.add(R.mipmap.img_banner);
+        mBanner.setAdapter(new BannerImageAdapter<Integer>(mBannerImgList) {
+            @Override
+            public void onBindView(BannerImageHolder holder, Integer img, int position, int size) {
+                //图片加载自己实现
+                Glide.with(holder.itemView)
+                        .load(img)
+                        .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                        .into(holder.imageView);
+            }
+        })
+                .addBannerLifecycleObserver(this)//添加生命周期观察者
+                .setIndicator(new CircleIndicator(mContext));
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -184,7 +232,13 @@ public class ShouyeFragment extends BaseFragment {
 
     @OnClick(R.id.view_go_top)
     void goTop() {
-        mQifuRv.smoothScrollToPosition(0);
+        mSv.smoothScrollTo(0, 0);
+    }
+
+    @OnClick(R.id.view_live)
+    void goLive() {
+        SkipInsideUtil.skipInsideActivity(mContext, LiveMainActivity.class);
+//        SkipInsideUtil.skipInsideActivity(mContext, LiveRoomActivity.class);
     }
 
 }
