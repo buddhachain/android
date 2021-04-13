@@ -122,16 +122,11 @@ public class MineFragment extends BaseFragment {
     }
 
     void refreshView() {
-        if (XuperAccount.ifLoginAccount()) {
+        if (XuperAccount.ifHasAccount(mContext)) {
             mNickNameTv.setText(getString(R.string.normal));
             mNickNameTv.setVisibility(View.VISIBLE);
-            mLoginTv.setText(getString(R.string.logout));
-            mLoginTv.setVisibility(View.GONE);
-        } else if (XuperAccount.ifHasAccount(mContext)) {
-            mNickNameTv.setText(getString(R.string.normal));
-            mNickNameTv.setVisibility(View.GONE);
             mLoginTv.setText(getString(R.string.open_wallet));
-            mLoginTv.setVisibility(View.VISIBLE);
+            mLoginTv.setVisibility(View.GONE);
         } else {
             mNickNameTv.setText(getString(R.string.not_login));
             mNickNameTv.setVisibility(View.GONE);
@@ -167,7 +162,17 @@ public class MineFragment extends BaseFragment {
                 mSiyuanStateTv.setText(R.string.no_approve);
                 mSiyuanStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
                 break;
+            case XuperAccount.ACCOUNT_TYPE_NORMAL:
+                mNickNameTv.setText(getString(R.string.normal));
+                mFashiStateTv.setText(R.string.no_approve);
+                mFashiStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                mJjhStateTv.setText(R.string.no_approve);
+                mJjhStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                mSiyuanStateTv.setText(R.string.no_approve);
+                mSiyuanStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
+                break;
             default:
+                mNickNameTv.setText(getString(R.string.not_login));
                 mFashiStateTv.setText(R.string.no_approve);
                 mFashiStateTv.setTextColor(ContextCompat.getColor(mContext, R.color.color_text_level2));
                 mJjhStateTv.setText(R.string.no_approve);
@@ -300,18 +305,7 @@ public class MineFragment extends BaseFragment {
     void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_login:
-                if (XuperAccount.ifLoginAccount()) {
-                    DialogUtil.simpleDialog(mContext, "确认删除？", new DialogUtil.ConfirmCallBackObject<String>() {
-                        @Override
-                        public void onConfirmClick(String content) {
-                            XuperAccount.logoutAccount(mContext);
-                        }
-                    }, null);
-                } else if (XuperAccount.ifHasAccount(mContext)) {
-                    XuperAccount.checkAccount(mContext);
-                } else {
-                    SkipInsideUtil.skipInsideActivity(mContext, WalletGuideActivity.class);
-                }
+                SkipInsideUtil.skipInsideActivity(mContext, WalletGuideActivity.class);
                 break;
             case R.id.btn_my_shanjv_1:
                 toMyShanjv(0);

@@ -41,7 +41,7 @@ public class XuperAccount {
 
     private static Account mAccount;//当前账户实体类
     private static String mAccountAddress;//当前账户地址
-    private static int mAccountType = -1;//当前账户类型
+    private static int mAccountType = ACCOUNT_TYPE_NULL;//当前账户类型
 
     public static final String VISITOR_ADDRESS = "eyY6Eez8z4Y3HvTWCM8r1VQDGBEbYkS6M";//游客改用私钥
 

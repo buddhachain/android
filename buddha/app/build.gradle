@@ -11,12 +11,25 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+
     }
     buildTypes {
         release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            ndk {
+                abiFilters "armeabi-v7a"
+            }
+        }
+
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            ndk {
+                abiFilters "armeabi-v7a", "x86"
+            }
         }
+
     }
 
     compileOptions {
@@ -46,7 +59,7 @@ MobSDK {
                 path "pages/index/index.html?id=1"
                 withShareTicket true
                 miniprogramType 2
-                bypassApproval="true"
+                bypassApproval = "true"
             }
             QQ {
                 appId "100371282"
@@ -58,12 +71,12 @@ MobSDK {
             WechatMoments {
                 appId "wx4868b35061f87885"
                 appSecret "64020361b8ec4c99936c0e3999a9f249"
-                bypassApproval="true"
+                bypassApproval = "true"
             }
             WechatFavorite {
                 appId "wx4868b35061f87885"
                 appSecret "64020361b8ec4c99936c0e3999a9f249"
-                bypassApproval="true"
+                bypassApproval = "true"
             }
             QZone {
                 appId "100371282"
