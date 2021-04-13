@@ -50,13 +50,12 @@ public class ResetPswActivity extends BaseActivity {
             ToastUtils.show(mContext, "两次密码输入不一致");
             return;
         }
-        Account account = XuperAccount.getAccountFromFile(mContext, psw);
-        if (account == null) {
+        if (!XuperAccount.checkPsw(mContext, psw)) {
             ToastUtils.show(mContext, "旧密码错误");
             return;
         }
         try {
-            XuperAccount.saveAccount(mContext, account.getMnemonic(), psw2);
+            XuperAccount.saveAccount(mContext, XuperAccount.getAccount(), psw2);
             ToastUtils.show(mContext, "修改成功");
             finish();
         } catch (Throwable e) {

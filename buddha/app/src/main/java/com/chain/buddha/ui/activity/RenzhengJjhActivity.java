@@ -41,7 +41,7 @@ public class RenzhengJjhActivity extends BaseActivity {
         String address = mAddressTv.getText().toString();
         String amount = mAmountTv.getText().toString();
 
-        DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackObject<String>() {
             @Override
             public void onConfirmClick(String content) {
                 XuperApi.applyFounder(desc, address, amount, new ResponseCallBack<String>() {

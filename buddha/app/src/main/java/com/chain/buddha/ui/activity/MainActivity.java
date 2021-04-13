@@ -21,6 +21,8 @@ import com.chain.buddha.ui.fragment.MineFragment;
 import com.chain.buddha.ui.fragment.QifuFragment;
 import com.chain.buddha.ui.fragment.ShouyeFragment;
 import com.chain.buddha.ui.fragment.XiuxingFragment;
+import com.chain.buddha.utils.DialogUtil;
+import com.chain.buddha.utils.SkipInsideUtil;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
@@ -43,7 +45,14 @@ public class MainActivity extends BaseActivity {
         new RxPermissions(this).request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(aBoolean -> {
                     if (aBoolean) {
-                        XuperAccount.checkAccount(mContext);
+                        if (!XuperAccount.ifHasAccount(mContext)) {
+                            DialogUtil.simpleDialog(mContext, "还没有账号，是否去导入", new DialogUtil.ConfirmCallBackObject() {
+                                @Override
+                                public void onConfirmClick(Object content) {
+                                    SkipInsideUtil.skipInsideActivity(mContext, WalletGuideActivity.class);
+                                }
+                            }, null);
+                        }
                     }
                 });
 

@@ -54,7 +54,7 @@ public class ShanjvOrderDetailActivity extends BaseActivity {
     void comment() {
         String labels = "[\"1\"]";
         String commnet = mCommentEt.getText().toString();
-        DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackObject<String>() {
             @Override
             public void onConfirmClick(String content) {
                 XuperApi.addAftercomment(orderId, commnet, new ResponseCallBack<String>() {

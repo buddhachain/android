@@ -301,7 +301,7 @@ public class MineFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.tv_login:
                 if (XuperAccount.ifLoginAccount()) {
-                    DialogUtil.simpleDialog(mContext, "确认删除？", new DialogUtil.ConfirmCallBackInf() {
+                    DialogUtil.simpleDialog(mContext, "确认删除？", new DialogUtil.ConfirmCallBackObject<String>() {
                         @Override
                         public void onConfirmClick(String content) {
                             XuperAccount.logoutAccount(mContext);

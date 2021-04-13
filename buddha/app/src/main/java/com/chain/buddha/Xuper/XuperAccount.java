@@ -10,6 +10,7 @@ import com.chain.buddha.ui.activity.WalletGuideActivity;
 import com.chain.buddha.utils.DialogUtil;
 import com.chain.buddha.utils.EventBeans;
 import com.chain.buddha.utils.FileUtils;
+import com.chain.buddha.utils.SharePreferenceUtils;
 import com.chain.buddha.utils.SkipInsideUtil;
 import com.chain.buddha.utils.StringUtils;
 
@@ -39,10 +40,22 @@ public class XuperAccount {
     public static final int ACCOUNT_TYPE_JJH = 3;//账户类型 基金会
 
     private static Account mAccount;//当前账户实体类
+    private static String mAccountAddress;//当前账户地址
     private static int mAccountType = -1;//当前账户类型
+
+    public static final String VISITOR_ADDRESS = "eyY6Eez8z4Y3HvTWCM8r1VQDGBEbYkS6M";//游客改用私钥
 
     private XuperAccount() {
 
+    }
+
+    /**
+     * 初始化账户
+     */
+    public static void initAccount() {
+        if (SharePreferenceUtils.contains(SharePreferenceUtils.SP_USER_ADDRESS_KEY)) {
+            mAccountAddress = SharePreferenceUtils.getString(SharePreferenceUtils.SP_USER_ADDRESS_KEY);
+        }
     }
 
     /**
@@ -71,6 +84,15 @@ public class XuperAccount {
     public static void setAccount(Account account) {
         setAccountType(account == null ? ACCOUNT_TYPE_NULL : ACCOUNT_TYPE_NORMAL);
         mAccount = account;
+        if (mAccount != null) {
+            if (!StringUtils.equals(mAccountAddress, mAccount.getAddress())) {
+                SharePreferenceUtils.putString(SharePreferenceUtils.SP_USER_ADDRESS_KEY, mAccount.getAddress());
+                mAccountAddress = mAccount.getAddress();
+            }
+        } else {
+            mAccountAddress = null;
+        }
+
         EventBus.getDefault().post(new EventBeans.LoginEvent());
     }
 
@@ -90,6 +112,8 @@ public class XuperAccount {
     public static String getAddress() {
         if (ifLoginAccount()) {
             return getAccount().getAddress();
+        } else if (!StringUtils.equalsNull(mAccountAddress)) {
+            return mAccountAddress;
         }
         return "";
     }
@@ -107,6 +131,9 @@ public class XuperAccount {
             if (account == null) {
                 return false;
             }
+            if (mAccount == null) {
+                setAccount(account);
+            }
 
         } catch (Throwable e) {
             return false;
@@ -123,7 +150,8 @@ public class XuperAccount {
     public static boolean ifHasAccount(Context context) {
         try {
             String savepath = getAccountCachePath(context);
-            boolean ifHas = new File(savepath, XuperConstants.KEY_SAVE_FILE_NAME).exists();
+            boolean ifHas = new File(savepath, XuperConstants.KEY_SAVE_FILE_NAME).exists()
+                    || SharePreferenceUtils.contains(SharePreferenceUtils.SP_USER_ADDRESS_KEY);
             return ifHas;
         } catch (Exception e) {
             return false;
@@ -149,6 +177,7 @@ public class XuperAccount {
         try {
             String savepath = getAccountCachePath(context);
             boolean b = new File(savepath, XuperConstants.KEY_SAVE_FILE_NAME).delete();
+            SharePreferenceUtils.remove(SharePreferenceUtils.SP_USER_ADDRESS_KEY);
             setAccount(null);
             return b;
         } catch (Exception e) {
@@ -171,15 +200,32 @@ public class XuperAccount {
      * @return
      */
     public static void checkAccount(Activity activity) {
+        checkAccount(activity, null);
+    }
+
+    /**
+     * 账号检查
+     *
+     * @return
+     */
+    public static void checkAccount(Activity activity, DialogUtil.ConfirmCallBackObject<Boolean> callBack) {
         if (!ifHasAccount(activity)) {
-            DialogUtil.simpleDialog(activity, "还没有账号，是否去导入", new DialogUtil.ConfirmCallBackInf() {
+            DialogUtil.simpleDialog(activity, "还没有账号，是否去导入", new DialogUtil.ConfirmCallBackObject<String>() {
                 @Override
                 public void onConfirmClick(String content) {
                     SkipInsideUtil.skipInsideActivity(activity, WalletGuideActivity.class);
                 }
             }, null);
+
+            if (callBack != null) {
+                callBack.onConfirmClick(false);
+            }
         } else if (!ifLoginAccount()) {
-            DialogUtil.checkPswDialog(activity, "请输入密码，打开钱包", null, null);
+            DialogUtil.checkPswDialog(activity, "请输入密码，打开钱包", callBack, null);
+        } else {
+            if (callBack != null) {
+                callBack.onConfirmClick(true);
+            }
         }
     }
 
@@ -187,7 +233,11 @@ public class XuperAccount {
      * @param context
      * @param passwd  密码。
      */
-    public static void saveAccount(Context context, String mnemonic, String passwd) {
+    public static void saveAccount(Context context, Account account, String passwd) {
+        if (account == null) {
+            return;
+        }
+        setAccount(account);
         String path = getAccountCachePath(context);
         File file = new File(path);
         if (!file.exists()) {
@@ -198,7 +248,7 @@ public class XuperAccount {
             path += "/";
         }
         byte[] newPW = Hash.doubleSha256(passwd.getBytes());
-        byte[] encryptContent = AES.encrypt(mnemonic.getBytes(), newPW);
+        byte[] encryptContent = AES.encrypt(account.getMnemonic().getBytes(), newPW);
         writeFileUsingFileName(path + XuperConstants.KEY_SAVE_FILE_NAME, encryptContent);
     }
 
@@ -220,7 +270,7 @@ public class XuperAccount {
      * @param passwd 密码。
      * @return Account 账户信息。
      */
-    public static Account getAccountFromFile(Context context, String passwd) {
+    private static Account getAccountFromFile(Context context, String passwd) {
         try {
             String fileName = getAccountCachePath(context) + XuperConstants.KEY_SAVE_FILE_NAME;
 //            byte[] fileBytes = Files.readAllBytes(Paths.get(fileName));

@@ -59,7 +59,7 @@ public class ManageShanjvTypeActivity extends BaseActivity {
 
                     switch (view.getId()) {
                         case R.id.tv_delete:
-                            DialogUtil.simpleDialog(mContext, "确认删除？", new DialogUtil.ConfirmCallBackInf() {
+                            DialogUtil.simpleDialog(mContext, "确认删除？", new DialogUtil.ConfirmCallBackObject<String>() {
                                 @Override
                                 public void onConfirmClick(String content) {
                                     XuperApi.deleteKinddeedtype(id, new ResponseCallBack<String>() {
@@ -78,7 +78,7 @@ public class ManageShanjvTypeActivity extends BaseActivity {
                             });
                             break;
                         case R.id.tv_update:
-                            DialogUtil.editDialog(mContext, "修改种类", mShanjvTypeList.get(position).split(",")[1], "", new DialogUtil.ConfirmCallBackInf() {
+                            DialogUtil.editDialog(mContext, "修改种类", mShanjvTypeList.get(position).split(",")[1], "", new DialogUtil.ConfirmCallBackObject<String>() {
                                 @Override
                                 public void onConfirmClick(String content) {
                                     XuperApi.updateKinddeedtype(id, content, new ResponseCallBack<String>() {
@@ -140,7 +140,7 @@ public class ManageShanjvTypeActivity extends BaseActivity {
 
     @OnClick(R.id.tv_add_type)
     void addType() {
-        DialogUtil.editDialog(mContext, "添加善举种类", "", "请输入善举种类", new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.editDialog(mContext, "添加善举种类", "", "请输入善举种类", new DialogUtil.ConfirmCallBackObject<String>() {
             @Override
             public void onConfirmClick(String content) {
                 String id = new Random().nextInt(1000) + "";

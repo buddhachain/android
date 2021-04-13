@@ -32,7 +32,7 @@ public class SaveMnemonicTipActivity extends BaseActivity {
 
     @OnClick(R.id.view_not_save)
     void notCheck() {
-        DialogUtil.simpleDialog(mContext, "确认不备份?", new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.simpleDialog(mContext, "确认不备份?", new DialogUtil.ConfirmCallBackObject<String>() {
             @Override
             public void onConfirmClick(String content) {
                 SkipInsideUtil.skipInsideActivity(mContext, MnemonicActivity.class, SkipInsideUtil.SKIP_KEY_MNEMONIC, mnemonic);

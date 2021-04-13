@@ -90,7 +90,7 @@ public class TransferCoinActivity extends BaseActivity {
             return;
         }
 
-        DialogUtil.simpleDialog(mContext, "确认转出？", new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.simpleDialog(mContext, "确认转出？", new DialogUtil.ConfirmCallBackObject<String>() {
             @Override
             public void onConfirmClick(String content) {
 

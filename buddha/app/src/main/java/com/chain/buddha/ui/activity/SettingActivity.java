@@ -58,9 +58,9 @@ public class SettingActivity extends BaseActivity {
 
     @OnClick(R.id.get_mnemonic)
     void getMnemonic() {
-        DialogUtil.checkPswDialog(mContext, new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.checkPswDialog(mContext, new DialogUtil.ConfirmCallBackObject<Boolean>() {
             @Override
-            public void onConfirmClick(String content) {
+            public void onConfirmClick(Boolean content) {
                 SkipInsideUtil.skipInsideActivity(mContext, ShowMnemonicTipActivity.class,
                         SkipInsideUtil.SKIP_KEY_MNEMONIC, XuperAccount.getAccount().getMnemonic());
             }
@@ -70,7 +70,7 @@ public class SettingActivity extends BaseActivity {
     @OnClick(R.id.view_delete_wallet)
     void deleteWallet() {
         if (isHasAccount) {
-            DialogUtil.simpleDialog(mContext, "确认删除？", new DialogUtil.ConfirmCallBackInf() {
+            DialogUtil.simpleDialog(mContext, "确认删除？", new DialogUtil.ConfirmCallBackObject<String>() {
                 @Override
                 public void onConfirmClick(String content) {
                     XuperAccount.logoutAccount(mContext);

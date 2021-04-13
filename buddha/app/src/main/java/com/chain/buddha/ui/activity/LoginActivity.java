@@ -51,8 +51,7 @@ public class LoginActivity extends BaseActivity {
         try {
             int language = StringUtils.isChinese(mnemonic.charAt(0)) ? 1 : 2;
             Account account = Account.retrieve(mnemonic, language);
-            XuperAccount.saveAccount(mContext, mnemonic, psw2);
-            XuperAccount.setAccount(account);
+            XuperAccount.saveAccount(mContext, account, psw2);
             ToastUtils.show(mContext, "导入成功");
             finish();
         } catch (Throwable e) {

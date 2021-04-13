@@ -99,7 +99,7 @@ public class UpdateShanjvActivity extends BaseActivity {
         mSpecAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
-                DialogUtil.simpleDialog(mContext, "确认删除该规格？", new DialogUtil.ConfirmCallBackInf() {
+                DialogUtil.simpleDialog(mContext, "确认删除该规格？", new DialogUtil.ConfirmCallBackObject<String>() {
                     @Override
                     public void onConfirmClick(String content) {
                         mSpecList.remove(position);
@@ -119,7 +119,7 @@ public class UpdateShanjvActivity extends BaseActivity {
         mAddImageAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(@NonNull BaseQuickAdapter adapter, @NonNull View view, int position) {
-                DialogUtil.simpleDialog(mContext, "确认删除该张图片？", new DialogUtil.ConfirmCallBackInf() {
+                DialogUtil.simpleDialog(mContext, "确认删除该张图片？", new DialogUtil.ConfirmCallBackObject<String>() {
                     @Override
                     public void onConfirmClick(String content) {
                         mImageList.remove(position);
@@ -262,7 +262,7 @@ public class UpdateShanjvActivity extends BaseActivity {
         }
         String detail = new Gson().toJson(detailList);
         String spec = mSpecAdapter.getSpecString();
-        DialogUtil.simpleDialog(mContext, "确认上传？", new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.simpleDialog(mContext, "确认上传？", new DialogUtil.ConfirmCallBackObject<String>() {
             @Override
             public void onConfirmClick(String content) {
                 XuperApi.updateKinddeed(kdid, name, mSelectShanjvType, detail, spec, new ResponseCallBack<String>() {

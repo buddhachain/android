@@ -53,7 +53,7 @@ public class MnemonicActivity extends BaseActivity {
 
     @OnClick(R.id.view_submit)
     void submit() {
-        DialogUtil.simpleDialog(mContext, "确认保存好助记词", new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.simpleDialog(mContext, "确认保存好助记词", new DialogUtil.ConfirmCallBackObject<String>() {
             @Override
             public void onConfirmClick(String content) {
                 SkipInsideUtil.skipInsideActivity(mContext, CheckMnemonicActivity.class, SkipInsideUtil.SKIP_KEY_MNEMONIC, mnemonic);

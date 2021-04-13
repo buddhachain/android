@@ -38,10 +38,6 @@ public class DialogUtil {
      *
      * @author heshuai
      */
-    public interface ConfirmCallBackInf {
-        void onConfirmClick(String content);
-    }
-
     public interface ConfirmCallBackObject<T> {
         void onConfirmClick(T t);
     }
@@ -64,7 +60,7 @@ public class DialogUtil {
         void onRemindClick(String content);
     }
 
-    public static Dialog checkPswDialog(final Context context, final ConfirmCallBackInf callBack, final CancelCallBackInf cancelCallBack) {
+    public static Dialog checkPswDialog(final Context context, final ConfirmCallBackObject<Boolean> callBack, final CancelCallBackInf cancelCallBack) {
         return checkPswDialog(context, "", callBack, cancelCallBack);
     }
 
@@ -75,7 +71,7 @@ public class DialogUtil {
      * @param callBack
      * @return
      */
-    public static Dialog checkPswDialog(final Context context, String title, final ConfirmCallBackInf callBack, final CancelCallBackInf cancelCallBack) {
+    public static Dialog checkPswDialog(final Context context, String title, final ConfirmCallBackObject<Boolean> callBack, final CancelCallBackInf cancelCallBack) {
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.dialog_input_password, null,
                 false);
@@ -112,13 +108,11 @@ public class DialogUtil {
             @Override
             public void onClick(View v) {
                 String psw = mEditText.getText().toString();
-                Account account = XuperAccount.getAccountFromFile(context, psw);
-                if (account == null) {
+                if (!XuperAccount.checkPsw(context, psw)) {
                     tv_error.setText("密码错误,请重试");
                 } else {
-                    XuperAccount.setAccount(account);
                     if (callBack != null) {
-                        callBack.onConfirmClick("");
+                        callBack.onConfirmClick(true);
                     }
                     UIUtils.closeKeybord(mEditText, context);
                     dialog.dismiss();
@@ -180,7 +174,7 @@ public class DialogUtil {
         return dialog;
     }
 
-    public static Dialog simpleDialog(final Context context, String title, final ConfirmCallBackInf callBack) {
+    public static Dialog simpleDialog(final Context context, String title, final ConfirmCallBackObject callBack) {
         return simpleDialog(context, title, callBack, null);
     }
 
@@ -191,7 +185,7 @@ public class DialogUtil {
      * @param callBack
      * @return
      */
-    public static Dialog simpleDialog(final Context context, String title, final ConfirmCallBackInf callBack, final CancelCallBackInf cancelCallBack) {
+    public static Dialog simpleDialog(final Context context, String title, final ConfirmCallBackObject callBack, final CancelCallBackInf cancelCallBack) {
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.dialog_simple, null,
                 false);
@@ -351,7 +345,7 @@ public class DialogUtil {
     }
 
 
-    public static Dialog editDialog(final Context context, String title, String oldString, String hint, final ConfirmCallBackInf callBack) {
+    public static Dialog editDialog(final Context context, String title, String oldString, String hint, final ConfirmCallBackObject<String> callBack) {
         return editDialog(context, title, oldString, hint, callBack, null);
     }
 
@@ -362,7 +356,7 @@ public class DialogUtil {
      * @param callBack
      * @return
      */
-    public static Dialog editDialog(final Context context, String title, String oldString, String hint, final ConfirmCallBackInf callBack, final CancelCallBackInf cancelCallBack) {
+    public static Dialog editDialog(final Context context, String title, String oldString, String hint, final ConfirmCallBackObject<String> callBack, final CancelCallBackInf cancelCallBack) {
         final LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.dialog_edit, null,
                 false);

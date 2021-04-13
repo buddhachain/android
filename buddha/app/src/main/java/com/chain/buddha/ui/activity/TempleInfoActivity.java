@@ -71,7 +71,7 @@ public class TempleInfoActivity extends BaseActivity {
                 if (StringUtils.equals(list[2], "1")) {
                     return;
                 }
-                DialogUtil.simpleDialog(mContext, "确认批准入驻？", new DialogUtil.ConfirmCallBackInf() {
+                DialogUtil.simpleDialog(mContext, "确认批准入驻？", new DialogUtil.ConfirmCallBackObject<String>() {
                     @Override
                     public void onConfirmClick(String content) {
                         XuperApi.approveJoinTemple(templeid, masterid, new ResponseCallBack<String>() {
@@ -147,7 +147,7 @@ public class TempleInfoActivity extends BaseActivity {
                         mApplyTv.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                DialogUtil.simpleDialog(mContext, "确认入驻该寺院？", new DialogUtil.ConfirmCallBackInf() {
+                                DialogUtil.simpleDialog(mContext, "确认入驻该寺院？", new DialogUtil.ConfirmCallBackObject<String>() {
                                     @Override
                                     public void onConfirmClick(String content) {
                                         XuperApi.applyJoinTemple(templeId, new ResponseCallBack() {

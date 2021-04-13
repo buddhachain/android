@@ -52,8 +52,7 @@ public class RegisterActivity extends BaseActivity {
 
         }
         Account account = Account.create(1, 1);
-        XuperAccount.saveAccount(mContext, account.getMnemonic(), psw2);
-        XuperAccount.setAccount(account);
+        XuperAccount.saveAccount(mContext, account, psw2);
 
         SkipInsideUtil.skipInsideActivity(mContext, SaveMnemonicTipActivity.class, SkipInsideUtil.SKIP_KEY_MNEMONIC, account.getMnemonic());
     }

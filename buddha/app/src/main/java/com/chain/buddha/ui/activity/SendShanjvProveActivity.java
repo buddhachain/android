@@ -70,7 +70,7 @@ public class SendShanjvProveActivity extends BaseActivity {
             ToastUtils.show(mContext, "请上传凭证");
             return;
         }
-        DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackObject<String>() {
             @Override
             public void onConfirmClick(String content) {
                 XuperApi.uploadKinddeedproof(orderId, proof, new ResponseCallBack<String>() {

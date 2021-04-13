@@ -122,7 +122,7 @@ public class ShanjvBeforeCommentFragment extends BaseFragment {
     void comment() {
         String labels = "[\"1\"]";
         String commnet = mCommentEt.getText().toString();
-        DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackObject<String>() {
             @Override
             public void onConfirmClick(String content) {
                 XuperApi.addBeforecomment(kdid, "0", commnet, labels, new ResponseCallBack<String>() {

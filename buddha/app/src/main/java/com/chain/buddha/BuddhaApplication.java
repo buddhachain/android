@@ -5,6 +5,7 @@ import android.app.Application;
 
 import androidx.multidex.MultiDex;
 
+import com.chain.buddha.Xuper.XuperAccount;
 import com.mob.MobSDK;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
@@ -32,6 +33,7 @@ public class BuddhaApplication extends Application {
         ZXingLibrary.initDisplayOpinion(this);
         MobSDK.submitPolicyGrantResult(true, null);
         AgoraManager.init(instance);
+        XuperAccount.initAccount();
     }
 
     public static Activity getCurrencyActivity() {

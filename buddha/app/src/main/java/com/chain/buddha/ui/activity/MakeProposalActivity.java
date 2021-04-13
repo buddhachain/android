@@ -44,9 +44,9 @@ public class MakeProposalActivity extends BaseActivity {
     @OnClick(R.id.tv_submit)
     void submit() {
         String newValue = mNewValue.getText().toString();
-        DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackInf() {
+        DialogUtil.simpleDialog(mContext, "确认提交？", new DialogUtil.ConfirmCallBackObject() {
             @Override
-            public void onConfirmClick(String content) {
+            public void onConfirmClick(Object content) {
                 XuperApi.makeProposal("test_proposal", newValue, expire, new ResponseCallBack<String>() {
                     @Override
                     public void onSuccess(String resp) {
