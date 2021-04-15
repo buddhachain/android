@@ -22,7 +22,6 @@ import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.QifuListAdapter;
 import com.chain.buddha.ui.BaseFragment;
-import com.chain.buddha.ui.activity.LiveActivity;
 import com.chain.buddha.ui.activity.ShanjvDetailActivity;
 import com.chain.buddha.utils.EventBeans;
 import com.chain.buddha.utils.SkipInsideUtil;
@@ -46,7 +45,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.agora.openlive.activities.LiveMainActivity;
+import io.agora.vlive.ui.main.LiveMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 
-import androidx.multidex.MultiDex;
+//import androidx.multidex.MultiDex;
 
 import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.ui.activity.MainActivity;
@@ -12,7 +12,7 @@ import com.chain.buddha.utils.CustomCrashHandler;
 import com.mob.MobSDK;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
-import io.agora.openlive.AgoraManager;
+import io.agora.vlive.AgoraLiveApplication;
 
 /**
  * @Author: haroro
@@ -32,11 +32,12 @@ public class BuddhaApplication extends Application {
     public void onCreate() {
         super.onCreate();
         instance = this;
-        MultiDex.install(instance);
+
+//        MultiDex.install(instance);
         initCrashCatch();
         ZXingLibrary.initDisplayOpinion(this);
         MobSDK.submitPolicyGrantResult(true, null);
-        AgoraManager.init(instance);
+        AgoraLiveApplication.init(instance);
         XuperAccount.initAccount();
     }
 

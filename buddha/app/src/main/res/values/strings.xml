@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">buddha</string>
     <string name="shouye">首页</string>
     <string name="qifu">祈福</string>

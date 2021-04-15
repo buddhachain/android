@@ -6,10 +6,8 @@ android {
     buildToolsVersion "30.0.3"
     defaultConfig {
         applicationId "com.chain.buddha"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
         multiDexEnabled true
 
     }
@@ -39,6 +37,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
 
     }
+}
+
+
+configurations {
+    cleanedAnnotations
+    compile.exclude group: 'org.jetbrains' , module:'annotations'
 }
 
 MobSDK {
