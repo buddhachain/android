@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import io.agora.rtc.Constants;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtm.RtmClient;
-import io.agora.vlive.AgoraLiveApplication;
+import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.agora.rtc.AgoraRtcHandler;
 import io.agora.vlive.agora.rtc.RtcEventHandler;
 import io.agora.vlive.agora.rtm.RtmMessageManager;
@@ -19,7 +19,7 @@ public class AgoraEngine {
 
     private RtmClient mRtmClient;
 
-    public AgoraEngine(@NonNull AgoraLiveApplication application, String appId) {
+    public AgoraEngine(@NonNull AgoraLiveManager application, String appId) {
         try {
             mRtcEngine = RtcEngine.create(application.getContext(), appId, mRtcEventHandler);
             mRtcEngine.enableVideo();

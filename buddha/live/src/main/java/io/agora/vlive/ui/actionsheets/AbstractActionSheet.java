@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.RelativeLayout;
 
-import io.agora.vlive.AgoraLiveApplication;
+import io.agora.vlive.AgoraLiveManager;
 
 public abstract class AbstractActionSheet extends RelativeLayout {
     public AbstractActionSheet(Context context) {
@@ -25,7 +25,7 @@ public abstract class AbstractActionSheet extends RelativeLayout {
 
     public abstract void setActionSheetListener(AbsActionSheetListener listener);
 
-    protected AgoraLiveApplication application() {
-        return AgoraLiveApplication.getAgoraLiveApplication();
+    protected AgoraLiveManager application() {
+        return AgoraLiveManager.getInstance();
     }
 }

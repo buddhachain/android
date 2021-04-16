@@ -25,7 +25,7 @@ import java.util.Stack;
 import io.agora.capture.video.camera.CameraManager;
 import io.agora.rtc.RtcEngine;
 import io.agora.rtm.RtmClient;
-import io.agora.vlive.AgoraLiveApplication;
+import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.Config;
 import io.agora.vlive.agora.rtc.RtcEventHandler;
 import io.agora.vlive.protocol.ClientProxy;
@@ -339,8 +339,8 @@ public abstract class BaseActivity extends AppCompatActivity implements ClientPr
         return showSingleButtonConfirmDialog(titleStr, messageStr, listener);
     }
 
-    public AgoraLiveApplication application() {
-        return AgoraLiveApplication.getAgoraLiveApplication();
+    public AgoraLiveManager application() {
+        return AgoraLiveManager.getInstance();
     }
 
     public Config config() {

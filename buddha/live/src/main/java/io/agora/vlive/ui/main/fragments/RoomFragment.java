@@ -28,7 +28,7 @@ import io.agora.vlive.utils.Global;
 import io.agora.vlive.R;
 
 public class RoomFragment extends AbstractFragment implements View.OnClickListener {
-    private static final int TAB_COUNT = 5;
+    private static final int TAB_COUNT = 3;
     private static final int TAB_TEXT_VIEW_INDEX = 1;
 
     private int mCurrentTap;
@@ -57,7 +57,7 @@ public class RoomFragment extends AbstractFragment implements View.OnClickListen
         viewPager.setAdapter(new RoomAdapter(this));
 
         new TabLayoutMediator(mTabLayout, viewPager, (tab, position) ->
-            tab.setText(mTabTitles[position])).attach();
+                tab.setText(mTabTitles[position])).attach();
 
         TabLayout.Tab tab = mTabLayout.getTabAt(mCurrentTap);
         if (tab != null) {
@@ -131,11 +131,12 @@ public class RoomFragment extends AbstractFragment implements View.OnClickListen
         if (mTabLayout != null) {
             RelativeLayout.LayoutParams params =
                     (RelativeLayout.LayoutParams) mTabLayout.getLayoutParams();
-            int systemBarHeight = getContainer().getSystemBarHeight();
+            int systemBarHeight = 0;
             params.topMargin += systemBarHeight;
             mTabLayout.setLayoutParams(params);
         }
     }
+
 
     @Override
     public void onClick(View view) {
@@ -167,11 +168,16 @@ public class RoomFragment extends AbstractFragment implements View.OnClickListen
         @Override
         public Fragment createFragment(int position) {
             switch (position) {
-                case 1: return new SingleHostFragment();
-                case 2: return new PKHostInFragment();
-                case 3: return new VirtualHostFragment();
-                case 4: return new ECommerceFragment();
-                default: return new HostInFragment();
+                case 1:
+                    return new HostInFragment();
+                case 2:
+                    return new ECommerceFragment();
+                case 3:
+                    return new PKHostInFragment();
+                case 4:
+                    return new VirtualHostFragment();
+                default:
+                    return new SingleHostFragment();
             }
         }
 

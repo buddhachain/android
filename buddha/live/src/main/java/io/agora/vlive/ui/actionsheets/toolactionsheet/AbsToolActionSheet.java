@@ -13,7 +13,7 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import io.agora.vlive.AgoraLiveApplication;
+import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.R;
 import io.agora.vlive.ui.actionsheets.AbstractActionSheet;
 
@@ -65,7 +65,7 @@ public abstract class AbsToolActionSheet extends AbstractActionSheet {
 
         mAdapter = new ToolAdapter();
         mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(AgoraLiveApplication.getContext(), mGridSpan));
+        mRecyclerView.setLayoutManager(new GridLayoutManager(AgoraLiveManager.getContext(), mGridSpan));
         mRecyclerView.addItemDecoration(new PaddingDecoration());
     }
 

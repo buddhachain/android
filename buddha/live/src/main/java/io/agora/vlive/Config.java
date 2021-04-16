@@ -104,9 +104,9 @@ public class Config {
     public static final int LIVE_TYPE_VIRTUAL_HOST = 4;
     public static final int LIVE_TYPE_ECOMMERCE = 5;
 
-    private AgoraLiveApplication mApplication;
+    private AgoraLiveManager mApplication;
 
-    Config(AgoraLiveApplication application) {
+    Config(AgoraLiveManager application) {
         mApplication = application;
         mUserProfile = new UserProfile();
         SharedPreferences sp = mApplication.preferences();

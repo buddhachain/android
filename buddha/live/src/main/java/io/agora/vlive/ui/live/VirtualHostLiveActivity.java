@@ -2,7 +2,6 @@ package io.agora.vlive.ui.live;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextUtils;
@@ -24,7 +23,7 @@ import io.agora.framework.modules.channels.ChannelManager;
 import io.agora.rtc.Constants;
 import io.agora.rtm.ErrorInfo;
 import io.agora.rtm.ResultCallback;
-import io.agora.vlive.AgoraLiveApplication;
+import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.Config;
 import io.agora.vlive.R;
 import io.agora.vlive.agora.rtm.model.SeatStateMessage;
@@ -682,7 +681,7 @@ public class VirtualHostLiveActivity extends LiveRoomActivity implements View.On
     }
 
     private int getCachedVirtualImage() {
-        return AgoraLiveApplication.getContext().getSharedPreferences(SAVED_IMAGE, Context.MODE_PRIVATE).getInt(roomId, 0);
+        return AgoraLiveManager.getContext().getSharedPreferences(SAVED_IMAGE, Context.MODE_PRIVATE).getInt(roomId, 0);
     }
 
     private void saveCachedVirtualImage(int image) {

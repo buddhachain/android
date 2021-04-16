@@ -12,7 +12,7 @@ import com.chain.buddha.utils.CustomCrashHandler;
 import com.mob.MobSDK;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
-import io.agora.vlive.AgoraLiveApplication;
+import io.agora.vlive.AgoraLiveManager;
 
 /**
  * @Author: haroro
@@ -37,7 +37,7 @@ public class BuddhaApplication extends Application {
         initCrashCatch();
         ZXingLibrary.initDisplayOpinion(this);
         MobSDK.submitPolicyGrantResult(true, null);
-        AgoraLiveApplication.init(instance);
+        AgoraLiveManager.init(instance);
         XuperAccount.initAccount();
     }
 

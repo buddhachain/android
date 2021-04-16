@@ -4,14 +4,14 @@ import android.text.TextUtils;
 
 import com.elvishew.xlog.XLog;
 
-import io.agora.vlive.AgoraLiveApplication;
+import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.protocol.model.request.ProductRequest;
 import io.agora.vlive.protocol.model.request.Request;
 
 public class ProductServiceManager {
-    private AgoraLiveApplication mApplication;
+    private AgoraLiveManager mApplication;
 
-    public ProductServiceManager(AgoraLiveApplication application) {
+    public ProductServiceManager(AgoraLiveManager application) {
         mApplication = application;
     }
 

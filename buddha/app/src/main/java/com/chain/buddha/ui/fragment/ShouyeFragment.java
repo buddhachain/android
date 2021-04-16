@@ -22,6 +22,7 @@ import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
 import com.chain.buddha.adapter.QifuListAdapter;
 import com.chain.buddha.ui.BaseFragment;
+import com.chain.buddha.ui.activity.MainActivity;
 import com.chain.buddha.ui.activity.ShanjvDetailActivity;
 import com.chain.buddha.utils.EventBeans;
 import com.chain.buddha.utils.SkipInsideUtil;
@@ -236,7 +237,9 @@ public class ShouyeFragment extends BaseFragment {
 
     @OnClick(R.id.view_live)
     void goLive() {
-        SkipInsideUtil.skipInsideActivity(mContext, LiveMainActivity.class);
+        MainActivity activity = (MainActivity) getActivity();
+        activity.select(R.id.bottom_menu_foyou);
+//        SkipInsideUtil.skipInsideActivity(mContext, LiveMainActivity.class);
 //        SkipInsideUtil.skipInsideActivity(mContext, LiveRoomActivity.class);
     }
 

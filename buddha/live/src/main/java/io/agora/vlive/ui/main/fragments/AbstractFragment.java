@@ -1,8 +1,11 @@
 package io.agora.vlive.ui.main.fragments;
 
+import android.app.AppOpsManager;
+import android.view.accessibility.AccessibilityManager;
+
 import androidx.fragment.app.Fragment;
 
-import io.agora.vlive.AgoraLiveApplication;
+import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.Config;
 import io.agora.vlive.protocol.ClientProxyListener;
 import io.agora.vlive.protocol.model.response.AppVersionResponse;
@@ -26,12 +29,12 @@ import io.agora.vlive.protocol.model.response.SendGiftResponse;
 import io.agora.vlive.ui.main.LiveMainActivity;
 
 public abstract class AbstractFragment extends Fragment implements ClientProxyListener {
-    protected AgoraLiveApplication application() {
-        return AgoraLiveApplication.getAgoraLiveApplication();
+    protected AgoraLiveManager application() {
+        return AgoraLiveManager.getInstance();
     }
 
-    LiveMainActivity getContainer() {
-        return (LiveMainActivity) getActivity();
+    AgoraLiveManager getContainer() {
+        return AgoraLiveManager.getInstance();
     }
 
     protected Config config() {

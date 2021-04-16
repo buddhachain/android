@@ -7,11 +7,11 @@
     <string name="permission_not_granted">应用未给予必要权限</string>
 
     <!-- Home Fragment -->
-    <string name="home_category_title_multi">多人连麦直播</string>
     <string name="home_category_title_single">单主播直播</string>
+    <string name="home_category_title_ecommerce">电商直播</string>
+    <string name="home_category_title_multi">多人连麦直播</string>
     <string name="home_category_title_pk">视频PK连麦</string>
     <string name="home_category_title_virtual_host">虚拟主播</string>
-    <string name="home_category_title_ecommerce">电商直播</string>
 
     <string name="home_category_desp_multi">观众与主播连麦互动</string>
     <string name="home_category_desp_single">标准单主播直播</string>

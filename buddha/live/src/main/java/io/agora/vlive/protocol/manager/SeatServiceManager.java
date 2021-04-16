@@ -7,9 +7,8 @@ import com.elvishew.xlog.XLog;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import io.agora.vlive.AgoraLiveApplication;
+import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.protocol.model.request.Request;
 import io.agora.vlive.protocol.model.request.SeatInteractionRequest;
 import io.agora.vlive.protocol.model.types.SeatInteraction;
@@ -29,7 +28,7 @@ public class SeatServiceManager {
         }
     }
 
-    private AgoraLiveApplication mApplication;
+    private AgoraLiveManager mApplication;
 
     private HashMap<String, Long> mInvitingList = new HashMap<>();
 
@@ -73,7 +72,7 @@ public class SeatServiceManager {
         return !mInvitingList.isEmpty() && mInvitingList.containsKey(userId);
     }
 
-    public SeatServiceManager(AgoraLiveApplication application) {
+    public SeatServiceManager(AgoraLiveManager application) {
         mApplication = application;
     }
 

@@ -4,15 +4,15 @@ import android.text.TextUtils;
 
 import com.elvishew.xlog.XLog;
 
-import io.agora.vlive.AgoraLiveApplication;
+import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.protocol.model.request.PKRequest;
 import io.agora.vlive.protocol.model.request.Request;
 import io.agora.vlive.protocol.model.types.PKConstant;
 
 public class PKServiceManager {
-    private AgoraLiveApplication mApplication;
+    private AgoraLiveManager mApplication;
 
-    public PKServiceManager(AgoraLiveApplication application) {
+    public PKServiceManager(AgoraLiveManager application) {
         this.mApplication = application;
     }
 

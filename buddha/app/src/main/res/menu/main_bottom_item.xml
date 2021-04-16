@@ -6,22 +6,21 @@
         android:icon="@drawable/selector_icon_shouye"
         android:title="@string/shouye" />
     <item
-        android:id="@+id/bottom_menu_qifu"
-        android:icon="@drawable/selector_icon_qifu"
-        android:title="@string/qifu"
-        />
+        android:id="@+id/bottom_menu_foyou"
+        android:icon="@drawable/selector_icon_foyou"
+        android:title="@string/foyou" />
     <item
         android:id="@+id/bottom_menu_xiuxing"
         android:icon="@drawable/selector_icon_xiuxing"
-        android:title="@string/xiuxing"/>
+        android:title="@string/xiuxing" />
     <item
-        android:id="@+id/bottom_menu_foyou"
-        android:icon="@drawable/selector_icon_foyou"
-        android:title="@string/foyou"/>
+        android:id="@+id/bottom_menu_jdt"
+        android:icon="@drawable/selector_icon_qifu"
+        android:title="@string/jidiantang" />
     <item
         android:id="@+id/bottom_menu_mine"
         android:icon="@drawable/selector_icon_mine"
-        android:title="@string/mine"/>
+        android:title="@string/mine" />
 
 
 </menu>

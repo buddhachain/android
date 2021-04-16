@@ -69,11 +69,11 @@ public class Global {
         public static final long APP_LOG_SIZE = 1 << 30;
 
         public static final int[] TAB_IDS_RES = {
-                R.string.home_category_title_multi,
                 R.string.home_category_title_single,
+                R.string.home_category_title_ecommerce,
+                R.string.home_category_title_multi,
                 R.string.home_category_title_pk,
                 R.string.home_category_title_virtual_host,
-                R.string.home_category_title_ecommerce
         };
 
         public static final String[] RESOLUTIONS_MULTI_HOST_TEXT = {

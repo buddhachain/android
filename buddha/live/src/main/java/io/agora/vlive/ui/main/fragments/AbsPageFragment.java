@@ -57,7 +57,7 @@ public abstract class AbsPageFragment extends AbstractFragment implements SwipeR
         super.onCreate(savedInstanceState);
         mHandler = new Handler(Looper.getMainLooper());
         mPageRefreshRunnable = new PageRefreshRunnable();
-        mItemSpacing = getContainer().getResources()
+        mItemSpacing = getResources()
                 .getDimensionPixelSize(R.dimen.activity_horizontal_margin);
     }
 
@@ -178,7 +178,7 @@ public abstract class AbsPageFragment extends AbstractFragment implements SwipeR
     @Override
     public void onRoomListResponse(RoomListResponse response) {
         final List<RoomInfo> list = response.data.list;
-        getContainer().runOnUiThread(() -> {
+        getActivity().runOnUiThread(() -> {
             mNetworkErrorBg.setVisibility(View.GONE);
             // Next id being empty indicates this is the
             // start of room list and we need to refresh
@@ -321,7 +321,7 @@ public abstract class AbsPageFragment extends AbstractFragment implements SwipeR
 
     @Override
     public void onResponseError(int requestType, int error, String message) {
-        getContainer().runOnUiThread(() -> {
+        getActivity().runOnUiThread(() -> {
 //            Toast.makeText(getContext(),
 //                    "request type: "+ Request.getRequestString(requestType) +
 //                            ", error message:" + message, Toast.LENGTH_LONG).show();

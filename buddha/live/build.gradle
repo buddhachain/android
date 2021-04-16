@@ -46,8 +46,8 @@ dependencies {
 
     api 'org.jetbrains:annotations-java5:15.0'
 
-    implementation "io.agora.rtc:full-sdk:$agora_rtc_version"
-    implementation "io.agora.rtm:rtm-sdk:$agora_rtm_version"
+    api "io.agora.rtc:full-sdk:$agora_rtc_version"
+    api "io.agora.rtm:rtm-sdk:$agora_rtm_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
