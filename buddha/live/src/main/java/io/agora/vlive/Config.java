@@ -128,7 +128,7 @@ public class Config {
     private String mAppId;
     private List<GiftInfo> mGiftInfoList = new ArrayList<>();
     private List<MusicInfo> mMusicInfoList = new ArrayList<>();
-    private int mLastTabPosition = Global.Constants.TAB_ID_MULTI;
+    private int mLastTabPosition = Global.Constants.TAB_ID_SINGLE;
 
     // Camera capture configurations
     private int mCameraFacing = Constant.CAMERA_FACING_FRONT;
