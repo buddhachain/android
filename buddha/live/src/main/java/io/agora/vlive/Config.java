@@ -98,11 +98,11 @@ public class Config {
         }
     }
 
-    public static final int LIVE_TYPE_MULTI_HOST = 1;
-    public static final int LIVE_TYPE_SINGLE_HOST = 2;
-    public static final int LIVE_TYPE_PK_HOST = 3;
-    public static final int LIVE_TYPE_VIRTUAL_HOST = 4;
-    public static final int LIVE_TYPE_ECOMMERCE = 5;
+    public static final int LIVE_TYPE_MULTI_HOST = 3;
+    public static final int LIVE_TYPE_SINGLE_HOST = 1;
+    public static final int LIVE_TYPE_PK_HOST = 4;
+    public static final int LIVE_TYPE_VIRTUAL_HOST = 5;
+    public static final int LIVE_TYPE_ECOMMERCE = 2;
 
     private AgoraLiveManager mApplication;
 

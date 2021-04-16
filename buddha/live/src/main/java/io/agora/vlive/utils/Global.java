@@ -24,11 +24,11 @@ public class Global {
         public static final String KEY_BITRATE = "key-bitrate";
 
         public static final String TAB_KEY = "live-tab";
-        public static final int TAB_ID_MULTI = 0;
-        public static final int TAB_ID_SINGLE = 1;
-        public static final int TAB_ID_PK = 2;
-        public static final int TAB_ID_VIRTUAL = 3;
-        public static final int TAB_ECOMMERCE = 4;
+        public static final int TAB_ID_MULTI = 1;
+        public static final int TAB_ID_SINGLE = 0;
+        public static final int TAB_ID_PK = 3;
+        public static final int TAB_ID_VIRTUAL = 4;
+        public static final int TAB_ECOMMERCE = 2;
 
         public static final String KEY_ROOM_ID = "room-id";
         public static final String KEY_ROOM_NAME = "room-name";
