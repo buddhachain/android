@@ -1,10 +1,6 @@
 package io.agora.vlive.ui.main.fragments;
 
-import android.app.AppOpsManager;
-import android.view.accessibility.AccessibilityManager;
-
 import androidx.fragment.app.Fragment;
-
 import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.Config;
 import io.agora.vlive.protocol.ClientProxyListener;
@@ -26,14 +22,13 @@ import io.agora.vlive.protocol.model.response.RefreshTokenResponse;
 import io.agora.vlive.protocol.model.response.RoomListResponse;
 import io.agora.vlive.protocol.model.response.SeatStateResponse;
 import io.agora.vlive.protocol.model.response.SendGiftResponse;
-import io.agora.vlive.ui.main.LiveMainActivity;
 
 public abstract class AbstractFragment extends Fragment implements ClientProxyListener {
     protected AgoraLiveManager application() {
         return AgoraLiveManager.getInstance();
     }
 
-    AgoraLiveManager getContainer() {
+    protected AgoraLiveManager getContainer() {
         return AgoraLiveManager.getInstance();
     }
 
@@ -141,10 +136,6 @@ public abstract class AbstractFragment extends Fragment implements ClientProxyLi
 
     }
 
-    @Override
-    public void onSeatInteractionResponse(long processId, String userId, int seatNo, int type) {
-
-    }
 
     @Override
     public void onResponseError(int requestType, int error, String message) {

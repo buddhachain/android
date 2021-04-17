@@ -27,7 +27,6 @@
             android:background="@drawable/rounded_bg_half_transparent"
             android:onClick="onLeaveClicked"/>
         <RelativeLayout
-            android:id="@+id/live_name_space_layout"
             android:layout_width="@dimen/live_name_board_width"
             android:layout_height="@dimen/live_name_board_height"
             android:layout_alignParentBottom="true"
@@ -78,7 +77,6 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"/>
             <TextView
-                android:id="@+id/live_room_broadcaster_uid"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/live_name_text_height"
                 android:layout_toRightOf="@id/live_name_board_icon"
@@ -97,7 +95,6 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/bottom_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -131,7 +128,6 @@
             android:background="@drawable/rounded_bg_full_transparent"
             android:onClick="onBeautyClicked"/>
         <ImageView
-            android:id="@+id/live_btn_more"
             android:layout_width="@dimen/live_bottom_btn_size"
             android:layout_height="@dimen/live_bottom_btn_size"
             android:layout_toRightOf="@id/live_btn_beautification"

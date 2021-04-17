@@ -15,7 +15,6 @@
             android:layout_centerInParent="true"
             android:orientation="horizontal">
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/participant_icon"
                 android:layout_width="@dimen/live_participant_count_height"
                 android:layout_height="@dimen/live_participant_count_height"
                 android:layout_marginStart="@dimen/live_participant_margin_start"

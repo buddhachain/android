@@ -16,10 +16,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import io.agora.vlive.Config;
-import io.agora.vlive.utils.Global;
 import io.agora.vlive.R;
+import io.agora.vlive.utils.Global;
 
 public class LiveRoomSettingActionSheet extends AbstractActionSheet implements View.OnClickListener, SeekBar.OnSeekBarChangeListener {
     public interface LiveRoomSettingActionSheetListener extends AbsActionSheetListener {
@@ -199,18 +198,6 @@ public class LiveRoomSettingActionSheet extends AbstractActionSheet implements V
     private String getResolutionText() {
         int savedIndex = application().config().resolutionIndex();
         switch (mLiveType) {
-            case Config.LIVE_TYPE_MULTI_HOST:
-                if (0 <= savedIndex && savedIndex < Global.Constants.RESOLUTIONS_MULTI_HOST_TEXT.length)
-                return Global.Constants.RESOLUTIONS_MULTI_HOST_TEXT[application().config().resolutionIndex()];
-            case Config.LIVE_TYPE_SINGLE_HOST:
-                if (0 <= savedIndex && savedIndex < Global.Constants.RESOLUTIONS_SINGLE_HOST_TEXT.length)
-                return Global.Constants.RESOLUTIONS_SINGLE_HOST_TEXT[application().config().resolutionIndex()];
-            case Config.LIVE_TYPE_PK_HOST:
-                if (0 <= savedIndex && savedIndex < Global.Constants.RESOLUTIONS_PK_HOST_TEXT.length)
-                return Global.Constants.RESOLUTIONS_PK_HOST_TEXT[application().config().resolutionIndex()];
-            case Config.LIVE_TYPE_VIRTUAL_HOST:
-                if (0 <= savedIndex && savedIndex < Global.Constants.RESOLUTIONS_VIRTUAL_IMAGE_TEXT.length)
-                return Global.Constants.RESOLUTIONS_VIRTUAL_IMAGE_TEXT[application().config().resolutionIndex()];
             case Config.LIVE_TYPE_ECOMMERCE:
                 if (0 <= savedIndex && savedIndex < Global.Constants.RESOLUTIONS_ECOMMERCE_TEXT.length)
                 return Global.Constants.RESOLUTIONS_ECOMMERCE_TEXT[application().config().resolutionIndex()];
@@ -270,18 +257,6 @@ public class LiveRoomSettingActionSheet extends AbstractActionSheet implements V
             ResolutionViewHolder resolutionHolder = (ResolutionViewHolder) holder;
 
             switch (mLiveType) {
-                case Config.LIVE_TYPE_MULTI_HOST:
-                    resolutionHolder.textView.setText(Global.Constants.RESOLUTIONS_MULTI_HOST_TEXT[position]);
-                    break;
-                case Config.LIVE_TYPE_SINGLE_HOST:
-                    resolutionHolder.textView.setText(Global.Constants.RESOLUTIONS_SINGLE_HOST_TEXT[position]);
-                    break;
-                case Config.LIVE_TYPE_PK_HOST:
-                    resolutionHolder.textView.setText(Global.Constants.RESOLUTIONS_PK_HOST_TEXT[position]);
-                    break;
-                case Config.LIVE_TYPE_VIRTUAL_HOST:
-                    resolutionHolder.textView.setText(Global.Constants.RESOLUTIONS_VIRTUAL_IMAGE_TEXT[position]);
-                    break;
                 case Config.LIVE_TYPE_ECOMMERCE:
                     resolutionHolder.textView.setText(Global.Constants.RESOLUTIONS_ECOMMERCE_TEXT[position]);
                     break;
@@ -295,14 +270,6 @@ public class LiveRoomSettingActionSheet extends AbstractActionSheet implements V
         @Override
         public int getItemCount() {
             switch (mLiveType) {
-                case Config.LIVE_TYPE_MULTI_HOST:
-                    return Global.Constants.RESOLUTIONS_MULTI_HOST.length;
-                case Config.LIVE_TYPE_SINGLE_HOST:
-                    return Global.Constants.RESOLUTIONS_SINGLE_HOST.length;
-                case Config.LIVE_TYPE_PK_HOST:
-                    return Global.Constants.RESOLUTIONS_PK_HOST.length;
-                case Config.LIVE_TYPE_VIRTUAL_HOST:
-                    return Global.Constants.RESOLUTIONS_VIRTUAL_IMAGE.length;
                 case Config.LIVE_TYPE_ECOMMERCE:
                     return Global.Constants.RESOLUTIONS_ECOMMERCE.length;
                 default: return 0;

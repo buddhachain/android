@@ -39,7 +39,6 @@
             android:layout_below="@id/role_choose_title"
             android:onClick="onJoinAsBroadcaster">
             <ImageView
-                android:id="@+id/select_role_icon_broadcaster"
                 style="@style/select_role_block_icon"
                 android:src="@drawable/ic_role_broadcaster"/>
             <RelativeLayout
@@ -56,7 +55,6 @@
                     android:text="@string/select_role_broadcaster" />
 
                 <TextView
-                    android:id="@+id/select_role_hint_broadcaster"
                     style="@style/select_role_block_hint"
                     android:layout_width="wrap_content"
                     android:layout_below="@+id/select_role_title_broadcaster"
@@ -65,12 +63,10 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/audience_layout"
             style="@style/select_role_block"
             android:layout_below="@id/broadcaster_layout"
             android:onClick="onJoinAsAudience">
             <ImageView
-                android:id="@+id/select_role_icon_audience"
                 style="@style/select_role_block_icon"
                 android:src="@drawable/ic_role_audience"/>
 
@@ -86,7 +82,6 @@
                     android:layout_toStartOf="@id/select_role_arrow_audience"
                     android:text="@string/select_role_audience"/>
                 <TextView
-                    android:id="@+id/select_role_hint_audience"
                     style="@style/select_role_block_hint"
                     android:layout_below="@id/select_role_title_audience"
                     android:text="@string/select_role_audience_hint"/>

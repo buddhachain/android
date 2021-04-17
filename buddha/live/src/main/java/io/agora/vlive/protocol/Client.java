@@ -12,14 +12,11 @@ import io.agora.vlive.BuildConfig;
 import io.agora.vlive.protocol.interfaces.GeneralService;
 import io.agora.vlive.protocol.interfaces.ProductService;
 import io.agora.vlive.protocol.interfaces.RoomService;
-import io.agora.vlive.protocol.interfaces.PKService;
-import io.agora.vlive.protocol.interfaces.SeatService;
 import io.agora.vlive.protocol.interfaces.UserService;
 import io.agora.vlive.protocol.model.body.CreateRoomRequestBody;
 import io.agora.vlive.protocol.model.body.CreateUserBody;
 import io.agora.vlive.protocol.model.body.LoginBody;
 import io.agora.vlive.protocol.model.body.ModifyUserStateRequestBody;
-import io.agora.vlive.protocol.model.body.PkRequestBody;
 import io.agora.vlive.protocol.model.body.PurchaseProductBody;
 import io.agora.vlive.protocol.model.body.RequestModifySeatStateBody;
 import io.agora.vlive.protocol.model.body.RequestSeatInteractionBody;
@@ -68,8 +65,6 @@ class Client {
     private GeneralService mGeneralService;
     private RoomService mRoomService;
     private UserService mUserService;
-    private SeatService mSeatService;
-    private PKService mPKService;
     private ProductService mProductService;
 
     private List<ClientProxyListener> mProxyListeners = new ArrayList<>();
@@ -98,8 +93,6 @@ class Client {
         mGeneralService = retrofit.create(GeneralService.class);
         mRoomService = retrofit.create(RoomService.class);
         mUserService = retrofit.create(UserService.class);
-        mSeatService = retrofit.create(SeatService.class);
-        mPKService =  retrofit.create(PKService.class);
         mProductService = retrofit.create(ProductService.class);
     }
 
@@ -535,61 +528,6 @@ class Client {
         });
     }
 
-    void modifyUserState(String token, String roomId, String userId, int enableAudio, int enableVideo, int enableChat) {
-        mRoomService.requestModifyUserState(token, roomId, userId,
-                new ModifyUserStateRequestBody(enableAudio, enableVideo, enableChat)).enqueue(new Callback<ModifyUserStateResponse>() {
-            @Override
-            @EverythingIsNonNull
-            public void onResponse(Call<ModifyUserStateResponse> call, Response<ModifyUserStateResponse> response) {
-                ModifyUserStateResponse modifyUserStateResponse = response.body();
-                for (ClientProxyListener listener : mProxyListeners) {
-                    if (modifyUserStateResponse == null) {
-                        listener.onResponseError(Request.MODIFY_SEAT_STATE, ERROR_NULL,
-                                response.errorBody() == null ? MSG_NULL_RESPONSE : response.errorBody().toString());
-                    } else if (modifyUserStateResponse.code == ERROR_OK) {
-                        listener.onModifyUserStateResponse(modifyUserStateResponse);
-                    } else {
-                        listener.onResponseError(Request.MODIFY_SEAT_STATE, modifyUserStateResponse.code, modifyUserStateResponse.msg);
-                    }
-                }
-            }
-
-            @Override
-            @EverythingIsNonNull
-            public void onFailure(Call<ModifyUserStateResponse> call, Throwable t) {
-                for (ClientProxyListener listener : mProxyListeners) {
-                    listener.onResponseError(Request.MODIFY_SEAT_STATE, ERROR_CONNECTION, t.getMessage());
-                }
-            }
-        });
-    }
-
-    void modifySeatState(String token, String roomId, int no, int state) {
-        RequestModifySeatStateBody body = new RequestModifySeatStateBody(no, state);
-        mSeatService.requestModifySeatStates(token, roomId, body).enqueue(new Callback<BooleanResponse>() {
-            @Override
-            @EverythingIsNonNull
-            public void onResponse(Call<BooleanResponse> call, Response<BooleanResponse> response) {
-                BooleanResponse resp = response.body();
-                for (ClientProxyListener listener : mProxyListeners) {
-                    if (resp == null || resp.code != ERROR_OK) {
-                        listener.onResponseError(Request.MODIFY_SEAT_STATE,
-                                resp == null ? ERROR_NULL : resp.code,
-                                resp == null ? MSG_NULL_RESPONSE : resp.msg);
-                    }
-                }
-            }
-
-            @Override
-            @EverythingIsNonNull
-            public void onFailure(Call<BooleanResponse> call, Throwable t) {
-                for (ClientProxyListener listener : mProxyListeners) {
-                    listener.onResponseError(Request.MODIFY_SEAT_STATE, ERROR_CONNECTION, t.getMessage());
-                }
-            }
-        });
-    }
-
     void sendGift(long reqId, String token, String roomId, int giftId, int count) {
         mRoomService.requestSendGift(token, reqId, Request.SEND_GIFT,
                 roomId, new SendGiftBody(giftId, count)).enqueue(new Callback<SendGiftResponse>() {
@@ -677,82 +615,6 @@ class Client {
         });
     }
 
-    void requestPKBehavior(String token, String myRoomId, String targetRoomId, int type) {
-        mPKService.requestPKBehavior(token, myRoomId, new PkRequestBody(targetRoomId, type)).enqueue(new Callback<LongResponse>() {
-            @Override
-            @EverythingIsNonNull
-            public void onResponse(Call<LongResponse> call, Response<LongResponse> response) {
-                LongResponse pkResponse = response.body();
-                for (ClientProxyListener listener : mProxyListeners) {
-                    if (pkResponse == null || pkResponse.code != ERROR_OK) {
-                        listener.onResponseError(Request.PK_BEHAVIOR,
-                                pkResponse == null ? ERROR_NULL : pkResponse.code,
-                                pkResponse == null ? MSG_NULL_RESPONSE : pkResponse.msg);
-                    }
-                }
-            }
-
-            @Override
-            @EverythingIsNonNull
-            public void onFailure(Call<LongResponse> call, Throwable t) {
-                for (ClientProxyListener listener : mProxyListeners) {
-                    listener.onResponseError(Request.PK_BEHAVIOR, ERROR_CONNECTION, t.getMessage());
-                }
-            }
-        });
-    }
-
-    void requestPKEnd(String token, String myRoomId) {
-        mPKService.requestPKEnd(token, myRoomId, new PkRequestBody("", 0)).enqueue(new Callback<BooleanResponse>() {
-            @Override
-            public void onResponse(Call<BooleanResponse> call, Response<BooleanResponse> response) {
-                BooleanResponse pkResponse = response.body();
-                for (ClientProxyListener listener : mProxyListeners) {
-                    if (pkResponse == null || pkResponse.code != ERROR_OK) {
-                        listener.onResponseError(Request.PK_BEHAVIOR,
-                                pkResponse == null ? ERROR_NULL : pkResponse.code,
-                                pkResponse == null ? MSG_NULL_RESPONSE : pkResponse.msg);
-                    }
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BooleanResponse> call, Throwable t) {
-                for (ClientProxyListener listener : mProxyListeners) {
-                    listener.onResponseError(Request.PK_BEHAVIOR, ERROR_CONNECTION, t.getMessage());
-                }
-            }
-        });
-    }
-
-    void requestSeatInteraction(String token, String roomId, String userId, int seatNo, int type) {
-        mSeatService.requestSeatInteraction(token, roomId, userId, new RequestSeatInteractionBody(seatNo, type))
-            .enqueue(new Callback<LongResponse>() {
-                @Override
-                public void onResponse(Call<LongResponse> call, Response<LongResponse> response) {
-                    LongResponse seatBehaviorResponse = response.body();
-                    if (seatBehaviorResponse == null || seatBehaviorResponse.code != ERROR_OK) {
-                        for (ClientProxyListener listener : mProxyListeners) {
-                            listener.onResponseError(Request.SEAT_INTERACTION,
-                                    seatBehaviorResponse == null ? ERROR_NULL : seatBehaviorResponse.code,
-                                    seatBehaviorResponse == null ? MSG_NULL_RESPONSE : seatBehaviorResponse.msg);
-                        }
-                    } else {
-                        for (ClientProxyListener listener : mProxyListeners) {
-                            listener.onSeatInteractionResponse(seatBehaviorResponse.data,
-                                    userId, seatNo, type);
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<LongResponse> call, Throwable t) {
-                    for (ClientProxyListener listener : mProxyListeners) {
-                        listener.onResponseError(Request.SEAT_INTERACTION, ERROR_CONNECTION, t.getMessage());
-                    }
-                }
-            });
-    }
 
     void requestProductList(String token, String roomId) {
         mProductService.requestProductList(token, roomId).enqueue(new Callback<ProductListResponse>() {

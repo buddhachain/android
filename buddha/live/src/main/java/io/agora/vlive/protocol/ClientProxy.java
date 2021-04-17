@@ -2,29 +2,18 @@ package io.agora.vlive.protocol;
 
 import io.agora.vlive.protocol.model.request.AudienceListRequest;
 import io.agora.vlive.protocol.model.request.CreateRoomRequest;
-import io.agora.vlive.protocol.model.request.ModifySeatStateRequest;
-import io.agora.vlive.protocol.model.request.ModifyUserStateRequest;
-import io.agora.vlive.protocol.model.request.PKRequest;
+import io.agora.vlive.protocol.model.request.OssPolicyRequest;
 import io.agora.vlive.protocol.model.request.ProductRequest;
 import io.agora.vlive.protocol.model.request.RefreshTokenRequest;
-import io.agora.vlive.protocol.model.request.RoomRequest;
+import io.agora.vlive.protocol.model.request.Request;
 import io.agora.vlive.protocol.model.request.RoomListRequest;
+import io.agora.vlive.protocol.model.request.RoomRequest;
 import io.agora.vlive.protocol.model.request.SeatInteractionRequest;
 import io.agora.vlive.protocol.model.request.SendGiftRequest;
 import io.agora.vlive.protocol.model.request.UserRequest;
-import io.agora.vlive.protocol.model.request.OssPolicyRequest;
-import io.agora.vlive.protocol.model.request.Request;
 
 public class ClientProxy {
-    public static final int ROOM_TYPE_SINGLE = 1;
-    public static final int ROOM_TYPE_HOST_IN = 2;
-    public static final int ROOM_TYPE_PK = 3;
-    public static final int ROOM_TYPE_VIRTUAL_HOST = 4;
     public static final int ROOM_TYPE_ECOMMERCE = 5;
-
-    public static final int PK_WAIT = 0;
-    public static final int PK_IN = 1;
-    public static final int PK_UNAWARE = 2;
 
     private static final String APP_CODE = "ent-super";
     private static final int OS_TYPE = 2;
@@ -119,37 +108,14 @@ public class ClientProxy {
                 roomRequest = (RoomRequest) params;
                 mClient.requestSeatState(mReqId, roomRequest.token, roomRequest.roomId);
                 break;
-            case Request.MODIFY_USER_STATE:
-                ModifyUserStateRequest userStateRequest = (ModifyUserStateRequest) params;
-                mClient.modifyUserState(userStateRequest.token, userStateRequest.roomId,
-                        userStateRequest.userId, userStateRequest.enableAudio,
-                        userStateRequest.enableVideo, userStateRequest.enableChat);
-                break;
-            case Request.MODIFY_SEAT_STATE:
-                ModifySeatStateRequest modifySeatRequest = (ModifySeatStateRequest) params;
-                mClient.modifySeatState(modifySeatRequest.token,
-                        modifySeatRequest.roomId,
-                        modifySeatRequest.no,
-                        modifySeatRequest.state);
-                break;
+
             case Request.REFRESH_TOKEN:
                 RefreshTokenRequest refreshTokenRequest = (RefreshTokenRequest) params;
                 mClient.refreshToken(mReqId, refreshTokenRequest.token, refreshTokenRequest.roomId);
                 break;
-            case Request.PK_BEHAVIOR:
-                PKRequest pkRequest = (PKRequest) params;
-                mClient.requestPKBehavior(pkRequest.token, pkRequest.myRoomId,
-                        pkRequest.targetRoomId, pkRequest.type);
-                break;
-            case Request.PK_END:
-                pkRequest = (PKRequest) params;
-                mClient.requestPKEnd(pkRequest.token, pkRequest.myRoomId);
-                break;
             case Request.SEAT_INTERACTION:
                 SeatInteractionRequest seatInteractionRequest = (SeatInteractionRequest) params;
-                mClient.requestSeatInteraction(seatInteractionRequest.token,
-                        seatInteractionRequest.roomId, seatInteractionRequest.userId,
-                        seatInteractionRequest.no, seatInteractionRequest.type);
+
                 break;
             case Request.PRODUCT_LIST:
                 ProductRequest productRequest = (ProductRequest) params;

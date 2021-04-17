@@ -1,7 +1,5 @@
 package com.chain.buddha.ui.fragment;
 
-import android.content.pm.PackageManager;
-import android.service.carrier.CarrierMessagingService;
 import android.util.Log;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +10,7 @@ import com.chain.buddha.R;
 import com.chain.buddha.adapter.FmPagerAdapter;
 import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.ui.fragment.xiuxing.FanyinFragment;
+import com.chain.buddha.ui.live.base.RoomFragment;
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
@@ -44,7 +43,6 @@ import io.agora.vlive.protocol.model.response.Response;
 import io.agora.vlive.protocol.model.response.RoomListResponse;
 import io.agora.vlive.protocol.model.response.SeatStateResponse;
 import io.agora.vlive.protocol.model.response.SendGiftResponse;
-import io.agora.vlive.ui.main.fragments.RoomFragment;
 import io.agora.vlive.utils.Global;
 import io.agora.vlive.utils.RandomUtil;
 
@@ -268,10 +266,6 @@ public class FoyouFragment extends BaseFragment implements ClientProxyListener {
 
     }
 
-    @Override
-    public void onSeatInteractionResponse(long processId, String userId, int seatNo, int type) {
-
-    }
 
     private void joinRtmServer() {
         Config.UserProfile profile = AgoraLiveManager.getInstance().config().getUserProfile();

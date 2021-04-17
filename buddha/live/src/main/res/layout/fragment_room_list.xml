@@ -25,7 +25,6 @@
                 android:layout_centerHorizontal="true"
                 android:src="@drawable/list_no_data"/>
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/no_data_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -59,7 +58,6 @@
                 android:textSize="@dimen/text_size_normal"
                 android:textColor="@color/gray"/>
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/network_error_message"
                 android:layout_width="@dimen/room_list_exception_icon_size"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/network_error_text"

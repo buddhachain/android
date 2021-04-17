@@ -1,10 +1,5 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">16dp</dimen>
-    <dimen name="activity_vertical_margin">16dp</dimen>
-
-    <dimen name="fb_popup_window_width">240dp</dimen>
-    <dimen name="fb_popup_window_height">224dp</dimen>
 
     <dimen name="text_size_small">12sp</dimen>
     <dimen name="text_size_medium">14sp</dimen>
@@ -46,7 +41,6 @@
     <!-- Live Activity -->
     <dimen name="live_top_layout_height">76dp</dimen>
     <dimen name="live_leave_btn_size">36dp</dimen>
-    <dimen name="live_leave_btn_icon_size">15dp</dimen>
     <dimen name="live_top_layout_margin">22dp</dimen>
     <dimen name="live_name_board_width">186dp</dimen>
     <dimen name="live_name_board_height">48dp</dimen>

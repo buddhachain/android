@@ -141,7 +141,6 @@
             android:src="@drawable/icon_caution"
             android:scaleType="fitXY"/>
         <TextView
-            android:id="@+id/live_prepare_policy_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toStartOf="@id/live_prepare_policy_close"

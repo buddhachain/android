@@ -21,16 +21,10 @@ public class Request {
     public static final int SEND_GIFT = 13;
     public static final int GIFT_RANK = 14;
     public static final int REFRESH_TOKEN = 15;
-    public static final int MODIFY_USER_STATE = 16;
-    public static final int MODIFY_SEAT_STATE = 17;
     public static final int SEAT_STATE = 18;
 
     //Seat Operations
     public static final int SEAT_INTERACTION = 19;
-
-    // PK operations
-    public static final int PK_BEHAVIOR = 20;
-    public static final int PK_END = 21;
 
     // Product management
     public static final int PRODUCT_LIST = 22;
@@ -54,12 +48,8 @@ public class Request {
             case SEND_GIFT: return "send_gift";
             case GIFT_RANK: return "gift_rank";
             case REFRESH_TOKEN: return "refresh_token";
-            case MODIFY_USER_STATE: return "modify_user_state";
-            case MODIFY_SEAT_STATE: return "modify_seat_state";
             case SEAT_STATE: return "seat_state";
             case SEAT_INTERACTION: return "seat_interaction";
-            case PK_BEHAVIOR: return "pk_behavior";
-            case PK_END: return "pk_end";
             case PRODUCT_LIST: return "product_list";
             case PRODUCT_PURCHASE: return "product_purchase";
             case PRODUCT_MANAGE: return "product_manage";

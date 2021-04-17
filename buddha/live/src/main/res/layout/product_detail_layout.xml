@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <ScrollView
-        android:id="@+id/product_content_scroll_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/product_bottom_action_layout">
@@ -44,7 +43,6 @@
                         android:textSize="@dimen/text_size_normal"
                         android:textStyle="bold"/>
                     <androidx.appcompat.widget.AppCompatTextView
-                        android:id="@+id/product_promote_data_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@id/product_promote_title_text"
@@ -60,7 +58,6 @@
                         android:background="@drawable/product_detail_promote_date_bg"/>
                 </RelativeLayout>
                 <RelativeLayout
-                    android:id="@+id/product_purple_layout"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/product_detail_promote_line_height"
                     android:layout_below="@id/product_orange_layout"
@@ -69,7 +66,6 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/product_round_layout"
                 android:layout_width="@dimen/product_detail_round_price_layout_size"
                 android:layout_height="@dimen/product_detail_round_price_layout_size"
                 android:background="@drawable/product_detail_background_gradient_purple_oval"
@@ -118,7 +114,6 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/product_description_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/product_promote_title_layout">

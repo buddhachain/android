@@ -29,14 +29,8 @@ import io.agora.vlive.agora.rtm.model.GiftMessage;
 import io.agora.vlive.agora.rtm.model.GiftRankMessage;
 import io.agora.vlive.agora.rtm.model.NotificationMessage;
 import io.agora.vlive.agora.rtm.model.OwnerStateMessage;
-import io.agora.vlive.agora.rtm.model.PKInvitationMessage;
-import io.agora.vlive.agora.rtm.model.PKStateMessage;
-import io.agora.vlive.agora.rtm.model.ProductPurchasedMessage;
 import io.agora.vlive.agora.rtm.model.ProductStatedChangedMessage;
-import io.agora.vlive.agora.rtm.model.SeatInteractionMessage;
 import io.agora.vlive.agora.rtm.model.SeatStateMessage;
-import io.agora.vlive.protocol.model.types.PKConstant;
-import io.agora.vlive.protocol.model.types.SeatInteraction;
 
 public class RtmMessageManager implements RtmClientListener, RtmChannelListener {
     private static final String TAG = RtmMessageManager.class.getSimpleName();
@@ -56,13 +50,6 @@ public class RtmMessageManager implements RtmClientListener, RtmChannelListener 
     // Notifies that the room owner has changed his state
     private static final int CHANNEL_MSG_CMD_OWNER_STATE = 4;
 
-    // Notifies that the seats' states have changed,
-    // for multi-hosted rooms only
-    private static final int CHANNEL_MSG_TYPE_SEAT = 5;
-
-    // Notifies the PK states, for PK rooms only
-    private static final int CHANNEL_MSG_TYPE_PK = 6;
-
     private static final int CHANNEL_MSG_TYPE_GIFT = 7;
 
     private static final int CHANNEL_MSG_TYPE_LEAVE = 8;
@@ -70,10 +57,6 @@ public class RtmMessageManager implements RtmClientListener, RtmChannelListener 
     private static final int CHANNEL_MSG_TYPE_PRODUCT_STATE_PURCHASED = 9;
 
     private static final int CHANNEL_MSG_TYPE_PRODUCT_STATE_CHANGED = 10;
-
-    private static final int PEER_MSG_CMD_PK = 201;
-    private static final int PEER_MSG_CMD_PK_REJECT = 202;
-    private static final int PEER_MSG_CMD_PK_ACCEPT = 203;
 
     private volatile static RtmMessageManager sInstance;
 
@@ -165,94 +148,13 @@ public class RtmMessageManager implements RtmClientListener, RtmChannelListener 
             JSONObject obj = new JSONObject(rtmMessageString);
             int cmd = obj.getInt("cmd");
             switch (cmd) {
-                case PEER_MSG_TYPE_SEAT:
-                    SeatInteractionMessage seatMessage = new GsonBuilder().create().
-                            fromJson(rtmMessageString, SeatInteractionMessage.class);
-                    handleSeatPeerMessageHandler(seatMessage);
-                    break;
-                case PEER_MSG_TYPE_PK:
-                    PKInvitationMessage pkInvitationMessage = new GsonBuilder().create().fromJson(
-                            rtmMessageString, PKInvitationMessage.class);
-                    handlePKInvitationMessageHandler(pkInvitationMessage);
-                    break;
-                case PEER_MSG_TYPE_OWNER_PK_NOTIFY:
-                    break;
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
-    private void handleSeatPeerMessageHandler(SeatInteractionMessage message) {
-        if (mHandler != null) {
-            mHandler.post(() -> handleSeatPeerMessage(message));
-        } else {
-            handleSeatPeerMessage(message);
-        }
-    }
-
-    private void handleSeatPeerMessage(SeatInteractionMessage message) {
-        String userId = message.data.fromUser.userId;
-        String userName = message.data.fromUser.userName;
-        int seatNo = message.data.no;
-        for (RtmMessageListener listener : mMessageListeners) {
-            switch (message.data.type) {
-                case SeatInteraction.OWNER_INVITE:
-                    listener.onRtmSeatInvited(userId, userName, seatNo);
-                    break;
-                case SeatInteraction.AUDIENCE_APPLY:
-                    listener.onRtmSeatApplied(userId, userName, seatNo);
-                    break;
-                case SeatInteraction.OWNER_REJECT:
-                    listener.onRtmApplicationRejected(message.data.processId, userId, userName, seatNo);
-                    break;
-                case SeatInteraction.AUDIENCE_REJECT:
-                    listener.onRtmInvitationRejected(message.data.processId, userId, userName, seatNo);
-                    break;
-                case SeatInteraction.OWNER_ACCEPT:
-                    listener.onRtmApplicationAccepted(message.data.processId, userId, userName, seatNo);
-                    break;
-                case SeatInteraction.AUDIENCE_ACCEPT:
-                    listener.onRtmInvitationAccepted(message.data.processId, userId, userName, seatNo);
-                    break;
-                case SeatInteraction.OWNER_FORCE_LEAVE:
-                    listener.onRtmOwnerForceLeaveSeat(userId, userName, seatNo);
-                    break;
-                case SeatInteraction.HOST_LEAVE:
-                    listener.onRtmHostLeaveSeat(userId, userName, seatNo);
-                    break;
-            }
-        }
-    }
-
-    private void handlePKInvitationMessageHandler(PKInvitationMessage message) {
-        if (mHandler != null) {
-            mHandler.post(() -> handlePKInvitationMessage(message));
-        } else {
-            handlePKInvitationMessage(message);
-        }
-    }
-
-    private void handlePKInvitationMessage(PKInvitationMessage message) {
-        String roomId = message.data.fromRoom.roomId;
-        String userId = message.data.fromRoom.owner.userId;
-        String userName = message.data.fromRoom.owner.userName;
-        for (RtmMessageListener listener : mMessageListeners) {
-            switch (message.data.type) {
-                case PKConstant.PK_BEHAVIOR_INVITE:
-                    listener.onRtmPkReceivedFromAnotherHost(userId, userName, roomId);
-                    break;
-                case PKConstant.PK_BEHAVIOR_ACCEPT:
-                    listener.onRtmPkAcceptedByTargetHost(userId, userName, roomId);
-                    break;
-                case PKConstant.PK_BEHAVIOR_REJECT:
-                    listener.onRtmPkRejectedByTargetHost(userId, userName, roomId);
-                    break;
-                case PKConstant.PK_BEHAVIOR_TIMEOUT:
-                    break;
-            }
-        }
-    }
 
     @Override
     public void onTokenExpired() {
@@ -307,14 +209,6 @@ public class RtmMessageManager implements RtmClientListener, RtmChannelListener 
                     case CHANNEL_MSG_CMD_OWNER_STATE:
                         OwnerStateMessage ownerMessage = gson.fromJson(json, OwnerStateMessage.class);
                         handleOwnerStateMessage(listener, ownerMessage);
-                        break;
-                    case CHANNEL_MSG_TYPE_SEAT:
-                        SeatStateMessage seat = gson.fromJson(json, SeatStateMessage.class);
-                        handleSeatStateMessage(listener, seat);
-                        break;
-                    case CHANNEL_MSG_TYPE_PK:
-                        PKStateMessage pkStateMessage = gson.fromJson(json, PKStateMessage.class);
-                        handlePKMessage(listener, pkStateMessage.data);
                         break;
                     case CHANNEL_MSG_TYPE_GIFT:
                         GiftMessage giftMessage = gson.fromJson(json, GiftMessage.class);
@@ -371,22 +265,6 @@ public class RtmMessageManager implements RtmClientListener, RtmChannelListener 
         }
     }
 
-    private void handleSeatStateMessage(@NonNull RtmMessageListener listener, SeatStateMessage message) {
-        List<SeatStateMessage.SeatStateMessageDataItem> data = message.data;
-        if (mHandler != null) {
-            mHandler.post(() -> listener.onRtmSeatStateChanged(data));
-        } else {
-            listener.onRtmSeatStateChanged(data);
-        }
-    }
-
-    private void handlePKMessage(@NonNull RtmMessageListener listener, PKStateMessage.PKStateMessageBody message) {
-        if (mHandler != null) {
-            mHandler.post(() -> listener.onRtmReceivePKEvent(message));
-        } else {
-            listener.onRtmReceivePKEvent(message);
-        }
-    }
 
     private void handleGiftMessage(@NonNull RtmMessageListener listener, GiftMessage message) {
         GiftMessage.GiftMessageData data = message.data;

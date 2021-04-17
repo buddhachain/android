@@ -7,8 +7,6 @@ import io.agora.rtm.RtmChannelAttribute;
 import io.agora.rtm.RtmChannelMember;
 import io.agora.vlive.agora.rtm.model.GiftRankMessage;
 import io.agora.vlive.agora.rtm.model.NotificationMessage;
-import io.agora.vlive.agora.rtm.model.PKInvitationMessage;
-import io.agora.vlive.agora.rtm.model.PKStateMessage;
 import io.agora.vlive.agora.rtm.model.SeatStateMessage;
 
 public interface RtmMessageListener {
@@ -42,12 +40,6 @@ public interface RtmMessageListener {
 
     void onRtmHostLeaveSeat(String userId, String userName, int index);
 
-    void onRtmPkReceivedFromAnotherHost(String userId, String userName, String roomId);
-
-    void onRtmPkAcceptedByTargetHost(String userId, String userName, String roomId);
-
-    void onRtmPkRejectedByTargetHost(String userId, String userName, String roomId);
-
     void onRtmChannelMessageReceived(String peerId, String nickname, String content);
 
     void onRtmChannelNotification(int total, List<NotificationMessage.NotificationItem> list);
@@ -57,8 +49,6 @@ public interface RtmMessageListener {
     void onRtmOwnerStateChanged(String userId, String userName, int uid, int enableAudio, int enableVideo);
 
     void onRtmSeatStateChanged(List<SeatStateMessage.SeatStateMessageDataItem> data);
-
-    void onRtmReceivePKEvent(PKStateMessage.PKStateMessageBody messageData);
 
     void onRtmGiftMessage(String fromUserId, String fromUserName, String toUserId, String toUserName, int giftId);
 

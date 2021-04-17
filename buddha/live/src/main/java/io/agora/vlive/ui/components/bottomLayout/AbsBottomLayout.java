@@ -8,7 +8,6 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
-
 import io.agora.vlive.R;
 
 public abstract class AbsBottomLayout extends RelativeLayout implements View.OnClickListener {
@@ -65,6 +64,12 @@ public abstract class AbsBottomLayout extends RelativeLayout implements View.OnC
         fun2Btn.setOnClickListener(this);
         moreBtn.setOnClickListener(this);
         closeBtn.setOnClickListener(this);
+
+        if (role != ROLE_AUDIENCE) {
+            fun1Btn.setVisibility(GONE);
+        } else {
+            fun1Btn.setVisibility(VISIBLE);
+        }
     }
 
     @Override

@@ -24,11 +24,7 @@ public class Global {
         public static final String KEY_BITRATE = "key-bitrate";
 
         public static final String TAB_KEY = "live-tab";
-        public static final int TAB_ID_MULTI = 1;
-        public static final int TAB_ID_SINGLE = 0;
-        public static final int TAB_ID_PK = 3;
-        public static final int TAB_ID_VIRTUAL = 4;
-        public static final int TAB_ECOMMERCE = 2;
+        public static final int TAB_ECOMMERCE = 0;
 
         public static final String KEY_ROOM_ID = "room-id";
         public static final String KEY_ROOM_NAME = "room-name";
@@ -69,8 +65,8 @@ public class Global {
         public static final long APP_LOG_SIZE = 1 << 30;
 
         public static final int[] TAB_IDS_RES = {
-                R.string.home_category_title_single,
                 R.string.home_category_title_ecommerce,
+                R.string.home_category_title_single,
                 R.string.home_category_title_multi,
                 R.string.home_category_title_pk,
                 R.string.home_category_title_virtual_host,

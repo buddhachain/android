@@ -98,11 +98,7 @@ public class Config {
         }
     }
 
-    public static final int LIVE_TYPE_MULTI_HOST = 3;
-    public static final int LIVE_TYPE_SINGLE_HOST = 1;
-    public static final int LIVE_TYPE_PK_HOST = 4;
-    public static final int LIVE_TYPE_VIRTUAL_HOST = 5;
-    public static final int LIVE_TYPE_ECOMMERCE = 2;
+    public static final int LIVE_TYPE_ECOMMERCE = 1;
 
     private AgoraLiveManager mApplication;
 
@@ -128,7 +124,7 @@ public class Config {
     private String mAppId;
     private List<GiftInfo> mGiftInfoList = new ArrayList<>();
     private List<MusicInfo> mMusicInfoList = new ArrayList<>();
-    private int mLastTabPosition = Global.Constants.TAB_ID_SINGLE;
+    private int mLastTabPosition = Global.Constants.TAB_ECOMMERCE;
 
     // Camera capture configurations
     private int mCameraFacing = Constant.CAMERA_FACING_FRONT;
@@ -267,31 +263,6 @@ public class Config {
 
     public VideoEncoderConfiguration createVideoEncoderConfig(int type) {
         switch (type) {
-            case LIVE_TYPE_MULTI_HOST:
-                return new VideoEncoderConfiguration(
-                        Global.Constants.RESOLUTIONS_MULTI_HOST[0],
-                        Global.Constants.FRAME_RATES[0],
-                        VideoEncoderConfiguration.STANDARD_BITRATE,
-
-                        VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE);
-            case LIVE_TYPE_SINGLE_HOST:
-                return new VideoEncoderConfiguration(
-                        Global.Constants.RESOLUTIONS_SINGLE_HOST[mResolutionIndex],
-                        Global.Constants.FRAME_RATES[0],
-                        VideoEncoderConfiguration.STANDARD_BITRATE,
-                        VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE);
-            case LIVE_TYPE_PK_HOST:
-                return new VideoEncoderConfiguration(
-                        Global.Constants.RESOLUTIONS_PK_HOST[0],
-                        Global.Constants.FRAME_RATES[0],
-                        VideoEncoderConfiguration.STANDARD_BITRATE,
-                        VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_ADAPTIVE);
-            case LIVE_TYPE_VIRTUAL_HOST:
-                return new VideoEncoderConfiguration(
-                        Global.Constants.RESOLUTIONS_VIRTUAL_IMAGE[0],
-                        VideoEncoderConfiguration.FRAME_RATE.FRAME_RATE_FPS_15,
-                        VideoEncoderConfiguration.STANDARD_BITRATE,
-                        VideoEncoderConfiguration.ORIENTATION_MODE.ORIENTATION_MODE_FIXED_PORTRAIT);
             case LIVE_TYPE_ECOMMERCE:
                 return new VideoEncoderConfiguration(
                         Global.Constants.RESOLUTIONS_ECOMMERCE[0],

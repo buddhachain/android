@@ -11,19 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import io.agora.vlive.Config;
 import io.agora.vlive.R;
-import io.agora.vlive.protocol.ClientProxy;
 import io.agora.vlive.protocol.model.model.RoomInfo;
 import io.agora.vlive.protocol.model.request.Request;
 import io.agora.vlive.protocol.model.request.RoomListRequest;
@@ -230,12 +228,8 @@ public abstract class AbsPageFragment extends AbstractFragment implements SwipeR
 
         private int serverTypeToTabType(int serverType) {
             switch (serverType) {
-                case ClientProxy.ROOM_TYPE_SINGLE: return Config.LIVE_TYPE_SINGLE_HOST;
-                case ClientProxy.ROOM_TYPE_PK: return Config.LIVE_TYPE_PK_HOST;
-                case ClientProxy.ROOM_TYPE_VIRTUAL_HOST: return Config.LIVE_TYPE_VIRTUAL_HOST;
-                case ClientProxy.ROOM_TYPE_ECOMMERCE: return Config.LIVE_TYPE_ECOMMERCE;
-                case ClientProxy.ROOM_TYPE_HOST_IN:
-                default: return Config.LIVE_TYPE_MULTI_HOST;
+                default:
+                    return Config.LIVE_TYPE_ECOMMERCE;
             }
         }
 

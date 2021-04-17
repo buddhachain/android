@@ -46,7 +46,6 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
-import io.agora.vlive.ui.main.LiveMainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -239,8 +238,6 @@ public class ShouyeFragment extends BaseFragment {
     void goLive() {
         MainActivity activity = (MainActivity) getActivity();
         activity.select(R.id.bottom_menu_foyou);
-//        SkipInsideUtil.skipInsideActivity(mContext, LiveMainActivity.class);
-//        SkipInsideUtil.skipInsideActivity(mContext, LiveRoomActivity.class);
     }
 
 }

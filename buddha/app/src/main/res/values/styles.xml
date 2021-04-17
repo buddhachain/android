@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -17,16 +17,6 @@
     </style>
 
     <!-- EditText  style -->
-    <style name="edittext_line_style">
-        <item name="android:textCursorDrawable">@drawable/edittext_cursor_bg</item>
-        <item name="android:background">@drawable/edit_text_line_bg</item>
-        <item name="android:textColorHint">@color/hint_gray</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">12dp</item>
-        <item name="android:paddingLeft">15dp</item>
-        <item name="android:paddingRight">12dp</item>
-        <item name="android:textColor">@color/color_text_level1</item>
-    </style>
 
     <style name="edittext_circle_style">
         <item name="android:textCursorDrawable">@drawable/edittext_cursor_bg</item>
