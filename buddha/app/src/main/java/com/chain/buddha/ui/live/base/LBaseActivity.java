@@ -15,7 +15,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import io.agora.vlive.ui.actionsheets.GiftActionSheet;
+import com.chain.buddha.ui.BaseActivity;
+import com.chain.buddha.ui.live.actionsheets.GiftActionSheet;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Stack;
@@ -54,7 +55,7 @@ import io.agora.vlive.ui.actionsheets.BackgroundMusicActionSheet;
 import io.agora.vlive.ui.actionsheets.BeautySettingActionSheet;
 import io.agora.vlive.ui.actionsheets.LiveRoomSettingActionSheet;
 import io.agora.vlive.ui.actionsheets.LiveRoomUserListActionSheet;
-import io.agora.vlive.ui.actionsheets.ProductActionSheet;
+import com.chain.buddha.ui.live.actionsheets.ProductActionSheet;
 import io.agora.vlive.ui.actionsheets.VoiceActionSheet;
 import io.agora.vlive.ui.actionsheets.toolactionsheet.LiveRoomToolActionSheet;
 
@@ -62,7 +63,7 @@ import io.agora.vlive.ui.actionsheets.toolactionsheet.LiveRoomToolActionSheet;
  * Capabilities that are shared by all activity, such as
  * messaging, action sheets, dialogs, server requests and so on.
  */
-public abstract class LBaseActivity extends AppCompatActivity implements ClientProxyListener {
+public abstract class LBaseActivity extends BaseActivity implements ClientProxyListener {
     private static final String TAG = LBaseActivity.class.getSimpleName();
 
     protected static final int ACTION_SHEET_VIDEO = 0;

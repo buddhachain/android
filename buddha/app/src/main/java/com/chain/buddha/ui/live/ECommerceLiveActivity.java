@@ -10,11 +10,17 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import io.agora.vlive.ui.actionsheets.ProductActionSheet;
+import com.chain.buddha.Xuper.ResponseCallBack;
+import com.chain.buddha.Xuper.XuperApi;
+import com.chain.buddha.ui.activity.ShanjvDetailActivity;
+import com.chain.buddha.ui.live.actionsheets.ProductActionSheet;
 import com.chain.buddha.ui.live.base.LiveRoomActivity;
+import com.chain.buddha.utils.SkipInsideUtil;
 import com.elvishew.xlog.XLog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -96,6 +102,38 @@ public class ECommerceLiveActivity extends LiveRoomActivity
             mProductListActionSheet.setRole(isOwner ?
                     Global.Constants.ROLE_OWNER : Global.Constants.ROLE_AUDIENCE);
             mProductListActionSheet.setListener(mProductActionListener);
+
+            XuperApi.requestQifuList(new ResponseCallBack<String>() {
+                @Override
+                public void onSuccess(String resp) {
+                    try {
+                        resp = resp.replaceAll("\\}", "");
+                        String[] list = resp.split("\\{");
+                        List<String> mQifuList = new ArrayList<>(Arrays.asList(list));
+                        mQifuList.remove(0);
+                        // 反转lists
+                        Collections.reverse(mQifuList);
+                        List<Product> products = new ArrayList<>();
+                        for (String qifu : mQifuList) {
+                            String[] args = qifu.split(",");
+                            Product product = new Product();
+                            product.productId = args[0];
+                            product.description = args[1];
+                            product.price = 100;
+                            product.state = Product.PRODUCT_LAUNCHED;
+                            products.add(product);
+                        }
+
+                        mProductListActionSheet.updateList(products);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                public void onFail(String message) {
+                }
+            });
         }
 
         @Override
@@ -134,10 +172,12 @@ public class ECommerceLiveActivity extends LiveRoomActivity
         }
 
         private void showProductDetailWindow(Product product) {
-            mProductDetailWindow = new ProductDetailWindow(
-                    ECommerceLiveActivity.this,
-                    R.style.product_detail_window, product);
-            mProductDetailWindow.show();
+            SkipInsideUtil.skipInsideActivity(mContext, ShanjvDetailActivity.class, SkipInsideUtil.SKIP_KEY_KDID, product.productId);
+
+//            mProductDetailWindow = new ProductDetailWindow(
+//                    ECommerceLiveActivity.this,
+//                    R.style.product_detail_window, product);
+//            mProductDetailWindow.show();
         }
 
         @Override

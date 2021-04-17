@@ -20,7 +20,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import io.agora.vlive.ui.actionsheets.GiftActionSheet;
+import com.chain.buddha.ui.live.actionsheets.GiftActionSheet;
 import com.elvishew.xlog.XLog;
 
 import java.util.ArrayList;

@@ -11,6 +11,9 @@ public class Product {
     public String thumbnail;
     public int state;
 
+    public Product() {
+    }
+
     public Product(Product product) {
         this.productId = product.productId;
         this.productName = product.productName;
