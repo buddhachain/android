@@ -10,7 +10,6 @@ import io.agora.vlive.protocol.model.request.RoomListRequest;
 import io.agora.vlive.protocol.model.request.RoomRequest;
 import io.agora.vlive.protocol.model.request.SeatInteractionRequest;
 import io.agora.vlive.protocol.model.request.SendGiftRequest;
-import io.agora.vlive.protocol.model.request.UserRequest;
 
 public class ClientProxy {
     public static final int ROOM_TYPE_ECOMMERCE = 5;
@@ -44,10 +43,6 @@ public class ClientProxy {
 
     public long sendRequest(int request, Object params) {
         switch (request) {
-            case Request.APP_VERSION:
-                String ver = (String) params;
-                mClient.requestVersion(mReqId, APP_CODE, OS_TYPE, TERMINAL_TYPE, ver);
-                break;
             case Request.GIFT_LIST:
                 mClient.requestGiftList(mReqId);
                 break;
@@ -58,19 +53,7 @@ public class ClientProxy {
                 OssPolicyRequest ossRequest = (OssPolicyRequest) params;
                 mClient.requestOssPolicy(mReqId, ossRequest.token, ossRequest.type);
                 break;
-            case Request.CREATE_USER:
-                UserRequest userRequest = (UserRequest) params;
-                mClient.createUser(mReqId, userRequest.userName);
-                break;
-            case Request.EDIT_USER:
-                userRequest = (UserRequest) params;
-                mClient.editUser(mReqId, userRequest.token, userRequest.userId,
-                        userRequest.userName, userRequest.avatar);
-                break;
-            case Request.USER_LOGIN:
-                String userId = (String) params;
-                mClient.login(mReqId, userId);
-                break;
+
             case Request.ROOM_LIST:
                 RoomListRequest roomListRequest = (RoomListRequest) params;
                 mClient.requestRoomList(mReqId, roomListRequest.token, roomListRequest.nextId,

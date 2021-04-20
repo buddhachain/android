@@ -73,6 +73,8 @@
         <activity android:name=".ui.activity.TempleListActivity" />
         <activity android:name=".ui.activity.TempleInfoActivity" />
         <activity android:name=".ui.activity.MakeProposalActivity" />
+        <activity android:name=".ui.activity.xiuxing.FanyinPlayerActivity" />
+        <activity android:name=".ui.activity.xiuxing.BookReaderActivity" />
 
 
         <activity

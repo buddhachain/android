@@ -68,4 +68,6 @@ dependencies {
 
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+
+    implementation 'commons-codec:commons-codec:1.11'
 }

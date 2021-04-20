@@ -184,7 +184,7 @@ public abstract class LiveRoomActivity extends LiveBaseActivity implements
 
     private void createRoom() {
         CreateRoomRequest request = new CreateRoomRequest();
-        request.token = config().getUserProfile().getToken();
+//        request.token = config().getUserProfile().getToken();
         request.type = getChannelTypeByTabId();
         request.roomName = roomName;
         int imageId = getIntent().getIntExtra(Global.Constants.KEY_VIRTUAL_IMAGE, -1);
@@ -215,8 +215,8 @@ public abstract class LiveRoomActivity extends LiveBaseActivity implements
     }
 
     protected void enterRoom(String roomId) {
-        RoomRequest request = new RoomRequest(config().getUserProfile().getToken(), roomId);
-        sendRequest(Request.ENTER_ROOM, request);
+//        RoomRequest request = new RoomRequest(config().getUserProfile().getToken(), roomId);
+//        sendRequest(Request.ENTER_ROOM, request);
     }
 
     @Override
@@ -310,9 +310,9 @@ public abstract class LiveRoomActivity extends LiveBaseActivity implements
     @Override
     public void onActionSheetGiftSend(String name, int index, int value) {
         dismissActionSheetDialog();
-        SendGiftRequest request = new SendGiftRequest(config().
-                getUserProfile().getToken(), roomId, index);
-        sendRequest(Request.SEND_GIFT, request);
+//        SendGiftRequest request = new SendGiftRequest(config().
+//                getUserProfile().getToken(), roomId, index);
+//        sendRequest(Request.SEND_GIFT, request);
     }
 
     /**
@@ -461,7 +461,7 @@ public abstract class LiveRoomActivity extends LiveBaseActivity implements
         // Show all user info list
         mRoomUserActionSheet = (LiveRoomUserListActionSheet)
                 showActionSheetDialog(ACTION_SHEET_ROOM_USER, tabIdToLiveType(tabId), isHost, true, this);
-        mRoomUserActionSheet.setup(proxy(), this, roomId, config().getUserProfile().getToken());
+//        mRoomUserActionSheet.setup(proxy(), this, roomId, config().getUserProfile().getToken());
         mRoomUserActionSheet.requestMoreAudience();
     }
 
@@ -606,8 +606,8 @@ public abstract class LiveRoomActivity extends LiveBaseActivity implements
     }
 
     protected void leaveRoom(String roomId) {
-        sendRequest(Request.LEAVE_ROOM, new RoomRequest(
-                config().getUserProfile().getToken(), roomId));
+//        sendRequest(Request.LEAVE_ROOM, new RoomRequest(
+//                config().getUserProfile().getToken(), roomId));
     }
 
     @Override

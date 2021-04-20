@@ -16,7 +16,7 @@ public class ProductServiceManager {
     }
 
     private String getValidToken(String errorMessage) {
-        String token = mApplication.config().getUserProfile().getToken();
+        String token = "";
         if (TextUtils.isEmpty(token)) {
             XLog.e(errorMessage);
             token = null;

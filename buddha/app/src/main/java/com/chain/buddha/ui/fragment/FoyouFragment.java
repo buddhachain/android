@@ -7,44 +7,48 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.chain.buddha.R;
+import com.chain.buddha.Xuper.BaseObserver;
+import com.chain.buddha.Xuper.ResponseCallBack;
+import com.chain.buddha.Xuper.XuperAccount;
 import com.chain.buddha.adapter.FmPagerAdapter;
 import com.chain.buddha.ui.BaseFragment;
 import com.chain.buddha.ui.fragment.xiuxing.FanyinFragment;
 import com.chain.buddha.ui.live.base.RoomFragment;
 import com.google.android.material.tabs.TabLayout;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
+import io.agora.dynamickey.utils.AgoraConfigs;
+import io.agora.dynamickey.utils.RtmTokenBuilderUtils;
 import io.agora.rtm.ErrorInfo;
 import io.agora.rtm.ResultCallback;
 import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.Config;
 import io.agora.vlive.protocol.ClientProxyListener;
 import io.agora.vlive.protocol.model.request.Request;
-import io.agora.vlive.protocol.model.request.UserRequest;
-import io.agora.vlive.protocol.model.response.AppVersionResponse;
 import io.agora.vlive.protocol.model.response.AudienceListResponse;
 import io.agora.vlive.protocol.model.response.CreateRoomResponse;
-import io.agora.vlive.protocol.model.response.CreateUserResponse;
-import io.agora.vlive.protocol.model.response.EditUserResponse;
 import io.agora.vlive.protocol.model.response.EnterRoomResponse;
 import io.agora.vlive.protocol.model.response.GiftListResponse;
 import io.agora.vlive.protocol.model.response.GiftRankResponse;
 import io.agora.vlive.protocol.model.response.LeaveRoomResponse;
-import io.agora.vlive.protocol.model.response.LoginResponse;
 import io.agora.vlive.protocol.model.response.ModifyUserStateResponse;
 import io.agora.vlive.protocol.model.response.MusicListResponse;
 import io.agora.vlive.protocol.model.response.OssPolicyResponse;
 import io.agora.vlive.protocol.model.response.ProductListResponse;
 import io.agora.vlive.protocol.model.response.RefreshTokenResponse;
-import io.agora.vlive.protocol.model.response.Response;
 import io.agora.vlive.protocol.model.response.RoomListResponse;
 import io.agora.vlive.protocol.model.response.SeatStateResponse;
 import io.agora.vlive.protocol.model.response.SendGiftResponse;
-import io.agora.vlive.utils.Global;
-import io.agora.vlive.utils.RandomUtil;
+import io.agora.vlive.retrofit.RetrofitUtil;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -118,26 +122,18 @@ public class FoyouFragment extends BaseFragment implements ClientProxyListener {
 
 
     private void initAsync() {
+        initAccount();
         new Thread(() -> {
-            checkUpdate();
             getGiftList();
         }).start();
     }
 
-    private void checkUpdate() {
-        if (!AgoraLiveManager.getInstance().config().hasCheckedVersion()) {
-            AgoraLiveManager.getInstance().proxy().sendRequest(Request.APP_VERSION, "3.2.0");
-        }
-    }
-
-
-    @Override
-    public void onAppVersionResponse(AppVersionResponse response) {
-        AgoraLiveManager.getInstance().config().setVersionInfo(response.data);
-        AgoraLiveManager.getInstance().config().setAppId(response.data.config.appId);
-        AgoraLiveManager.getInstance().initEngine(response.data.config.appId);
+    private void initAccount() {
+        AgoraLiveManager.getInstance().config().setAppId(AgoraConfigs.appId);
+        AgoraLiveManager.getInstance().initEngine(AgoraConfigs.appId);
         login();
     }
+
 
     @Override
     public void onRefreshTokenResponse(RefreshTokenResponse refreshTokenResponse) {
@@ -156,59 +152,30 @@ public class FoyouFragment extends BaseFragment implements ClientProxyListener {
 
     private void login() {
         Config.UserProfile profile = AgoraLiveManager.getInstance().config().getUserProfile();
-        initUserFromStorage(profile);
-        if (!profile.isValid()) {
-            createUser();
-        } else {
-            loginToServer();
-        }
-    }
-
-    private void initUserFromStorage(Config.UserProfile profile) {
-        profile.setUserId(AgoraLiveManager.getInstance().preferences().getString(Global.Constants.KEY_PROFILE_UID, null));
-        profile.setUserName(AgoraLiveManager.getInstance().preferences().getString(Global.Constants.KEY_USER_NAME, null));
-        profile.setImageUrl(AgoraLiveManager.getInstance().preferences().getString(Global.Constants.KEY_IMAGE_URL, null));
-        profile.setToken(AgoraLiveManager.getInstance().preferences().getString(Global.Constants.KEY_TOKEN, null));
-    }
-
-    private void createUser() {
-        String userName = RandomUtil.randomUserName(mContext);
-        AgoraLiveManager.getInstance().config().getUserProfile().setUserName(userName);
-        AgoraLiveManager.getInstance().preferences().edit().putString(Global.Constants.KEY_USER_NAME, userName).apply();
-        AgoraLiveManager.getInstance().proxy().sendRequest(Request.CREATE_USER, new UserRequest(userName));
-    }
-
-    @Override
-    public void onCreateUserResponse(CreateUserResponse response) {
-        createUserFromResponse(response);
+        profile.setUserId(XuperAccount.getAddress());
         loginToServer();
     }
 
-    @Override
-    public void onEditUserResponse(EditUserResponse response) {
-
-    }
-
-    private void createUserFromResponse(CreateUserResponse response) {
-        Config.UserProfile profile = AgoraLiveManager.getInstance().config().getUserProfile();
-        profile.setUserId(response.data.userId);
-        AgoraLiveManager.getInstance().preferences().edit().putString(Global.Constants.KEY_PROFILE_UID, profile.getUserId()).apply();
-    }
-
     private void loginToServer() {
-        AgoraLiveManager.getInstance().proxy().sendRequest(Request.USER_LOGIN, AgoraLiveManager.getInstance().config().getUserProfile().getUserId());
-    }
+        String rtmToken = RtmTokenBuilderUtils.getRtmToken(XuperAccount.getAddress());
+        Config.UserProfile profile = AgoraLiveManager.getInstance().config().getUserProfile();
+        profile.setRtmToken(rtmToken);
+        profile.setAgoraUid(0);
+        RetrofitUtil.getInstance().getService().user_events(rtmToken, XuperAccount.getAddress())
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this)))
+                .subscribe(new BaseObserver<>(false, new ResponseCallBack<Response<Object>>() {
+                    @Override
+                    public void onSuccess(Response<Object> stringResponse) {
+                        Log.e("登录成功", "登录成功");
+                        joinRtmServer();
+                    }
 
-    @Override
-    public void onLoginResponse(LoginResponse response) {
-        if (response != null && response.code == Response.SUCCESS) {
-            Config.UserProfile profile = AgoraLiveManager.getInstance().config().getUserProfile();
-            profile.setToken(response.data.userToken);
-            profile.setRtmToken(response.data.rtmToken);
-            profile.setAgoraUid(response.data.uid);
-            AgoraLiveManager.getInstance().preferences().edit().putString(Global.Constants.KEY_TOKEN, response.data.userToken).apply();
-            joinRtmServer();
-        }
+                    @Override
+                    public void onFail(String message) {
+                        Log.e("登录失败", "登录失败");
+                    }
+                }));
     }
 
     @Override
@@ -233,11 +200,6 @@ public class FoyouFragment extends BaseFragment implements ClientProxyListener {
 
     @Override
     public void onRequestSeatStateResponse(SeatStateResponse response) {
-
-    }
-
-    @Override
-    public void onModifyUserStateResponse(ModifyUserStateResponse response) {
 
     }
 
@@ -269,14 +231,15 @@ public class FoyouFragment extends BaseFragment implements ClientProxyListener {
 
     private void joinRtmServer() {
         Config.UserProfile profile = AgoraLiveManager.getInstance().config().getUserProfile();
-        AgoraLiveManager.getInstance().rtmClient().login(profile.getRtmToken(), String.valueOf(profile.getAgoraUid()), new ResultCallback<Void>() {
+        AgoraLiveManager.getInstance().rtmClient().login(profile.getRtmToken(), XuperAccount.getAddress(), new ResultCallback<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
+                Log.e("登录成功", "登录成功");
             }
 
             @Override
             public void onFailure(ErrorInfo errorInfo) {
-
+                Log.e("登录失败", errorInfo.toString());
             }
         });
     }
@@ -298,11 +261,5 @@ public class FoyouFragment extends BaseFragment implements ClientProxyListener {
     @Override
     public void onResponseError(int requestType, int error, String message) {
         Log.e("request:", requestType + " error:" + error + " msg:" + message);
-
-        switch (requestType) {
-            default:
-//                runOnUiThread(() -> showLongToast("Request type: " +
-//                        Request.getRequestString(requestType) + " " + message));
-        }
     }
 }

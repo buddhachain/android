@@ -1,16 +1,11 @@
 package io.agora.vlive.protocol;
 
-import io.agora.vlive.protocol.model.response.AppVersionResponse;
 import io.agora.vlive.protocol.model.response.AudienceListResponse;
 import io.agora.vlive.protocol.model.response.CreateRoomResponse;
-import io.agora.vlive.protocol.model.response.CreateUserResponse;
-import io.agora.vlive.protocol.model.response.EditUserResponse;
 import io.agora.vlive.protocol.model.response.EnterRoomResponse;
 import io.agora.vlive.protocol.model.response.GiftListResponse;
 import io.agora.vlive.protocol.model.response.GiftRankResponse;
 import io.agora.vlive.protocol.model.response.LeaveRoomResponse;
-import io.agora.vlive.protocol.model.response.LoginResponse;
-import io.agora.vlive.protocol.model.response.ModifySeatStateResponse;
 import io.agora.vlive.protocol.model.response.ModifyUserStateResponse;
 import io.agora.vlive.protocol.model.response.MusicListResponse;
 import io.agora.vlive.protocol.model.response.OssPolicyResponse;
@@ -21,7 +16,6 @@ import io.agora.vlive.protocol.model.response.SeatStateResponse;
 import io.agora.vlive.protocol.model.response.SendGiftResponse;
 
 public interface ClientProxyListener {
-    void onAppVersionResponse(AppVersionResponse response);
 
     void onRefreshTokenResponse(RefreshTokenResponse refreshTokenResponse);
 
@@ -33,12 +27,6 @@ public interface ClientProxyListener {
 
     void onRoomListResponse(RoomListResponse response);
 
-    void onCreateUserResponse(CreateUserResponse response);
-
-    void onEditUserResponse(EditUserResponse response);
-
-    void onLoginResponse(LoginResponse response);
-
     void onCreateRoomResponse(CreateRoomResponse response);
 
     void onEnterRoomResponse(EnterRoomResponse response);
@@ -48,8 +36,6 @@ public interface ClientProxyListener {
     void onAudienceListResponse(AudienceListResponse response);
 
     void onRequestSeatStateResponse(SeatStateResponse response);
-
-    void onModifyUserStateResponse(ModifyUserStateResponse response);
 
     void onSendGiftResponse(SendGiftResponse response);
 

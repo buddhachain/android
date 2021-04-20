@@ -2,7 +2,6 @@ package com.chain.buddha.ui.live.base;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
@@ -21,7 +20,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.util.Stack;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatTextView;
 import io.agora.capture.video.camera.CameraManager;
 import io.agora.rtc.RtcEngine;
@@ -32,16 +30,12 @@ import io.agora.vlive.R;
 import io.agora.vlive.agora.rtc.RtcEventHandler;
 import io.agora.vlive.protocol.ClientProxy;
 import io.agora.vlive.protocol.ClientProxyListener;
-import io.agora.vlive.protocol.model.response.AppVersionResponse;
 import io.agora.vlive.protocol.model.response.AudienceListResponse;
 import io.agora.vlive.protocol.model.response.CreateRoomResponse;
-import io.agora.vlive.protocol.model.response.CreateUserResponse;
-import io.agora.vlive.protocol.model.response.EditUserResponse;
 import io.agora.vlive.protocol.model.response.EnterRoomResponse;
 import io.agora.vlive.protocol.model.response.GiftListResponse;
 import io.agora.vlive.protocol.model.response.GiftRankResponse;
 import io.agora.vlive.protocol.model.response.LeaveRoomResponse;
-import io.agora.vlive.protocol.model.response.LoginResponse;
 import io.agora.vlive.protocol.model.response.ModifyUserStateResponse;
 import io.agora.vlive.protocol.model.response.MusicListResponse;
 import io.agora.vlive.protocol.model.response.OssPolicyResponse;
@@ -332,10 +326,6 @@ public abstract class LBaseActivity extends BaseActivity implements ClientProxyL
         return application().config();
     }
 
-    public SharedPreferences preferences() {
-        return application().preferences();
-    }
-
     public ClientProxy proxy() {
         return application().proxy();
     }
@@ -402,10 +392,6 @@ public abstract class LBaseActivity extends BaseActivity implements ClientProxyL
         proxy().removeProxyListener(this);
     }
 
-    @Override
-    public void onAppVersionResponse(AppVersionResponse response) {
-
-    }
 
     @Override
     public void onRefreshTokenResponse(RefreshTokenResponse refreshTokenResponse) {
@@ -432,20 +418,6 @@ public abstract class LBaseActivity extends BaseActivity implements ClientProxyL
 
     }
 
-    @Override
-    public void onCreateUserResponse(CreateUserResponse response) {
-
-    }
-
-    @Override
-    public void onEditUserResponse(EditUserResponse response) {
-
-    }
-
-    @Override
-    public void onLoginResponse(LoginResponse response) {
-
-    }
 
     @Override
     public void onCreateRoomResponse(CreateRoomResponse response) {
@@ -472,10 +444,6 @@ public abstract class LBaseActivity extends BaseActivity implements ClientProxyL
 
     }
 
-    @Override
-    public void onModifyUserStateResponse(ModifyUserStateResponse response) {
-
-    }
 
     @Override
     public void onSendGiftResponse(SendGiftResponse response) {

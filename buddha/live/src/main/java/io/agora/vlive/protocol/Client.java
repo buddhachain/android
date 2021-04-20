@@ -14,28 +14,16 @@ import io.agora.vlive.protocol.interfaces.ProductService;
 import io.agora.vlive.protocol.interfaces.RoomService;
 import io.agora.vlive.protocol.interfaces.UserService;
 import io.agora.vlive.protocol.model.body.CreateRoomRequestBody;
-import io.agora.vlive.protocol.model.body.CreateUserBody;
-import io.agora.vlive.protocol.model.body.LoginBody;
-import io.agora.vlive.protocol.model.body.ModifyUserStateRequestBody;
 import io.agora.vlive.protocol.model.body.PurchaseProductBody;
-import io.agora.vlive.protocol.model.body.RequestModifySeatStateBody;
-import io.agora.vlive.protocol.model.body.RequestSeatInteractionBody;
 import io.agora.vlive.protocol.model.body.SendGiftBody;
-import io.agora.vlive.protocol.model.body.UserRequestBody;
 import io.agora.vlive.protocol.model.request.Request;
-import io.agora.vlive.protocol.model.response.AppVersionResponse;
 import io.agora.vlive.protocol.model.response.AudienceListResponse;
 import io.agora.vlive.protocol.model.response.BooleanResponse;
 import io.agora.vlive.protocol.model.response.CreateRoomResponse;
-import io.agora.vlive.protocol.model.response.CreateUserResponse;
-import io.agora.vlive.protocol.model.response.EditUserResponse;
 import io.agora.vlive.protocol.model.response.EnterRoomResponse;
 import io.agora.vlive.protocol.model.response.GiftListResponse;
 import io.agora.vlive.protocol.model.response.GiftRankResponse;
 import io.agora.vlive.protocol.model.response.LeaveRoomResponse;
-import io.agora.vlive.protocol.model.response.LoginResponse;
-import io.agora.vlive.protocol.model.response.LongResponse;
-import io.agora.vlive.protocol.model.response.ModifyUserStateResponse;
 import io.agora.vlive.protocol.model.response.MusicListResponse;
 import io.agora.vlive.protocol.model.response.OssPolicyResponse;
 import io.agora.vlive.protocol.model.response.ProductListResponse;
@@ -104,39 +92,6 @@ class Client {
 
     void removeProxyListener(ClientProxyListener listener) {
         mProxyListeners.remove(listener);
-    }
-
-    void requestVersion(long reqId, String appCode, int osType, int terminalType, String appVersion) {
-        mGeneralService.requestAppVersion(reqId, Request.APP_VERSION,
-                appCode, osType, terminalType, appVersion).enqueue(new Callback<AppVersionResponse>() {
-            @Override
-            @EverythingIsNonNull
-            public void onResponse(Call<AppVersionResponse> call, Response<AppVersionResponse> response) {
-                AppVersionResponse appVersionResponse = response.body();
-                for (ClientProxyListener listener : mProxyListeners) {
-                    if (appVersionResponse == null) {
-                        try {
-                            listener.onResponseError(Request.APP_VERSION, ERROR_NULL,
-                                    response.errorBody() == null ? MSG_NULL_RESPONSE : response.errorBody().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else if (appVersionResponse.code == ERROR_OK) {
-                        listener.onAppVersionResponse(appVersionResponse);
-                    } else {
-                        listener.onResponseError(Request.APP_VERSION, appVersionResponse.code, appVersionResponse.msg);
-                    }
-                }
-            }
-
-            @Override
-            @EverythingIsNonNull
-            public void onFailure(Call<AppVersionResponse> call, Throwable t) {
-                for (ClientProxyListener listener : mProxyListeners) {
-                    listener.onResponseError(Request.APP_VERSION, ERROR_CONNECTION, t.getMessage());
-                }
-            }
-        });
     }
 
     void requestGiftList(long reqId) {
@@ -235,103 +190,6 @@ class Client {
         });
     }
 
-    void createUser(long reqId, String userName) {
-        mUserService.requestCreateUser(reqId, Request.CREATE_USER,
-                new CreateUserBody(userName)).enqueue(new Callback<CreateUserResponse>() {
-            @Override
-            @EverythingIsNonNull
-            public void onResponse(Call<CreateUserResponse> call, Response<CreateUserResponse> response) {
-                CreateUserResponse createUserResponse = response.body();
-                for (ClientProxyListener listener : mProxyListeners) {
-                    if (createUserResponse == null) {
-                        try {
-                            listener.onResponseError(Request.CREATE_USER, ERROR_NULL,
-                                    response.errorBody() == null ? MSG_NULL_RESPONSE : response.errorBody().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else if (createUserResponse.code == ERROR_OK) {
-                        listener.onCreateUserResponse(createUserResponse);
-                    } else {
-                        listener.onResponseError(Request.CREATE_USER, createUserResponse.code, createUserResponse.msg);
-                    }
-                }
-            }
-
-            @Override
-            @EverythingIsNonNull
-            public void onFailure(Call<CreateUserResponse> call, Throwable t) {
-                for (ClientProxyListener listener : mProxyListeners) {
-                    listener.onResponseError(Request.CREATE_USER, ERROR_CONNECTION, t.getMessage());
-                }
-            }
-        });
-    }
-
-    void editUser(long reqId, String token, String userId, String userName, String avatar) {
-        mUserService.requestEditUser(token, reqId, Request.EDIT_USER, userId,
-                new UserRequestBody(userName, avatar)).enqueue(new Callback<EditUserResponse>() {
-            @Override
-            @EverythingIsNonNull
-            public void onResponse(Call<EditUserResponse> call, Response<EditUserResponse> response) {
-                EditUserResponse editUserResponse = response.body();
-                for (ClientProxyListener listener : mProxyListeners) {
-                    if (editUserResponse == null) {
-                        try {
-                            listener.onResponseError(Request.EDIT_USER, ERROR_NULL,
-                                    response.errorBody() == null ? MSG_NULL_RESPONSE : response.errorBody().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else if (editUserResponse.code == ERROR_OK) {
-                        listener.onEditUserResponse(editUserResponse);
-                    } else {
-                        listener.onResponseError(Request.EDIT_USER, editUserResponse.code, editUserResponse.msg);
-                    }
-                }
-            }
-
-            @Override
-            @EverythingIsNonNull
-            public void onFailure(Call<EditUserResponse> call, Throwable t) {
-                for (ClientProxyListener listener : mProxyListeners) {
-                    listener.onResponseError(Request.EDIT_USER, ERROR_CONNECTION, t.getMessage());
-                }
-            }
-        });
-    }
-
-    void login(long reqId, String userId) {
-        mUserService.requestLogin(reqId, Request.USER_LOGIN, new LoginBody(userId)).enqueue(new Callback<LoginResponse>() {
-            @Override
-            @EverythingIsNonNull
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                LoginResponse loginResponse = response.body();
-                for (ClientProxyListener listener : mProxyListeners) {
-                    if (loginResponse == null) {
-                        try {
-                            listener.onResponseError(Request.USER_LOGIN, ERROR_NULL,
-                                    response.errorBody() == null ? MSG_NULL_RESPONSE : response.errorBody().string());
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else if (loginResponse.code == ERROR_OK) {
-                        listener.onLoginResponse(loginResponse);
-                    } else {
-                        listener.onResponseError(Request.USER_LOGIN, loginResponse.code, loginResponse.msg);
-                    }
-                }
-            }
-
-            @Override
-            @EverythingIsNonNull
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                for (ClientProxyListener listener : mProxyListeners) {
-                    listener.onResponseError(Request.USER_LOGIN, ERROR_CONNECTION, t.getMessage());
-                }
-            }
-        });
-    }
 
     void requestRoomList(long reqId, String token, String nextId, int count, int type, Integer pkState) {
         mRoomService.requestRoomList(reqId, token, Request.ROOM_LIST, nextId, count, type, pkState).enqueue(new Callback<RoomListResponse>() {

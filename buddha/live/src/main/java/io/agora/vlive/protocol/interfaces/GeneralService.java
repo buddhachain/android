@@ -1,6 +1,5 @@
 package io.agora.vlive.protocol.interfaces;
 
-import io.agora.vlive.protocol.model.response.AppVersionResponse;
 import io.agora.vlive.protocol.model.response.GiftListResponse;
 import io.agora.vlive.protocol.model.response.MusicListResponse;
 import io.agora.vlive.protocol.model.response.OssPolicyResponse;
@@ -11,10 +10,6 @@ import retrofit2.http.Header;
 import retrofit2.http.Query;
 
 public interface GeneralService {
-    @GET("ent/v1/app/version")
-    Call<AppVersionResponse> requestAppVersion(@Header("reqId") long reqId, @Header("reqType") int reqType,
-                                               @Query("appCode") String appCode, @Query("osType") int osType,
-                                               @Query("terminalType") int terminalType, @Query("appVersion") String appVersion);
 
     @GET("ent/v1/gifts")
     Call<GiftListResponse> requestGiftList(@Header("reqId") long reqId, @Header("reqType") int reqType);

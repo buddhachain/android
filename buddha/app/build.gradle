@@ -138,4 +138,7 @@ dependencies {
     implementation 'cn.yipianfengye.android:zxing-library:2.2'//二维码库
     implementation 'com.youth.banner:banner:2.1.0'//banner
 
+//    implementation 'com.imusic.player:music-player:1.1.6'//音乐播放器
+    implementation 'com.github.bifan-wei:HwTxtReader:V2.2'//阅读器
+
 }

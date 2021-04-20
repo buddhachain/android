@@ -168,7 +168,7 @@ public abstract class AbsPageFragment extends AbstractFragment implements SwipeR
 
     private void refreshPage(String nextId, int count, int type, Integer pkState) {
         RoomListRequest request = new RoomListRequest(
-                getContainer().config().getUserProfile().getToken(),
+                "",
                 nextId, count, type, pkState);
         getContainer().proxy().sendRequest(Request.ROOM_LIST, request);
     }
@@ -214,16 +214,8 @@ public abstract class AbsPageFragment extends AbstractFragment implements SwipeR
                 } else {
                     Toast.makeText(getContext(), R.string.agora_app_id_failed,
                             Toast.LENGTH_SHORT).show();
-                    checkUpdate();
                 }
             });
-        }
-
-        private void checkUpdate() {
-            if (!config().hasCheckedVersion()) {
-                getContainer().proxy().sendRequest(
-                        Request.APP_VERSION, getContainer().getAppVersion());
-            }
         }
 
         private int serverTypeToTabType(int serverType) {

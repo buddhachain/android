@@ -12,7 +12,6 @@ import java.util.List;
 import io.agora.capture.video.camera.Constant;
 import io.agora.framework.PreprocessorFaceUnity;
 import io.agora.rtc.video.VideoEncoderConfiguration;
-import io.agora.vlive.protocol.model.model.AppVersionInfo;
 import io.agora.vlive.protocol.model.model.GiftInfo;
 import io.agora.vlive.protocol.model.model.MusicInfo;
 import io.agora.vlive.utils.GiftUtil;
@@ -23,7 +22,6 @@ public class Config {
         private String userId;
         private String userName;
         private String imageUrl;
-        private String token;
         private String rtcToken;
         private String rtmToken;
         private long agoraUid;
@@ -55,14 +53,6 @@ public class Config {
 
         public void setImageUrl(String imageUrl) {
             this.imageUrl = imageUrl;
-        }
-
-        public String getToken() {
-            return token;
-        }
-
-        public void setToken(String token) {
-            this.token = token;
         }
 
         public String getRtcToken() {
@@ -120,7 +110,6 @@ public class Config {
     }
 
     private UserProfile mUserProfile;
-    private AppVersionInfo mVersionInfo;
     private String mAppId;
     private List<GiftInfo> mGiftInfoList = new ArrayList<>();
     private List<MusicInfo> mMusicInfoList = new ArrayList<>();
@@ -151,13 +140,6 @@ public class Config {
         return mUserProfile;
     }
 
-    public AppVersionInfo getVersionInfo() {
-        return mVersionInfo;
-    }
-
-    public void setVersionInfo(AppVersionInfo mVersionInfo) {
-        this.mVersionInfo = mVersionInfo;
-    }
 
     public void setAppId(String appId) {
         mAppId = appId;
@@ -165,10 +147,6 @@ public class Config {
 
     public boolean appIdObtained() {
         return !TextUtils.isEmpty(mAppId);
-    }
-
-    public boolean hasCheckedVersion() {
-        return mVersionInfo != null;
     }
 
     public boolean isBeautyEnabled() {

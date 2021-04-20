@@ -53,7 +53,7 @@ public class RetrofitUtil {
                 }).build();
 
         mRetrofit = new Retrofit.Builder()
-                .baseUrl("https://xfund.one:8858/")
+                .baseUrl("https://api.agora.io")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(client)

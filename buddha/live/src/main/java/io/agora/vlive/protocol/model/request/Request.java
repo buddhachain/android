@@ -2,15 +2,9 @@ package io.agora.vlive.protocol.model.request;
 
 public class Request {
     // General purposes
-    public static final int APP_VERSION = 1;
     public static final int OSS = 2;
     public static final int GIFT_LIST = 3;
     public static final int MUSIC_LIST = 4;
-
-    // User management
-    public static final int CREATE_USER = 5;
-    public static final int EDIT_USER = 6;
-    public static final int USER_LOGIN = 7;
 
     // Live Room
     public static final int CREATE_ROOM = 8;
@@ -33,13 +27,9 @@ public class Request {
 
     public static String getRequestString(int request) {
         switch (request) {
-            case APP_VERSION: return "app_version";
             case OSS: return "oss";
             case GIFT_LIST: return "gift_list";
             case MUSIC_LIST: return "music_list";
-            case CREATE_USER: return "create_user";
-            case EDIT_USER: return "edit_user";
-            case USER_LOGIN: return "user_login";
             case CREATE_ROOM: return "create_room";
             case ROOM_LIST: return "room_list";
             case ENTER_ROOM: return "enter_room";

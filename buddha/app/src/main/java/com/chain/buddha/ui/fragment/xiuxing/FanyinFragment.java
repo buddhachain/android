@@ -10,8 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.chain.buddha.R;
 import com.chain.buddha.Xuper.ResponseCallBack;
 import com.chain.buddha.Xuper.XuperApi;
+import com.chain.buddha.adapter.FanyinListAdapter;
 import com.chain.buddha.adapter.RankingListAdapter;
 import com.chain.buddha.ui.BaseFragment;
+import com.chain.buddha.ui.activity.xiuxing.BookReaderActivity;
+import com.chain.buddha.ui.activity.xiuxing.FanyinPlayerActivity;
+import com.chain.buddha.utils.SkipInsideUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -27,10 +31,10 @@ public class FanyinFragment extends BaseFragment {
 
 
     @BindView(R.id.rv_list)
-    RecyclerView mRankingListRv;
+    RecyclerView mFanyinListRv;
 
-    private RankingListAdapter mRankingListAdapter;
-    private List<String> mRankingList;
+    private FanyinListAdapter mFanyinListAdapter;
+    private List<String> mFanyinList;
 
     public FanyinFragment() {
         // Required empty public constructor
@@ -45,14 +49,16 @@ public class FanyinFragment extends BaseFragment {
     @Override
     protected void init() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-        mRankingListRv.setLayoutManager(layoutManager);
-        mRankingList = new ArrayList<>();
-        mRankingListAdapter = new RankingListAdapter(mContext, mRankingList);
-        mRankingListRv.setAdapter(mRankingListAdapter);
-        mRankingListAdapter.setEmptyView(R.layout.view_empty);
-        mRankingListAdapter.getEmptyLayout().setOnClickListener(new View.OnClickListener() {
+        mFanyinListRv.setLayoutManager(layoutManager);
+        mFanyinList = new ArrayList<>();
+        mFanyinList.add("[0,1]");
+        mFanyinListAdapter = new FanyinListAdapter(mContext, mFanyinList);
+        mFanyinListRv.setAdapter(mFanyinListAdapter);
+        mFanyinListAdapter.setEmptyView(R.layout.view_empty);
+        mFanyinListAdapter.getEmptyLayout().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                SkipInsideUtil.skipInsideActivity(mContext, FanyinPlayerActivity.class);
             }
         });
 
@@ -67,10 +73,10 @@ public class FanyinFragment extends BaseFragment {
                 try {
                     resp = resp.replaceAll("\\}", "");
                     String[] list = resp.split("\\{");
-                    mRankingList.clear();
-                    mRankingList.addAll(Arrays.asList(list));
-                    mRankingList.remove(0);
-                    mRankingListAdapter.notifyDataSetChanged();
+                    mFanyinList.clear();
+                    mFanyinList.addAll(Arrays.asList(list));
+                    mFanyinList.remove(0);
+                    mFanyinListAdapter.notifyDataSetChanged();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

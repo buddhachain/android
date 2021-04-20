@@ -4,16 +4,12 @@ import androidx.fragment.app.Fragment;
 import io.agora.vlive.AgoraLiveManager;
 import io.agora.vlive.Config;
 import io.agora.vlive.protocol.ClientProxyListener;
-import io.agora.vlive.protocol.model.response.AppVersionResponse;
 import io.agora.vlive.protocol.model.response.AudienceListResponse;
 import io.agora.vlive.protocol.model.response.CreateRoomResponse;
-import io.agora.vlive.protocol.model.response.CreateUserResponse;
-import io.agora.vlive.protocol.model.response.EditUserResponse;
 import io.agora.vlive.protocol.model.response.EnterRoomResponse;
 import io.agora.vlive.protocol.model.response.GiftListResponse;
 import io.agora.vlive.protocol.model.response.GiftRankResponse;
 import io.agora.vlive.protocol.model.response.LeaveRoomResponse;
-import io.agora.vlive.protocol.model.response.LoginResponse;
 import io.agora.vlive.protocol.model.response.ModifyUserStateResponse;
 import io.agora.vlive.protocol.model.response.MusicListResponse;
 import io.agora.vlive.protocol.model.response.OssPolicyResponse;
@@ -36,10 +32,6 @@ public abstract class AbstractFragment extends Fragment implements ClientProxyLi
         return application().config();
     }
 
-    @Override
-    public void onAppVersionResponse(AppVersionResponse response) {
-
-    }
 
     @Override
     public void onRefreshTokenResponse(RefreshTokenResponse refreshTokenResponse) {
@@ -67,21 +59,6 @@ public abstract class AbstractFragment extends Fragment implements ClientProxyLi
     }
 
     @Override
-    public void onCreateUserResponse(CreateUserResponse response) {
-
-    }
-
-    @Override
-    public void onLoginResponse(LoginResponse response) {
-
-    }
-
-    @Override
-    public void onEditUserResponse(EditUserResponse response) {
-
-    }
-
-    @Override
     public void onCreateRoomResponse(CreateRoomResponse response) {
 
     }
@@ -103,11 +80,6 @@ public abstract class AbstractFragment extends Fragment implements ClientProxyLi
 
     @Override
     public void onRequestSeatStateResponse(SeatStateResponse response) {
-
-    }
-
-    @Override
-    public void onModifyUserStateResponse(ModifyUserStateResponse response) {
 
     }
 

@@ -452,15 +452,15 @@ public class ECommerceLiveActivity extends LiveRoomActivity
         } else {
             mRoomUserListActionSheet = (LiveRoomUserListActionSheet)
                     showActionSheetDialog(ACTION_SHEET_ROOM_USER, tabIdToLiveType(tabId), isHost, true, this);
-            mRoomUserListActionSheet.setup(proxy(), this, roomId, config().getUserProfile().getToken());
+//            mRoomUserListActionSheet.setup(proxy(), this, roomId, config().getUserProfile().getToken());
             mRoomUserListActionSheet.requestMoreAudience();
         }
     }
 
     private void requestAudienceList() {
-        sendRequest(Request.AUDIENCE_LIST, new AudienceListRequest(
-                config().getUserProfile().getToken(),
-                roomId, null, AudienceListRequest.TYPE_ALL));
+//        sendRequest(Request.AUDIENCE_LIST, new AudienceListRequest(
+//                config().getUserProfile().getToken(),
+//                roomId, null, AudienceListRequest.TYPE_ALL));
     }
 
     @Override
