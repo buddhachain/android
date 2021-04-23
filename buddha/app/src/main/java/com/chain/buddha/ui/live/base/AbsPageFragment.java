@@ -1,4 +1,4 @@
-package io.agora.vlive.ui.main.fragments;
+package com.chain.buddha.ui.live.base;
 
 import android.content.Intent;
 import android.graphics.Rect;
@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,15 +18,28 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.chain.buddha.Xuper.BaseObserver;
+import com.chain.buddha.Xuper.ResponseCallBack;
+import com.uber.autodispose.AutoDispose;
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import io.agora.vlive.Config;
 import io.agora.vlive.R;
 import io.agora.vlive.protocol.model.model.RoomInfo;
 import io.agora.vlive.protocol.model.request.Request;
 import io.agora.vlive.protocol.model.request.RoomListRequest;
 import io.agora.vlive.protocol.model.response.RoomListResponse;
+import io.agora.vlive.retrofit.RetrofitUtil;
 import io.agora.vlive.ui.components.SquareRelativeLayout;
 import io.agora.vlive.utils.Global;
 import io.agora.vlive.utils.UserUtil;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public abstract class AbsPageFragment extends AbstractFragment implements SwipeRefreshLayout.OnRefreshListener {
     private static final String TAG = AbsPageFragment.class.getSimpleName();
@@ -159,6 +170,7 @@ public abstract class AbsPageFragment extends AbstractFragment implements SwipeR
 
     /**
      * Refresh the page from after a specific room.
+     *
      * @param nextId null if refresh from the beginning of list
      */
     private void refreshPage(String nextId) {
@@ -171,6 +183,25 @@ public abstract class AbsPageFragment extends AbstractFragment implements SwipeR
                 "",
                 nextId, count, type, pkState);
         getContainer().proxy().sendRequest(Request.ROOM_LIST, request);
+        getLivingRoomList();
+    }
+
+
+    private void getLivingRoomList() {
+        RetrofitUtil.getInstance().getService().roomList(0, 100)
+                .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this)))
+                .subscribe(new BaseObserver<>(false, new ResponseCallBack<Response<Object>>() {
+                    @Override
+                    public void onSuccess(Response<Object> stringResponse) {
+                        Log.e("请求成功", "请求成功");
+                    }
+
+                    @Override
+                    public void onFail(String message) {
+                        Log.e("请求失败", "请求失败");
+                    }
+                }));
     }
 
     @Override

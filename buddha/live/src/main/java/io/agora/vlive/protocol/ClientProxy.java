@@ -96,10 +96,7 @@ public class ClientProxy {
                 RefreshTokenRequest refreshTokenRequest = (RefreshTokenRequest) params;
                 mClient.refreshToken(mReqId, refreshTokenRequest.token, refreshTokenRequest.roomId);
                 break;
-            case Request.SEAT_INTERACTION:
-                SeatInteractionRequest seatInteractionRequest = (SeatInteractionRequest) params;
 
-                break;
             case Request.PRODUCT_LIST:
                 ProductRequest productRequest = (ProductRequest) params;
                 mClient.requestProductList(productRequest.token, productRequest.roomId);

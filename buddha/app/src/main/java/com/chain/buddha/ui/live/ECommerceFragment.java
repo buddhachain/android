@@ -1,7 +1,8 @@
 package com.chain.buddha.ui.live;
 
+import com.chain.buddha.ui.live.base.AbsPageFragment;
+
 import io.agora.vlive.protocol.ClientProxy;
-import io.agora.vlive.ui.main.fragments.AbsPageFragment;
 
 public class ECommerceFragment extends AbsPageFragment {
     @Override

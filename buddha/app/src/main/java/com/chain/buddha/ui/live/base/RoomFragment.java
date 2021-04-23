@@ -24,7 +24,6 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 import io.agora.vlive.R;
-import io.agora.vlive.ui.main.fragments.AbstractFragment;
 import io.agora.vlive.utils.Global;
 
 public class RoomFragment extends AbstractFragment implements View.OnClickListener {

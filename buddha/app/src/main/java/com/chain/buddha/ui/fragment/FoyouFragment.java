@@ -128,6 +128,7 @@ public class FoyouFragment extends BaseFragment implements ClientProxyListener {
         }).start();
     }
 
+
     private void initAccount() {
         AgoraLiveManager.getInstance().config().setAppId(AgoraConfigs.appId);
         AgoraLiveManager.getInstance().initEngine(AgoraConfigs.appId);
@@ -161,7 +162,7 @@ public class FoyouFragment extends BaseFragment implements ClientProxyListener {
         Config.UserProfile profile = AgoraLiveManager.getInstance().config().getUserProfile();
         profile.setRtmToken(rtmToken);
         profile.setAgoraUid(0);
-        RetrofitUtil.getInstance().getService().user_events(rtmToken, XuperAccount.getAddress())
+        RetrofitUtil.getInstance().getService().login(rtmToken, XuperAccount.getAddress())
                 .subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .as(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this)))
                 .subscribe(new BaseObserver<>(false, new ResponseCallBack<Response<Object>>() {

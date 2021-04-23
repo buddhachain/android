@@ -17,9 +17,6 @@ public class Request {
     public static final int REFRESH_TOKEN = 15;
     public static final int SEAT_STATE = 18;
 
-    //Seat Operations
-    public static final int SEAT_INTERACTION = 19;
-
     // Product management
     public static final int PRODUCT_LIST = 22;
     public static final int PRODUCT_PURCHASE = 23;
@@ -39,7 +36,6 @@ public class Request {
             case GIFT_RANK: return "gift_rank";
             case REFRESH_TOKEN: return "refresh_token";
             case SEAT_STATE: return "seat_state";
-            case SEAT_INTERACTION: return "seat_interaction";
             case PRODUCT_LIST: return "product_list";
             case PRODUCT_PURCHASE: return "product_purchase";
             case PRODUCT_MANAGE: return "product_manage";
